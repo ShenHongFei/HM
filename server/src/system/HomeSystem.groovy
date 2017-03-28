@@ -19,7 +19,8 @@ class HomeSystem{
     Model      m=new Model()
 
     @GetMapping(['','/'])
-    ModelAndView index( HttpServletRequest req,HttpServletResponse resp ){
+    ModelAndView index(HttpServletRequest req,HttpServletResponse resp ){
+        //todo:首页cookie
         ModelAndView mav=us.autologin(req,resp)
         mav.view='/api.html'
         mav

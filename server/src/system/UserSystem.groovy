@@ -119,7 +119,7 @@ class UserSystem{
     @PostMapping( '/user/login' )
     login( @Validated User t,@RequestParam( name = 'verificationCode' )String code,HttpServletRequest req,HttpServletResponse resp ){
         
-        if( code!=verificationCodes.login ) return -m<<'验证码错误'
+//        if( code!=verificationCodes.login ) return -m<<'验证码错误'
         
         User e = repo.findByEmail(t.email)
 
@@ -142,13 +142,14 @@ class UserSystem{
         }
         saveUserInfoToCurrentSession(req,resp)
         m<<'登录成功'
+        //todo:登录成功后更换验证码
     }
 
 
     @PostMapping('/user/register')
     register(@Validated User t,@RequestParam( name = 'verificationCode' )String code,HttpServletRequest req,HttpServletResponse resp ){
         
-        if( code!=verificationCodes.register ) return -m<<'验证码错误'
+//        if( code!=verificationCodes.register ) return -m<<'验证码错误'
         
         User e = repo.findByEmail(t.email)
 
@@ -179,7 +180,7 @@ class UserSystem{
     @PostMapping('/user/update')
     update(@Validated User t,@RequestParam('oldPassword') String op,@RequestParam( name = 'verificationCode' )String code,HttpServletResponse resp ){
 
-        if( code!=verificationCodes.update ) return -m<<'验证码错误'
+//        if( code!=verificationCodes.update ) return -m<<'验证码错误'
         
         if(t.username!=user.username&&repo.findByUsername(t.username)) return -m<<'用户名已存在'
         if(op!=user.password) return -m<<'原密码错误'

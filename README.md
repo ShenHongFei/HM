@@ -7,8 +7,17 @@
 
 ---
 
-##后端接口地址
-[http://45.78.7.182/HM](http://45.78.7.182/HM)  
+##网站地址[http://45.78.7.182/HM](http://45.78.7.182/HM)
+
 其它网页访问方法
 http://45.78.7.182/HM/{html文件名}
+
+##后端接口-使用Postman发送HTTP请求并查看响应
+
+https://www.getpostman.com/
+
+导入以下接口
+
+https://www.getpostman.com/collections/4d2a4366f2dd99382a03
+
 
