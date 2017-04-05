@@ -18,14 +18,12 @@
         }
         #introduction img{
             display: block; 
-            max-width: 50%;
+            max-width: 80%;
         }
         .explore-entry-list .empty{
             padding: .7rem 0;
         }
-        .phone-hidden,.nav-item.search{
-            display: none;
-        }
+        
         /*针对移动端*/
 
         @media(max-width: 768px) {
@@ -47,6 +45,7 @@
                 justify-content: center;
                 font-weight: 600;
                 padding: 0 2rem;
+                cursor: pointer;
             }
             .caret {
                 display: inline-block;
@@ -62,23 +61,24 @@
                 content: "\f104";
             }
             .phone-hidden {
-                position: fixed;
+                position: absolute;
                 top: 5rem;
+                right:12rem;
                 display: block;
                 background-color: #fff;
                 box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
                 border: 1px solid hsla(217, 5%, 71%, .45);
                 border-radius: 4px;
                 font-size: 1.2rem;
-/*                display: none;
-*/            }
+                display: none;
+           }
             .phone-hidden .nav-item {
                 height: 4rem;
             }
             .main-nav-list.nav-item: last-child {
                 padding: 0 2rem;
             }
-            .main-nav-list.nav-item.search {
+            .main-nav-list .nav-item.search {
                 display: none;
             }
         }
@@ -99,11 +99,11 @@
                     <nav class="main-nav">
                         <div class="nav-list">
                             <ul class="main-nav-list">
-                                <div class="phone-show-menu">
+                                <div class="phone-show-menu" id="phone-menu">
                                     <span>了解我们</span>
                                     <i class="caret down icon"></i>
                                 </div>
-                                <div class="phone-hidden">
+                                <div class="phone-hidden" id="phone-hidden">
                                     <li class="nav-item">
                                         <a herf="#">
                                             首页
@@ -188,6 +188,13 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function(){
+        //初始化默认不显示
+        var editor = UE.getEditor('editor',{
+            isShow : false,
+            zIndex : 1,
+            elementPathEnabled:false,
+            wordCount:false
+        });
         // 直接交互，显示出来结果
         $.ajax({
             url:'introduction',
@@ -205,25 +212,13 @@
             }
         });
         $("#add").click(function(){
-            // 富文本框
-            $.ajax({
-                url:'introduction',
-                method:'GET'
-            }).fail(function(jqXHR,textStatus){
-                alert('ajax GET request failed\n'+textStatus);
-            }).done(function(model){
-                if(!model||!model.result){
-                    alert(model?model.msg:'unknown error');
-                    return;
-                }
-                // /alert(model.content);
-                UE.getEditor('editor').setContent(model.content);
-            });
             $("#introduction").css("display","none");
             $("#add").css("display","none");
             $("#cancel").css("display","block");
             $("button").css("display","block");
-            UE.getEditor('editor').setShow();
+            // alert($('#introduction').html());
+            editor.setShow()
+            editor.setContent($('#introduction').html());
         });
 
 
@@ -232,23 +227,21 @@
             $("#add").css("display","block");
             $("#cancel").css("display","none");
             $("button").css("display","none");
-            UE.getEditor('editor',{serverUrl:'/HM/introduction/edit'}).setHide();
+            UE.getEditor('editor').setHide();
         });
 
-        // $(window).scroll(function() { //侦听滚动时 
-        //     var top= $(".main-header").height()/2;
-        //     var scrolls = $("#view-nav").scrollTop(); 
-        //     if (scrolls > top) { //如果滚动到页面超出了当前元素element的相对页面顶部的高度 
-        //             $("#view-nav").addClass("top");     
-        //         } 
-        //     else { 
-        //         $("#view-nav").removeClass("top");//移除阴影样式.shadow 
-        //     } 
-        // }); 
+        // 菜单栏调整
+        $("#phone-menu").click(function(){
+            if ($("#phone-hidden").css("display") == "none") {
+                $("#phone-hidden").css("display","block");
+            }
+            else{
+                $("#phone-hidden").css("display","none"); 
+            }
+        });
 
     });
         function submitIntroduction(){
-            alert(UE.getEditor('editor',{serverUrl:'/HM/introduction/edit'}).getContent());
             $.ajax({
                 method:'POST',
                 url:'introduction',
@@ -259,6 +252,7 @@
                         return;
                     }
                     alert('上传成功');
+                    //location.reload();
                 },
                 error:function(jqXHR,textStatus){
                     alert('ajax POST request failed\n'+textStatus);
