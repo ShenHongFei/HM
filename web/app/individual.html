@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title></title>
+<style>
+	 html{
+            font-size: 12px;
+            font-family: -apple-system,PingFang SC,Hiragino Sans GB,Arial,Microsoft YaHei,Helvetica Neue,sans-serif;
+            text-rendering: optimizeLegibility;
+            background-color: #f4f5f5;
+            color: #333;
+            word-break:break-all;
+        }
+        div, body{
+            margin:0;
+            padding: 0;
+        }
+        li {
+            list-style: none;
+        }
+        .main-header-box{
+            position: relative;
+            height: 5rem;
+        }
+        .main-header{
+        	background: #fff;
+		    border-bottom: 1px solid #f1f1f1;
+		    color: #909090;
+		    height: 5rem;
+		    z-index: 250;
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    right: 0
+        	}
+        .main-header .container{
+        	max-width: 960px;
+            margin: auto;
+            display: flex;
+		    -webkit-box-align: center;
+		    -ms-flex-align: center;
+		    align-items: center;
+		    height: 100%;
+		    width: 100%;
+		    position: relative;
+		    color: #909090;
+        }
+        a {
+		    text-decoration: none;
+		    cursor: pointer;
+		    color: #909090;
+		    background-color: transparent;
+		}
+
+		a:hover{
+			color: #99CCFF;
+		}
+
+		.logo{
+			margin-right: 2rem;
+            text-decoration: none;
+            cursor: pointer;
+            color: #909090;
+            background-color: transparent;
+
+		}
+
+		 .logo img{
+            border-style: none;
+            height:60px;
+            width:60px;
+        }
+
+        .main-nav{
+            height: 5rem;
+            -webkit-box-flex: 1;
+		    -ms-flex: 1 0 auto;
+		    flex: 1 0 auto;
+		    display: block;
+		    position: fixed;
+        }
+
+        .main-nav .nav-list{
+             display: flex;
+		    -webkit-box-align: center;
+		    -ms-flex-align: center;
+		    align-items: center;
+		    height: 100%;
+		    margin: 0;
+		    -webkit-box-pack: end;
+		    -ms-flex-pack: end;
+		    justify-content: flex-end;
+		    position: relative;
+		  }
+
+		 .main-nav .nav-item{
+		 	color: #71777c;
+		    padding: 0 1.5rem;
+		    font-size: 1.33rem;
+		    -webkit-box-pack: center;
+		    -ms-flex-pack: center;
+		    justify-content: center;
+		    cursor: pointer;
+		    display: inline;
+		    -webkit-box-align: center;
+		    -ms-flex-align: center;
+		    align-items: center;
+		    height: 100%;
+		    margin: 0;
+		    position: relative;
+		 }
+
+        .main-nav .nav-item li{
+        	list-style: none;
+        }
+
+        .main-nav .nav-list,.phone-hidden,.view-nav{
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+       .nav-item.search{
+            -webkit-box-flex: 1;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            -webkit-box-pack: end;
+            -ms-flex-pack: end;
+            justify-content: flex-end;
+            cursor: auto;
+            background-color: white;
+            align-items: center;
+        }
+
+        .search-form{
+            border: 1px solid hsla(0,0%,59%,.2);
+            background-color: rgba(227,231,236,.2);
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+           /*align-item*/
+            align-items: center;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            position: relative;
+            top:1.5rem;
+
+        }
+        .search-form input{
+            border: none;
+            width: 180px;
+            padding: .6rem 1rem;
+            box-shadow: none;
+            outline: none;
+            font-size: 1.1rem;
+            color: #aeb6c0;
+            background-color: transparent;
+            overflow: visible;
+        }
+        .nav-item.auth {
+            font-weight: 500;
+            color: #007fff;
+            position: relative;
+            top: 1.5rem;
+         
+        }
+        .nav-item.auth .login:after {
+            content: "\B7";
+            margin: 0 .4rem;
+        }
+
+              .view-nav, .view-nav:before {
+            left: 0;
+            background-color: #fff;
+        }
+
+        .view-nav:before {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            height: 200%;
+            z-index: -1;
+        }
+        .view-nav {
+            position: fixed;
+            top: 5rem;
+            width: 100%;
+            height: 3.833rem;
+            z-index: 100;
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+            -webkit-transition: all .2s;
+            transition: all .2s;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+        .view-nav .nav-list{
+            padding: 0;
+            height: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            width: 960px;
+            margin: auto;
+            line-height: 1;
+        }
+        .view-nav .nav-list .nav-item{
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            font-size: 1.16rem;
+            color: #71777c;
+            padding: 0 1rem;
+            cursor: pointer;
+        }
+        .view-nav .nav-list .nav-item.active, .view-nav .nav-list .nav-item:hover {
+            color: #007fff;
+            /*ÏÂÃæµÄºáÏß*/
+            box-shadow: inset 0 -2px currentColor;
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            font-size: 1.16rem;
+            height: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+
+	   
+	   .center-picture{
+	      text-align: center;
+	      display: block;
+	      padding-top: 1.8rem;
+	   }
+
+	   .content-view{
+	   	position: relative;
+	   	top:12rem;
+	   	display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+	   	
+	   }
+     
+       .messbox{
+       	background: #fff;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        position: relative;
+        width: 60%;
+        display: block;
+      
+      }
+      
+      .messbox .setting-list{
+      	display: block;
+      	padding: 0;
+      	margin: 0;
+
+      }
+
+      .messbox .setting-list .item{
+      	display: flex;
+      	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	    align-items: center;
+	    
+	    padding: 2rem 0;
+	    border-top: 1px solid #f1f1f1;
+	    height: 4rem;
+      }
+
+    .setting-list .item .title {
+         color: #909090;
+	     font-size: 1.33rem;
+         width: 10rem;
+     }
+
+    .input-box{
+    	display: -webkit-box;
+	    display: -ms-flexbox;
+	    display: flex;
+	    -webkit-box-pack: end;
+	    -ms-flex-pack: end;
+	    justify-content: flex-end;
+	    -webkit-box-flex: 1;
+	    -ms-flex: 1;
+	    flex: 1;
+    }
+
+    input{
+    	-webkit-box-flex: 1;
+	    -ms-flex: 1;
+	    flex: 1;
+	    display: inline-block;
+	    border: none;
+	    outline: none;
+	    color: #909090;
+	    font-size: 1.3rem;
+	    overflow: visible;
+    }
+	.input-box img{
+		 border-style: none;
+	}
+
+	.data{
+	     background-color: transparent;
+		 color: #007fff;
+		 font-size: 1.2rem;
+		 padding: 0;
+		}
+
+    .action-box{
+    	margin-left: 1rem;
+    	cursor: pointer;
+    	
+
+    }
+
+    button{
+            -webkit-appearance: none;
+            background-color: #007fff;
+            color: #fff;
+            border-radius: 2px;
+            border: none;
+            outline: none;
+            -webkit-transition: background-color .3s,color .3s;
+            transition: background-color .3s,color .3s;
+            cursor: pointer;
+            text-transform: none;
+            overflow: visible;
+            margin: 20px 0;
+            padding: 0;
+            width: 6rem;
+            height: 3rem;
+            font-size: 1.3rem;
+        }
+        .button:hover, button:hover {
+            background-color: #0371df;
+            color: #fff;
+        }
+
+    .edit-btn{
+    	background-color: transparent;
+	    color: #007fff;
+	    font-size: 1.2rem;
+	    padding: 0;
+    }
+    .edit-btn:hover{
+    	background-color: transparent;
+    	color:  #007fff;
+    }
+
+    .edit-icon{
+    	height: 1.6rem;
+    	width: 1.6rem;
+    }
+
+    .logo{
+    	-webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: 6rem;
+    height: 6rem;
+    margin-right: 1rem;
+    	    display: inline-block;
+    background-position: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    }
+
+</style>
+</head>
+<body>
+<header class="main-header"> 
+<div class="container">
+   <a href="#" class="logo">
+         <img src="img/logo.jpg" alt="">
+   </a>
+   <nav class="main-nav">
+   <ul class="nav-list">
+   <div class="phone-hide">
+   <li class="nav-item"><a href="#">首页</a>
+   </li>
+   <li class="nav-item"><a href="#">了解我们</a></li>
+   <li class="nav-item"><a href="#">活动</a></li>
+   <li class="nav-item"><a href="#">科普知识</a></li>
+   </div>
+   <li class="nav-item search">
+      <form autocomplete="on" class="search-form">
+         <input type="text"  placeholder="搜索">
+         <img src="http://gold-cdn.xitu.io/v3/static/img/juejin-search-icon.26cafaa.svg" alt="搜索">
+         </form>
+   </li>
+   <li class="nav-item auth">
+     <span class="login">登陆</span>
+     <span class="register">注册</span>
+    </li>
+   </ul>
+   </nav>
+</header>
+
+  <nav class="view-nav">
+  <ul class="nav-list">
+    <li class="nav-item active">个人资料</li>
+    <li class="nav-item">修改密码</li>
+    <li class="nav-item ">我的活动</li>
+    <li class="nav-item">我的消息</li>
+    <li class="nav-item ">账号管理</li>
+    
+    
+   </ul>
+ </nav>
+
+
+   
+    <div class="content-view">
+	 
+
+	  <div class="messbox">
+	     <ul class="setting-list">
+
+	      <li class="item">
+	        <span class="title">头像</span>
+	         <img data-v-1b9df826="" src="http://gold-cdn.xitu.io/v3/static/img/default-avatar.e30559a.svg" alt="Tinker Bell" class="logo">
+		     <div class="action-box">
+		     <span>ppppp</span>
+	     	 </div>
+	     <button>点击上传</button>
+	     </li>
+
+	     
+	     <li class="item">
+	     <span class="title">昵称</span>
+	     <div class="input-box">
+	     <input type="text"  placeholder="昵称">
+	     <div class="active-box">
+	     <button class="edit-btn">
+	      <img data-v-1b9df826="" src="http://gold-cdn.xitu.io/v3/static/img/edit-icon.6d6382b.svg" alt="Tinker Bell" class="edit-icon">
+	      <span>修改</span>
+	     </button>
+	     </div>
+	     	
+	     </div>
+	     </li>
+
+	     <li class="item">
+	     <span class="title">邮箱</span>
+	     <div class="input-box">
+	     <input type="text"  placeholder="邮箱">
+	     <div class="active-box">
+	     <button class="edit-btn">
+	      <img data-v-1b9df826="" src="http://gold-cdn.xitu.io/v3/static/img/edit-icon.6d6382b.svg" alt="Tinker Bell" class="edit-icon">
+	      <span>修改</span>
+	     </button>
+	     </div>
+	     	
+	     </div>
+	     </li>
+
+         <li class="item">
+	     <span class="title">职位</span>
+	     <div class="input-box">
+	     <input type="text"  placeholder="职位">
+	     <div class="active-box">
+	     <button class="edit-btn">
+	      <img data-v-1b9df826="" src="http://gold-cdn.xitu.io/v3/static/img/edit-icon.6d6382b.svg" alt="Tinker Bell" class="edit-icon">
+	      <span>修改</span>
+	     </button>
+	     </div>
+	     	
+	     </div>
+	     </li>
+
+	     </ul>
+	  </div>
+	 </div>
+</body>
+</html>
