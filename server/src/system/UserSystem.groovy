@@ -117,7 +117,7 @@ class UserSystem{
     }
 
     @PostMapping( '/user/login' )
-    login( @Validated User t,@RequestParam( name = 'verificationCode' )String code,HttpServletRequest req,HttpServletResponse resp ){
+    login( @Validated User t,/*@RequestParam( name = 'verificationCode' )String code,*/HttpServletRequest req,HttpServletResponse resp ){
         
 //        if( code!=verificationCodes.login ) return -m<<'验证码错误'
         
@@ -147,7 +147,7 @@ class UserSystem{
 
 
     @PostMapping('/user/register')
-    register(@Validated User t,@RequestParam( name = 'verificationCode' )String code,HttpServletRequest req,HttpServletResponse resp ){
+    register(@Validated User t,/*@RequestParam( name = 'verificationCode' )String code,*/HttpServletRequest req,HttpServletResponse resp ){
         
 //        if( code!=verificationCodes.register ) return -m<<'验证码错误'
         
@@ -178,7 +178,7 @@ class UserSystem{
 //todo:api test refresh
 
     @PostMapping('/user/update')
-    update(@Validated User t,@RequestParam('oldPassword') String op,@RequestParam( name = 'verificationCode' )String code,HttpServletResponse resp ){
+    update(@Validated User t,@RequestParam('oldPassword') String op,/*@RequestParam( name = 'verificationCode' )String code,*/HttpServletResponse resp ){
 
 //        if( code!=verificationCodes.update ) return -m<<'验证码错误'
         
