@@ -18,7 +18,6 @@ import org.springframework.stereotype.Controller
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -26,7 +25,6 @@ import org.springframework.web.context.annotation.SessionScope
 import repo.UserRepo
 
 import javax.imageio.ImageIO
-import javax.mail.MessagingException
 import javax.mail.internet.MimeMessage
 import javax.servlet.http.Cookie
 import javax.servlet.http.HttpServletRequest
@@ -150,10 +148,8 @@ class UserSystem{
     register(@Validated User t,/*@RequestParam( name = 'verificationCode' )String code,*/HttpServletRequest req,HttpServletResponse resp ){
         
 //        if( code!=verificationCodes.register ) return -m<<'验证码错误'
-        
-        User e = repo.findByEmail(t.email)
 
-        if( e ) return -m << '用户已存在'
+        if( repo.findByEmail(t.email) ) return -m << '用户已存在'
         if(!StringUtils.trimToNull(t.password)) return -m<<'密码不能为空'
 
         t.registerTime = new Date()
@@ -168,8 +164,8 @@ class UserSystem{
     }
 
     @RequestMapping('/user/logout')
-    logout(HttpServletRequest req,HttpServletResponse resp ){
-        user   = GUSET_USER
+    logout(HttpServletRequest req,HttpServletResponse resp){
+        user=GUSET_USER
         user.cookieId=null
         setCookie(resp,'autologin',null,0)
         saveUserInfoToCurrentSession(req,resp)

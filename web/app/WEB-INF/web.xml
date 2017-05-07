@@ -49,7 +49,7 @@
     </session-config>
 
     <welcome-file-list>
-        <welcome-file>/api.html</welcome-file>
+        <welcome-file>/</welcome-file>
     </welcome-file-list>
 
 </web-app>

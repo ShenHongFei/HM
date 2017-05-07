@@ -2,6 +2,7 @@ package config
 
 import com.google.code.kaptcha.impl.DefaultKaptcha
 import com.google.code.kaptcha.util.Config
+import model.News
 import org.apache.commons.dbcp2.BasicDataSource
 import org.hibernate.dialect.MySQL57InnoDBDialect
 import org.springframework.beans.factory.annotation.Autowired
@@ -12,7 +13,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy
 import org.springframework.core.io.FileSystemResource
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.data.web.config.EnableSpringDataWebSupport
-import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.mail.javamail.JavaMailSenderImpl
 import org.springframework.orm.jpa.JpaTransactionManager
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
@@ -32,7 +32,6 @@ import util.ModelAndViewReturnValueHandler
 import util.SuffixViewResolver
 
 import javax.sql.DataSource
-
 
 @Configuration
 @ComponentScan(basePackages = ['repo','system','util','model','aspect','service'])
@@ -66,14 +65,17 @@ class WebAppConfig extends WebMvcConfigurerAdapter{
         INTRODUCTION_DIR=new File(FILE_DIR,'introduction')
         if(!INTRODUCTION_DIR.exists()) INTRODUCTION_DIR.mkdir()
         
+        News.init(FILE_DIR)
+    
     }
+    
 
 //  数据库及事务
     @Bean( name = 'dataSource')
     BasicDataSource getBasicDataSource(){
         def s = new BasicDataSource()
         s.driverClassName = 'com.mysql.cj.jdbc.Driver'
-        s.url = 'jdbc:mysql://localhost:3306/hm?useSSL=false'
+        s.url = 'jdbc:mysql://localhost:3306/hm?useSSL=false&serverTimezone=GMT%2b8'
         s.username = 'root'
         s.password = 'jkjk1212'
         s

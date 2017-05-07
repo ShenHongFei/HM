@@ -22,7 +22,7 @@ class HomeSystem{
     ModelAndView index(HttpServletRequest req,HttpServletResponse resp ){
         //todo:首页cookie
         ModelAndView mav=us.autologin(req,resp)
-        mav.view='/api.html'
+        mav.view='/index.html'
         mav
     }
 

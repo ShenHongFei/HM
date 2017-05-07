@@ -43,7 +43,7 @@ class ProjectSystem{
         @Validated Project pj){
         if(repo.findByName(pj.name)) return -m<<'项目已存在'
         pj=repo.save(pj)
-        m.content=pj.content=cs.create(files,contentText,pj.contextPath)
+        m.content=pj.content=cs.createFromMultipartFile(files,contentText,pj.contextPath)
         m<<'添加成功'
     }
 

@@ -20,7 +20,16 @@ class Content{
     String text
 
     @OneToMany(fetch=FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
-    List<ResourceFile> files
+    List<ResourceFile> files=[]
+    
+    Content(){}
+    //从文件夹创建files
+    Content(String text,File dir){
+        this.text=text
+        dir.eachFile{
+            files<<new ResourceFile(it)
+        }
+    }
 }
 
 

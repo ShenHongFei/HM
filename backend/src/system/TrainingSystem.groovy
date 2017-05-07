@@ -1,9 +1,9 @@
 package system
 
 import config.WebAppConfig
+import model.Department
+import model.Training
 import model.Model
-import model.Knowledge
-import model.Project
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.transaction.annotation.Transactional
@@ -11,27 +11,25 @@ import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.context.annotation.SessionScope
 import org.springframework.web.multipart.MultipartFile
-import repo.KnowledgeRepo
-import repo.ProjectRepo
+import repo.DepartmentRepo
+import repo.TrainingRepo
 import service.ContentService
-
-import static model.Knowledge.Category.PROJECT
 
 @Controller
 @SessionScope
 @Transactional(rollbackFor = Exception)
-class KnowledgeSystem{
+class TrainingSystem{
 
 
     Model m=new Model()
     @Autowired
-    KnowledgeRepo repo
+    TrainingRepo repo
     @Autowired
-    ProjectRepo pjRepo
+    DepartmentRepo dpRepo
     @Autowired
     ContentService cs
 
-    @GetMapping('/knowledge')
+    @GetMapping('/training')
     list(){
         def l=repo.findAll()
         def tl=[]
@@ -40,35 +38,32 @@ class KnowledgeSystem{
         m
     }
 
-    @PostMapping('/knowledge/add')
-//    kng中注入的属性为name,category
+    @PostMapping('/training/add')
+//    tn中注入的属性为name
     add(@RequestParam(name = 'file') MultipartFile[] files,
         @RequestParam(name='contentText',required=false)String contentText,
-        @RequestParam(name='projectId',required = false)Long pjId,
-        @Validated Knowledge kng){
-        Project pj=null
-        if(kng.category==PROJECT){
-            if(!pjId) return -m<<'项目不能为空'
-            pj=pjRepo.findById(pjId)
-            if(!pj) return -m<<'不存在该id的项目'
-        }
-        kng=repo.save(kng)
-        kng.project=pj
-        m.content=kng.content=cs.create(files,contentText,kng.contextPath)
+        @RequestParam(name='departmentId')Long dpId,
+        @Validated Training tn){
+        Department dp = dpRepo.findById(dpId)
+        if(!dp) return -m<<'部门不存在'
+        if(repo.findByNameAndDepartment(tn.name,dp)) return -m<<'培训已存在'
+        tn=repo.save(tn)
+        tn.department=dp
+        m.content=tn.content=cs.createFromMultipartFile(files,contentText,tn.contextPath)
         m<<'添加成功'
     }
 
-    @GetMapping('/knowledge/{id}')
+    @GetMapping('/training/{id}')
     getContent(@PathVariable(name='id') Long id){
-        if(!repo.exists(id)) return -m<<'知识不存在'
+        if(!repo.exists(id)) return -m<<'培训不存在'
         m.content=repo.getOne(id).content
         m
     }
 
-    @RequestMapping('/knowledge/delete')
+    @RequestMapping('/training/delete')
     delete(@RequestParam('id')Long id){
-        if(!repo.exists(id)) return -m<<'知识不存在'
-        Knowledge tn = repo.getOne(id)
+        if(!repo.exists(id)) return -m<<'培训不存在'
+        Training tn = repo.getOne(id)
         new File(WebAppConfig.FILE_DIR,tn.contextPath).deleteDir()
         repo.delete(id)
         m<<'删除成功'

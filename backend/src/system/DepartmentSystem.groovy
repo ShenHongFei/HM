@@ -44,7 +44,7 @@ class DepartmentSystem{
         @Validated Department dp){
         if(repo.findByName(dp.name)) return -m<<'部门已存在'
         dp=repo.save(dp)
-        m.content=dp.content=cs.create(files,contentText,dp.contextPath)
+        m.content=dp.content=cs.createFromMultipartFile(files,contentText,dp.contextPath)
         m<<'添加成功'
     }
 

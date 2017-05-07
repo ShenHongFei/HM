@@ -50,7 +50,7 @@ Temporary Items
 .idea
 bak
 file
-server/lib
-server/out
+backend/lib
+backend/out
 网站1.2
 HM.iml

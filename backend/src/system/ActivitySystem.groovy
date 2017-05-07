@@ -48,7 +48,7 @@ class ActivitySystem{
         if(repo.findByName(ac.name)) return -m<<'活动已存在'
         ac=repo.save(ac)
         ac.department=dpRepo.getOne(dpId)
-        m.content=ac.content=cs.create(files,contentText,ac.contextPath)
+        m.content=ac.content=cs.createFromMultipartFile(files,contentText,ac.contextPath)
         m<<'添加成功'
     }
 

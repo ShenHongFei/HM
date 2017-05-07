@@ -21,7 +21,7 @@ class ContentService{
     @Autowired
     ContentRepo repo
 
-    Content create( MultipartFile[] files,String contentText,String contextPath ){
+    Content createFromMultipartFile(MultipartFile[] files,String contentText,String contextPath ){
         def resFiles=[]
         def fileDir=new File(WebAppConfig.FILE_DIR,contextPath)
         fileDir.mkdirs()
@@ -34,12 +34,13 @@ class ContentService{
         }
         repo.save(new Content(text: contentText,files: resFiles))
     }
+    
 
     void delete(Content ct){
 
     }
 
-    static void processUEditorAction(HttpServletRequest req,HttpServletResponse resp,File storeDir){
+    static void processUEAction(HttpServletRequest req,HttpServletResponse resp,File storeDir){
         resp.setHeader('Content-Type','text/html')
         resp.outputStream.println(new ActionEnter(req,storeDir).exec())
         resp.flushBuffer()
