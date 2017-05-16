@@ -51,6 +51,7 @@ Temporary Items
 bak
 file
 backend/lib
-backend/out
+backend/db
+out
 网站1.2
 HM.iml

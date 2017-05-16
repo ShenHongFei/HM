@@ -15,7 +15,7 @@
         <logger name="org.apache.coyote.http11.http11nioprotocol" level="info" additivity="false" >
             <appender-ref ref="Console"/>
         </logger>
-        <logger name="org.springframework.web" level="debug" additivity="false">
+        <logger name="org.springframework.web" level="info" additivity="false">
             <appender-ref ref="Console"/>
         </logger>
         <logger name="org.springframework.aop" level="info" additivity="false">
@@ -24,10 +24,22 @@
         <logger name="org.springframework.beans" level="info" additivity="false">
             <appender-ref ref="Console"/>
         </logger>
+        <logger name="org.springframework.orm.jpa" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
         <logger name="org.hibernate" level="info" additivity="false">
             <appender-ref ref="Console"/>
         </logger>
-        <root level="debug">
+        <logger name="org.springframework.jndi" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+        <logger name="org.springframework.context" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+        <logger name="org.springframework.data" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+        <root level="info">
             <appenderref ref="Console" />
         </root>
     </loggers>

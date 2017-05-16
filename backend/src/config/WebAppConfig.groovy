@@ -4,6 +4,8 @@ import com.google.code.kaptcha.impl.DefaultKaptcha
 import com.google.code.kaptcha.util.Config
 import model.News
 import org.apache.commons.dbcp2.BasicDataSource
+import org.h2.Driver
+import org.hibernate.dialect.H2Dialect
 import org.hibernate.dialect.MySQL57InnoDBDialect
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
@@ -52,21 +54,12 @@ class WebAppConfig extends WebMvcConfigurerAdapter{
     static final Map ueditorConfig=new ObjectMapper().configure(JsonParser.Feature.ALLOW_COMMENTS,true).readValue(ueditorConfigFile,Map.class)*/
 
     static {
-        if(System.getProperty('LOCAL')){
-            PROJECT_DIR=new File('D:/HM')
-        }else{
-            PROJECT_DIR=new File('/root/HM')
-        }
-        if(!PROJECT_DIR.exists()) PROJECT_DIR.mkdir()
-        FILE_DIR=new File(PROJECT_DIR,'file')
-        if(!FILE_DIR.exists()) FILE_DIR.mkdirs()
-        TMP_DIR=new File(FILE_DIR,'uploadTmp')
-        if(!TMP_DIR.exists()) TMP_DIR.mkdir()
-        INTRODUCTION_DIR=new File(FILE_DIR,'introduction')
-        if(!INTRODUCTION_DIR.exists()) INTRODUCTION_DIR.mkdir()
-        
+        PROJECT_DIR=new File(System.getProperty('LOCAL')?'D:/HM':'~/HM')
+        PROJECT_DIR.mkdirs()
+        (FILE_DIR=new File(PROJECT_DIR,'file')).mkdirs()
+        (TMP_DIR=new File(FILE_DIR,'uploadTmp')).mkdirs()
+        (INTRODUCTION_DIR=new File(FILE_DIR,'introduction')).mkdirs()
         News.init(FILE_DIR)
-    
     }
     
 
@@ -74,10 +67,14 @@ class WebAppConfig extends WebMvcConfigurerAdapter{
     @Bean( name = 'dataSource')
     BasicDataSource getBasicDataSource(){
         def s = new BasicDataSource()
-        s.driverClassName = 'com.mysql.cj.jdbc.Driver'
-        s.url = 'jdbc:mysql://localhost:3306/hm?useSSL=false&serverTimezone=GMT%2b8'
-        s.username = 'root'
-        s.password = 'jkjk1212'
+//        s.driverClassName = 'com.mysql.cj.jdbc.Driver'
+//        s.url = 'jdbc:mysql://localhost:3306/hm?useSSL=false&serverTimezone=GMT%2b8'
+//        s.username = 'root'
+//        s.password = 'jkjk1212'
+        s.driverClassName   = 'org.h2.Driver'
+        s.url               = "jdbc:h2:file:$PROJECT_DIR.path/backend/db/HM;AUTO_SERVER=TRUE"
+        s.username          = 'root'
+        s.password          = ''
         s
     }
 
@@ -87,13 +84,14 @@ class WebAppConfig extends WebMvcConfigurerAdapter{
         def fb = new LocalContainerEntityManagerFactoryBean()
         fb.packagesToScan = ['repo','model','config']
 
-
-        def a = new HibernateJpaVendorAdapter()
-        a.databasePlatform = MySQL57InnoDBDialect.class.name
+        HibernateJpaVendorAdapter a = new HibernateJpaVendorAdapter()
+//        a.databasePlatform = MySQL57InnoDBDialect.class.name
+        a.databasePlatform = H2Dialect.class.name
         fb.jpaVendorAdapter = a
         fb.dataSource=s
         fb.jpaProperties = [
-            'hibernate.dialect'     : 'org.hibernate.dialect.MySQL57InnoDBDialect',
+//            'hibernate.dialect'     : 'org.hibernate.dialect.MySQL57InnoDBDialect',
+            'hibernate.dialect'     : 'org.hibernate.dialect.H2Dialect',
             'hibernate.show_sql'    : 'true',
             'hibernate.format_sql'  : 'true',
             'hibernate.hbm2ddl.auto': 'update'
@@ -189,6 +187,6 @@ class WebAppConfig extends WebMvcConfigurerAdapter{
     }
 
     static void main(String... args){
-        println RESET_EMAIL_TEMPLATE
+        println PROJECT_DIR.path
     }
 }

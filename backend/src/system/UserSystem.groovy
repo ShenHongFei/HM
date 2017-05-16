@@ -70,14 +70,14 @@ class UserSystem{
     Page<User> manageListAll( @PageableDefault(value = 3, sort = 'id', direction = Sort.Direction.DESC) Pageable pageable ){ repo.findAll(pageable) }
     @GetMapping('/user/manage/get')
     manageGetOne(@RequestParam('id')Long id){
-        User e=repo.getOne(id)
-        if(!e) return -m<<'用户不存在'
+        User e=repo.findById(id)
+        if(!e) return -m<<"id=${id}的用户不存在".toString()
         m << e
     }
     @PostMapping('/user/manage/update')
     manageUpdate(@RequestParam('id')Long id,@Validated User t){
-        def e=repo.getOne(id)
-        if(!e) return -m<<'用户不存在'
+        User e=repo.findById(id)
+        if(!e) return -m<<"id=${id}的用户不存在".toString()
         if(t.username!=e.username&&repo.findByUsername(t.username)) return -m<<'用户名已存在'
         e.managerUpdate(t)
         m<<e
@@ -150,6 +150,7 @@ class UserSystem{
 //        if( code!=verificationCodes.register ) return -m<<'验证码错误'
 
         if( repo.findByEmail(t.email) ) return -m << '用户已存在'
+        if( repo.findByUsername(t.username) ) return -m << '用户名已存在'
         if(!StringUtils.trimToNull(t.password)) return -m<<'密码不能为空'
 
         t.registerTime = new Date()
