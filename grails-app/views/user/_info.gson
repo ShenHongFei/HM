@@ -1,0 +1,7 @@
+import hm.User
+
+model{
+    User user
+}
+
+json g.render(user,[includes: ['id','email','username','role','password','realname','gender','registerTime','phoneNumber']])

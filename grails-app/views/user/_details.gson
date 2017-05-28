@@ -1,0 +1,7 @@
+import hm.User
+
+model{
+    User user
+}
+
+json g.render(user,[excludes: ['password','cookieId','uuid']])

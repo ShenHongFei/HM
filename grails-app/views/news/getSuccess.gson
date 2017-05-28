@@ -1,0 +1,10 @@
+import hm.News
+
+model{
+    News news
+}
+
+json{
+    result  true
+    news  tmpl.details(news:news)
+}
