@@ -1,0 +1,10 @@
+import hm.User
+
+model{
+    User user
+}
+
+json{
+    result true
+    user tmpl.'/user/details'(user:user)
+}

@@ -1,0 +1,14 @@
+import hm.User
+
+model{
+    User user
+}
+
+json{
+    result true
+    user tmpl.info(user:user)
+}
+
+
+//    user g.render(template:'info',model:[user:user])
+//json g.render(user,[includes: ['email','username','role','password','realname','gender','registerTime','phoneNumber']])

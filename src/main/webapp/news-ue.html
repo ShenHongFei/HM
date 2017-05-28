@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>了解我们</title>
+    <link rel="stylesheet" href="css/icon.min.css">
+    <link rel="stylesheet" href="css/m_introduction.css">
+    <style type="text/css">
+        #introduction {
+            position: relative;
+            overflow: hidden;
+        }
+        #introduction img{
+            display: block; 
+            max-width: 80%;
+        }
+        .explore-entry-list .empty{
+            padding: .7rem 0;
+        }
+        
+        /*针对移动端*/
+
+        @media(max-width: 768px) {
+            .phone-show-menu span {
+                margin-right: .5rem;
+            }
+            .phone-show-menu {
+                height: 5rem;
+                display:-webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                color: #007fff;
+                font-size: 1.3rem;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                font-weight: 600;
+                padding: 0 2rem;
+                cursor: pointer;
+            }
+            .caret {
+                display: inline-block;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                /*align-item*/
+                align-items: center;
+                -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                justify-content:space-between;
+            }
+            .caret:before {
+                content: "\f104";
+            }
+            .phone-hidden {
+                position: absolute;
+                top: 5rem;
+                right:12rem;
+                display: block;
+                background-color: #fff;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+                border: 1px solid hsla(217, 5%, 71%, .45);
+                border-radius: 4px;
+                font-size: 1.2rem;
+                display: none;
+           }
+            .phone-hidden .nav-item {
+                height: 4rem;
+            }
+            .main-nav-list.nav-item: last-child {
+                padding: 0 2rem;
+            }
+            .main-nav-list .nav-item.search {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="view-container">
+        <!-- 不能点击不是结构的问题 -->
+        <div class="main-header-box">
+            <div class="main-header">
+                <div class="container">
+                    <a href="#" class="logo">
+                        <img src="img/logo.jpg" alt="">
+                    </a>
+                    <nav class="main-nav">
+                        <div class="nav-list">
+                            <ul class="main-nav-list">
+                                <div class="phone-show-menu" id="phone-menu">
+                                    <span>了解我们</span>
+                                    <i class="caret down icon"></i>
+                                </div>
+                                <div class="phone-hidden" id="phone-hidden">
+                                    <li class="nav-item">
+                                        <a herf="#">
+                                            首页
+                                        </a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a herf="#">
+                                            了解我们
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a herf="#">
+                                            活动
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a herf="#">
+                                            科普知识
+                                        </a>
+                                    </li>
+                                </div>
+                                <!--phone hidden-->
+                                <li class="nav-item search">
+                                    <form action="" role="search" class="search-form">
+                                        <input type="text" maxlength="32" placeholder="搜索">
+                                        <i class="search icon"></i>
+                                    </form>
+                                </li><!--end search-->
+                                <li class="nav-item auth">
+                                    <span class="login">登录</span>
+                                    <span class="register">注册</span>
+
+                                </li>
+                            </ul>
+
+
+                        </div>
+                    </nav>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="main-container">
+            <div class="explore-index-view">
+                <nav class="view-nav" id="view-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item active">槐盟介绍</li>
+                        <li class="nav-item">活动图片</li>
+                        <li class="nav-item">联系我们</li>
+                    </ul>
+                </nav>
+                <div class="explore-entry-list">
+                    <div class="empty" id="edit">
+                        点击编辑
+                    </div>
+                    <div class="empty" id="cancel">
+                        再次点击退出编辑
+                    </div>
+                    <div id="introduction">
+
+                    </div>
+                    
+                    <script id="editor" type="text/plain"></script>
+                    <button class="button" onclick="submitIntroduction()">确定</button>
+
+                </div>
+                <div class="footer">
+                    <div class="link">
+                        <span class="item"><a href="#">关于我们</a> - <a href="#">联系我们</a> - <a href="#">English</a></span>
+                    </div>
+                    <div class="company">© 版权所有 大连理工大学红蚂蚁实验室</div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+    <script src="js/jquery.js"></script>
+    <script src="semantic/semantic.js"></script>
+    <!--添加富文本框-->
+    <script src="ueditor/ueditor.config.js"></script>
+    <script src="ueditor/ueditor.all.js"></script>
+    <script src="ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script>
+        var serverAddress='http://localhost'
+        $(function(){
+            //初始化默认不显示
+            var editor = UE.getEditor('editor',{
+                serverUrl:serverAddress+'/news/add/ue',
+                isShow : true,
+                zIndex : 1,
+                elementPathEnabled:false,
+                wordCount:false
+            });
+
+            /*$.ajax({
+                url:serverAddress+'/news/get',
+                method:'GET'
+            }).fail(function(jqXHR,textStatus){
+                alert('ajax GET request failed\n'+textStatus);
+            }).done(function(model){
+                if(!model||!model.result){
+                    alert(model?model.msg:'unknown error');
+                    return;
+                }
+                $('#introduction').html(model.content);
+            });*/
+            
+            $("#edit").click(function(){
+                $("#introduction").css("display","none");
+                $("#edit").css("display","none");
+                $("#cancel").css("display","block");
+                $("button").css("display","block");
+                // alert($('#introduction').html());
+                editor.setShow();
+                editor.setContent($('#introduction').html());
+            });
+
+
+            $("#cancel").click(cancelEdit);
+
+            // 菜单栏调整
+            $("#phone-menu").click(function(){
+                if ($("#phone-hidden").css("display") == "none") {
+                    $("#phone-hidden").css("display","block");
+                }
+                else{
+                    $("#phone-hidden").css("display","none");
+                }
+            });
+
+        });
+
+        function cancelEdit(){
+            $("#introduction").css("display","block");
+            $("#edit").css("display","block");
+            $("#cancel").css("display","none");
+            $("button").css("display","none");
+            UE.getEditor('editor').setHide();
+        }
+        
+        function submitIntroduction(){
+            var content=UE.getEditor('editor').getContent();
+            $.ajax({
+                method:'POST',
+                url:serverAddress+'/news/add/submit',
+                data:{content:content}
+            }).fail(function(jqXHR, textStatus){
+                alert('ajax post request failed\n'+textStatus);
+            }).done(function(model){
+                if(!model|| !model.result){
+                    alert(model?model.msg:'unknown error');
+                    return;
+                }
+                $('#introduction').html(content);
+                alert('上传成功');
+                cancelEdit();
+            });
+        }
+</script>
+
+</body>
+</html>

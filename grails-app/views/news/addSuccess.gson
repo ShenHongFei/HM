@@ -1,0 +1,12 @@
+import hm.News
+
+model{
+    News news
+    String message
+}
+
+json{
+    result  true
+    message message
+    newsId  news.id
+}

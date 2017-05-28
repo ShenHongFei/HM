@@ -8,11 +8,11 @@
 ---
 
 ##网站
-http://shenhongfei.site/HM
+http://shenhongfei.site
 
-其它网页访问方法
+前端网页、图片、文件（所有包含后缀名的文件都是静态资源） 访问方法
 
-http://shenhongfei.site/HM/{html文件名}
+http://shenhongfei.site/path/to/file.suffix
 
 ##后端接口
 使用Postman发送HTTP请求并查看响应
@@ -21,9 +21,9 @@ https://www.getpostman.com/
 
 导入以下接口
 
-https://www.getpostman.com/collections/4d2a4366f2dd99382a03
+https://www.getpostman.com/collections/948411cb62444b74997f
 
-##码云&GitHub
+##源码
 GitHub
 
 https://github.com/shenhongfei/HM
@@ -32,5 +32,9 @@ https://github.com/shenhongfei/HM
 
 https://git.oschina.net/shenhongfei/HM
 
+`前端文件目录 src/main/webapp`
 
+##war包本地部署方法
+java -jar path/to/HM-x.x.x.war
 
+浏览器打开 http://localhost

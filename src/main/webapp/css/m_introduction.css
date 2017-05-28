@@ -1,0 +1,444 @@
+html {
+    font-size: 12px;
+    font-family: Arial,sans-serif;
+    text-rendering: optimizeLegibility;
+    background-color: #f4f5f5;
+    color: #333;
+    word-break: break-all;
+}
+
+div,body,ul,li{
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+/*header最外层，定义高度，位置*/
+.main-header-box {
+    position: relative;
+    height: 5rem;
+}
+/*header里面一层，定义背景，边框，高度*/
+.main-header {
+    background: #fff;
+    border-bottom: 1px solid #f1f1f1;
+    color: #909090;
+    height: 5rem;
+    z-index: 250;
+    position: fixed;
+    top: 5rem;
+    left: 0;
+    right: 0;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+}
+/*定义主要的header部分，定义宽度*/
+.main-header .container {
+    max-width: 960px;
+    width: 100%;
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 100%;
+    position: relative;
+}
+
+.logo {
+    margin-right: 2rem;
+    text-decoration: none;
+    cursor: pointer;
+    color: #909090;
+    background-color: transparent;
+}
+
+.logo img {
+    border-style: none;
+    height: 50px;
+    width: 50px;
+}
+/*导航菜单*/
+.main-nav {
+    height: 100%;
+    -webkit-box-flex: 1;
+    -ms- flex: 1 0 auto;
+    flex: 1 0 auto;
+    display: block;
+}
+
+.main-nav .nav-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    position: relative;
+    list-style-type: disc;
+    /*-webkit-margin-before: 1em;*/
+    /*-webkit-margin-after: 1em;*/
+    /*-webkit-margin-start: 0;*/
+    /*-webkit-margin-end: 0;*/
+    /*-webkit-padding-start: 40px;*/
+}
+/*.main-nav .nav-list .main-nav-list .phone-show-menu,.main-nav .nav-list .main-nav-list .phone-hidden{
+     display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}*/
+/*使菜单变成横着的*/
+.main-nav .nav-list .main-nav-list,
+.phone-hidden,
+.view-nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.main-nav .nav-item {
+    padding: 0 2rem;
+/*    font-weight: 600;*/
+    /*height: 5rem;*/
+    color: #71777c;
+    font-size: 1.33rem;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    list-style: none;
+}
+
+.nav-item a {
+    text-decoration: none;
+    /*cursor: pointer;*/
+}
+
+.nav-item.active a,
+.phone-hidden .nav-item:hover{
+    color: #007fff;
+}
+/*引起不能点击的原因*/
+/*.nav-item>a:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}*/
+
+.search {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    cursor: auto;
+    background-color: white;
+}
+
+.search-form {
+    border: 1px solid hsla(0, 0%, 59%, .2);
+    background-color: rgba(227, 231, 236, .2);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /*align-item*/
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content:space-between;
+}
+
+.search-form input {
+    border: none;
+    width: 180px;
+    padding: .6rem 1rem;
+    box-shadow: none;
+    outline: none;
+    font-size: 1.1rem;
+    color: #aeb6c0;
+    background-color: transparent;
+    overflow: visible;
+}
+
+.nav-item.auth {
+    font-weight:500;
+    color:#007fff;
+}
+.nav-item.auth span:hover {
+    color: #0371df;
+}
+.nav-item.auth .login:after {
+    content: "\B7";
+    margin: 0 .4rem;
+}
+
+
+/*对于登录注册的那部分*/
+
+.nav-item:last-child {
+    padding-right: 0;
+}
+
+
+/*最外层是需要定宽度的*/
+
+.main-container {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 960px;
+}
+
+.main-container:after {
+    /*  此元素会作为块级表格来显示（类似 <table>），表格前后带有换行符。*/
+    display: table;
+    content: "";
+    clear: both;
+}
+
+.explore-index-view {
+    margin-top: 5.6rem;
+}
+
+.explore-index-view .view-nav,
+.explore-index-view .view-nav:before {
+    left: 0;
+    background-color: #fff;
+}
+
+.explore-index-view  .view-nav:before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 200%;
+    z-index:-1;
+}
+
+.explore-index-view .view-nav{
+    position: fixed;
+    top: 5rem;
+    width: 100%;
+    height: 3.833rem;
+    z-index: 100;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
+    -webkit-transition: all .2s;
+    transition: all .2s;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+.explore-index-view  .view-nav .nav-list {
+    padding: 0;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 960px;
+    margin: auto;
+    line-height: 1;
+}
+
+.explore-index-view  .view-nav .nav-list .nav-item {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    font-size: 1.16rem;
+    color: #71777c;
+    padding: 0 1rem;
+}
+
+.explore-index-view  .view-nav .nav-list .nav-item.active,
+.explore-index-view  .view-nav .nav-list .nav-item:hover {
+    color: #007fff;
+    cursor: pointer;
+    /*下面的横线*/
+    box-shadow: inset 0-2px currentColor;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    font-size: 1.16rem;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+   -webkit-box-align: center;
+   -ms-flex-align: center;
+    align-items: center;
+}
+
+.explore-index-view .view-nav .nav-list .nav-item:first-child {
+    padding: 0 1rem;
+}
+
+.explore-entry-list {
+    padding: 2.5rem;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
+    display: block;
+    list-style-type: disc;
+    min-height: 340px;
+
+    /*-webkit-margin-before: 1em;*/
+    /*-webkit-margin-after: 1em;*/
+    /*-webkit-margin-start: 0;*/
+    /*-webkit-margin-end: 0;*/
+    /*-webkit-padding-start: 40px;*/
+}
+
+.explore-entry-list .empty {
+    text-align: center;
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: .7rem 10.7rem;
+    background-color: #ebf4fc;
+    color: #007fff;
+    margin-bottom: 10px;
+}
+
+#editor {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 960px;
+}
+
+#edui1 {
+    /*此时元素还没出来，先定义，必须是min-height。否则会有部分不能包括在大的div里*/
+    min-height: 300px;
+}
+
+button {
+    -webkit-appearance: none;
+    background-color: #007fff;
+    color: #fff;
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    -webkit-transition: background-color .3s, color .3s;
+    transition: background-color .3s, color .3s;
+    cursor: pointer;
+    text-transform: none;
+    overflow: visible;
+    margin: 20px 9% 20px 91%;
+    padding: 0;
+    width: 6rem;
+    height: 3rem;
+    font-size: 1.3rem;
+    display: none;
+}
+
+.button:hover,
+button:hover {
+    background-color: #0371df;
+    color: #fff;
+}
+
+
+/*平时phone-show-menu不显示*/
+
+#cancel,.phone-show-menu {
+    display: none;
+}
+
+
+
+/*针对移动端*/
+
+@media(max-width: 600px) {
+    .phone-show-menu span {
+        margin-right: .5rem;
+    }
+    .phone-show-menu {
+        height: 5rem;
+        display:-webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+       -webkit-box-align: center;
+       -ms-flex-align: center;
+        align-items: center;
+        color: #007fff;
+        font-size: 1.3rem;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        font-weight: 600;
+        padding: 0 2rem;
+    }
+    .caret {
+        display: inline-block;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        /*align-item*/
+        align-items: center;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content:space-between;
+    }
+    .caret:before {
+        content: "\f104";
+    }
+    .phone-hidden {
+        position: absolute;
+        top: 5rem;
+        display: block;
+        background-color: #fff;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+        border: 1px solid hsla(217, 5%, 71%, .45);
+        border-radius: 4px;
+        font-size: 1.2rem;
+    }
+    .phone-hidden .nav-item {
+        height: 4rem;
+    }
+    .main-nav-list.nav-item: last-child {
+        padding: 0 2rem;
+    }
+    .main-nav-list.nav-item.search {
+        display: none;
+    }
+}
+
+.footer{
+    overflow: hidden;
+    zoom: 1;
+    padding: 14px 0;
+    margin-top: 30px;
+    border-top: 1px dashed #dcdcdc;
+    color: #999;
+}
+.link, .company{
+    text-align: center;
+}
+.link{
+    margin: 0 0 10px 0;
+}

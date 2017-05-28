@@ -1,0 +1,10 @@
+import hm.News
+
+model{
+    News news
+}
+
+json g.render(news,[excludes: ['saved']],{
+    content(news.content?.text)
+    files(news.content?.files)
+})
