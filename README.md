@@ -24,10 +24,6 @@ https://www.getpostman.com/
 https://www.getpostman.com/collections/948411cb62444b74997f
 
 ##源码
-GitHub
-
-https://github.com/shenhongfei/HM
-
 码云
 
 https://git.oschina.net/shenhongfei/HM
