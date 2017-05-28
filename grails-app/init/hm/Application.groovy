@@ -8,7 +8,7 @@ import grails.plugin.json.view.JsonViewConfiguration
 
 class Application extends GrailsAutoConfiguration {
     
-    public static projectDir=         System.getProperty('development')?'D:/HM' as File:new File(System.getProperty('user.home'),'HM')
+    public static projectDir=         new File('D:/HM')
     public static dataDir=            new File(projectDir,'data')
     public static introductionDir=    new File(dataDir,'introduction')
     public static newsDir=            new File(dataDir,'news')
@@ -18,8 +18,11 @@ class Application extends GrailsAutoConfiguration {
     
     //初始化数据目录
     static{
-        projectDir          .mkdirs()
-        assert projectDir.exists()
+        if(!projectDir.exists()){
+            projectDir=new File(System.properties['user.home'] as String,'HM')
+            projectDir.mkdirs()
+            assert projectDir.exists()
+        }
         dataDir             .mkdirs()
         introductionDir     .mkdirs()
         newsDir             .mkdirs()
