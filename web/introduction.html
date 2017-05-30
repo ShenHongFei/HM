@@ -180,12 +180,11 @@
     <script src="ueditor/ueditor.all.js"></script>
     <script src="ueditor/lang/zh-cn/zh-cn.js"></script>
     <script>
-        const serverAddress='http://localhost'
         let ueditor
         $(function(){
             //初始化默认不显示
                 ueditor=UE.getEditor('ueditor',{
-                serverUrl:serverAddress+'/introduction/ue',
+                serverUrl:'/introduction/ue',
                 isShow:false,
                 zIndex:1,
                 elementPathEnabled:false,
@@ -194,7 +193,7 @@
 
 
             $.ajax({
-                url:serverAddress+'/introduction/get',
+                url:'/introduction/get',
                 method:'GET'
             }).fail(function(jqXHR,textStatus){
                 alert('ajax GET request failed\n'+textStatus);
@@ -243,7 +242,7 @@
             var content=UE.getEditor('ueditor').getContent();
             $.ajax({
                 method:'POST',
-                url:serverAddress+'/introduction/set',
+                url:'/introduction/set',
                 data:{content:content}
             }).fail(function(jqXHR, textStatus){
                 alert('ajax post request failed\n'+textStatus);

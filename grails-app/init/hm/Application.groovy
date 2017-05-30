@@ -29,7 +29,6 @@ class Application extends GrailsAutoConfiguration {
         (uploadTmpDir=       new File(dataDir,'uploadTmp'))     .mkdirs()
         
         webDir=new File(projectDir,'web')
-        assert webDir.exists()
         
         resetEmailTemplate= Application.classLoader.getResourceAsStream('reset-email-template.html')
         
