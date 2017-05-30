@@ -1,0 +1,11 @@
+import hm.News
+
+model{
+    News news
+}
+
+json{
+    result false
+    message '当前会话还有未提交的新闻，请先放弃(POST /news/add/discard)或提交(POST /news/add/submit)'
+    newsId news.id
+}

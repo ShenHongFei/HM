@@ -11,6 +11,8 @@ class AuthorizationInterceptor {
     }
 
     boolean before() {
+        println "原始请求： $request.requestURI"
+        
         def refreshCookie=false
         //首次访问网站
         if(!session.user){

@@ -34,6 +34,6 @@ https://www.getpostman.com/collections/948411cb62444b74997f
 
 https://git.oschina.net/shenhongfei/HM
 
-前端文件目录 `/web`
+前端文件目录 `/src/main/webapp`
 
 

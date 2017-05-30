@@ -15,10 +15,9 @@ import ueditor.defination.State
 import ueditor.util.StorageManager
 
 import javax.servlet.http.HttpServletRequest
-import java.nio.file.Path
 
 class Uploader {
-	private HttpServletRequest request = null
+	private HttpServletRequest  request = null
     private Map<String, Object> conf = null
     File storeDir
 
@@ -66,7 +65,7 @@ class Uploader {
                 String relativePath = Application.dataDir.toPath().relativize(tempfile.toPath()).toString().replace('\\','/')
                 st.putInfo('size',tempfile.length())
                 st.putInfo('title',tempfile.name)
-                st.putInfo("url", "file/$relativePath")
+                st.putInfo("url", "data/$relativePath")
                 st.putInfo("type", suffix)
                 st.putInfo("original", filename)
                 return st

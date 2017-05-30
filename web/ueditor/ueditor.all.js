@@ -5812,7 +5812,7 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
                 checkOffset(this);
                 nativeRange.setStart(this.startContainer, this.startOffset);
                 nativeRange.setEnd(this.endContainer, this.endOffset);
-                sel.addRange(nativeRange);
+                // sel.addRange(nativeRange);
             }
             return this;
         },

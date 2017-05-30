@@ -15,6 +15,7 @@ class Application extends GrailsAutoConfiguration {
     public static File newsDir        
     public static File uploadTmpDir
 //    static Boolean tableExists
+    public static File webDir
     
     public static InputStream resetEmailTemplate
     
@@ -27,7 +28,11 @@ class Application extends GrailsAutoConfiguration {
         (newsDir=            new File(dataDir,'news'))          .mkdirs()
         (uploadTmpDir=       new File(dataDir,'uploadTmp'))     .mkdirs()
         
+        webDir=new File(projectDir,'web')
+        assert webDir.exists()
+        
         resetEmailTemplate= Application.classLoader.getResourceAsStream('reset-email-template.html')
+        
     }
     
     @Override

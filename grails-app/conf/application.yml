@@ -55,7 +55,7 @@ grails:
             maxsize: 1000
     controllers:
         defaultScope: singleton
-        uplaod:
+        upload:
             maxFileSize: 50000000
             maxRequestSize: 50000000
     converters:

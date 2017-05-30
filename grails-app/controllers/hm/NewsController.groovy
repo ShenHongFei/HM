@@ -16,9 +16,12 @@ class NewsController {
     def            UEService
     SessionFactory sessionFactory
     
-    //初始化UE时，创建某一id的新闻，设置状态为未保存， 文件存放在 news/id 中，并将该新闻放入session保存(不允许用户同时编辑两个新闻）
+    
+//    if(session.newsInEdit) return render(view:'news-unsubmitted',model:[news:session.newsInEdit])
+    
+    //用户添加新闻时先初始化UE，创建某一id的新闻，设置状态为未保存， 文件存放在 news/id 中，并将该新闻放入session(不允许用户同时编辑两个新闻）
     def addUE(){
-        def unsaved = new News(title:'unsaved').save()    
+        def unsaved = new News(title:'unsaved').save()
         def storeDir = new File(newsDir,"$unsaved.id")
         storeDir.mkdirs()
         session.newsInEdit=unsaved
@@ -29,11 +32,11 @@ class NewsController {
     // 新闻提交后需要重新初始化UE
     def addSubmit(){
         def newsInEdit = session.newsInEdit
-        if(!newsInEdit) return toFailure('提交失败，找不到正在编辑的新闻，可能是UE没有初始化')
+        if(!newsInEdit) return toFailure('提交失败，找不到正在编辑的新闻，可能是UE自上次提交后没有重新初始化')
         def htmlContent = params.content
         def fileNames=[] as Set<String>
-        new File(newsDir,"$newsInEdit.id").listFiles().toList().each{
-            if(!htmlContent.contains(it.name)) it.delete()
+        new File(newsDir,"$newsInEdit.id").listFiles().each{
+            if(!htmlContent?.contains(it.name)) it.delete()
             else fileNames<<it.name
         }
         newsInEdit.with{
@@ -44,6 +47,7 @@ class NewsController {
         if(!newsInEdit.validate()) return toFailure(newsInEdit,'添加失败')
         newsInEdit.saved=true
         newsInEdit.save()
+        session.newsInEdit=null
         render view:'addSuccess',model:[news:newsInEdit,message:'添加成功']
     } 
     
@@ -88,11 +92,11 @@ class NewsController {
         //校验存在
         News news
         def newsId = params.int('newsId')
-        if(newsId==null||!(news=News.get(newsId))) return toFailure("id=$newsId 的新闻不存在")
+        if(newsId==null||!(news=News.get(newsId))||!news.saved) return toFailure("id=$newsId 的新闻不存在,可能是id错误或新闻未提交")
         
         def htmlContent=params.content
         def fileNames=[] as Set<String>
-        new File(newsDir,"$news.id").listFiles().toList().each{
+        new File(newsDir,"$news.id").listFiles().each{
             if(!htmlContent.contains(it.name)) it.delete()
             else fileNames<<it.name
         }

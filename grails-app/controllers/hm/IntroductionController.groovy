@@ -5,7 +5,7 @@ import static hm.Application.introductionDir
 class IntroductionController {
 	static responseFormats = ['json']
     
-    def UEService
+    UEService UEService
     
     // /introduction/ue?action=config&noCache=1494122902762
     def ue(){
