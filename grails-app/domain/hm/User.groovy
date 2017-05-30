@@ -13,7 +13,7 @@ class User {
     String  realname
     String  gender
     Date    registerTime
-    String  phoneNumber
+    String  phone
     String  cookieId //**
     String  lastIp //*
     Boolean autologin = false //*

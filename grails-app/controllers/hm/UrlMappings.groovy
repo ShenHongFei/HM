@@ -8,9 +8,10 @@ class UrlMappings {
                 
             }*/
         }
+        "/"                             controller:'resource',      action:'listDir'
         "/file/**.$suffix"              controller:'resource',      action:'file'
+        "/**"                           controller:'resource',      action:'listDir'
         "/**.$suffix"                   controller:'resource',      action:'web'
-        "/"                             controller:'resource',      action:'web'
         "/user/manage/$action"          controller:'userManage'
         "/news/add/ue"                  controller:'news',          action:'addUE'
         "/news/add/submit"              controller:'news',          action:'addSubmit'

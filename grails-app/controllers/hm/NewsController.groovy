@@ -25,7 +25,8 @@ class NewsController {
         render UEService.processUEAction(request,response,storeDir)
     }
 	
-    //params title,content
+    // params title,content 
+    // 新闻提交后需要重新初始化UE
     def addSubmit(){
         def newsInEdit = session.newsInEdit
         if(!newsInEdit) return toFailure('提交失败，找不到正在编辑的新闻，可能是UE没有初始化')
@@ -69,7 +70,6 @@ class NewsController {
         if(newsId==null||!(news=News.get(newsId))) return toFailure("id=$newsId 的新闻不存在")
         
         new File(newsDir,"$news.id").deleteDir()
-        news.content?.delete()
         news.delete()
         toSuccess('删除成功')
     }

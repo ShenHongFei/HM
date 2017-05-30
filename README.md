@@ -14,6 +14,12 @@ http://shenhongfei.site
 
 http://shenhongfei.site/path/to/file.suffix
 
+##服务器本地部署方法
+
+将`HM.war` 和 `启动槐盟服务器.cmd` 放在网页的文件夹**根目录**，运行`启动槐盟服务器.cmd`
+
+浏览器打开 [http://localhost](http://localhost)
+
 ##后端接口
 使用Postman发送HTTP请求并查看响应
 
@@ -28,9 +34,6 @@ https://www.getpostman.com/collections/948411cb62444b74997f
 
 https://git.oschina.net/shenhongfei/HM
 
-`前端文件目录 src/main/webapp`
+前端文件目录 `/web`
 
-##war包本地部署方法
-java -jar path/to/HM-x.x.x.war
 
-浏览器打开 http://localhost
