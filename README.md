@@ -1,39 +1,42 @@
-# HM 槐盟(大连高校环境联盟)	网站
+# HM-槐盟-大连高校环境联盟	网站
+# http://shenhongfei.site
 
 ![LOGO](http://tva2.sinaimg.cn/crop.0.0.180.180.180/a121378fjw1e8qgp5bmzyj2050050aa8.jpg)
 
+##如何在本地开发及调试代码
+1. `git clone https://git.oschina.net/shenhongfei/HM.git` 
+    将项目下载到本地或导入IDE
+    
+    或者下载zip包（右上角）
 
-[大连高校环境联盟-百度百科](http://baike.baidu.com/link?url=VhFPgFwxN_0WM8DWqC9YEGVTLZsLpFmHSPlwEIb-g4IUESdx3CdnKhZ-rlQHtzi2qMhNiWunTaqiviOzQXqJkdi1YR32bL0sECsj2UJtIMW1x2Sig6Fg2xXBhooWa1yNb2WNoWSZwFKcpdrKx932fLYaoIl01Gbkt3p5LIAhrWayhrr4vITOzAFIlx1VHeQs)
+2. 下载服务器 [http://shenhongfei.site/HM.jar](http://shenhongfei.site/HM.jar) 
+  和启动脚本[http://shenhongfei.site/run.bat](http://shenhongfei.site/run.bat)
 
----
+3. 将以上两个文件放到HM文件夹根目录
 
-##网站
-http://shenhongfei.site
+4. 运行启动脚本`run.bat`，浏览器打开http://localhost
 
-前端网页、图片、文件（所有包含后缀名的文件都是静态资源） 访问方法
+5. 浏览器中显示的网页对应于**`HM/web/`**中的网页(前端工作目录)，修改文件内容后刷新浏览器即可看到效果.
 
-http://shenhongfei.site/path/to/file.suffix
+6. Postman设置HM全局变量为`localhost` 后,即可正常使用
 
-##服务器本地部署方法
+7. 编程访问相应的后端接口写相对路径， 比如查看当前登录的用户 , Ajax中填 `url: user/info` 
 
-将`HM.war` 和 `启动槐盟服务器.cmd` 放在网页的文件夹**根目录**，运行`启动槐盟服务器.cmd`
+## ```后端会更新服务器 HM.jar，请适时下载覆盖本地服务器，脚本无需重下```
 
-浏览器打开 [http://localhost](http://localhost)
-
-##后端接口
-使用Postman发送HTTP请求并查看响应
-
-https://www.getpostman.com/
-
-导入以下接口
+####后端接口导入及更新（重导入）
+Postman：
 
 https://www.getpostman.com/collections/948411cb62444b74997f
 
-##源码
-码云
+##如何提交修改
 
-https://git.oschina.net/shenhongfei/HM
+参照 [https://git-scm.com/book/zh/v2](https://git-scm.com/book/zh/v2) 选择合适的方法提交到码云，即可同步到 http://shenhongfei.site 
 
-前端文件目录 `/src/main/webapp`
+
+
+
+
+
 
 

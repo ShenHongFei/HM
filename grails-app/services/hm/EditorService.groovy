@@ -6,7 +6,7 @@ import ueditor.ActionEnter
 import static hm.Application.introductionDir
 
 @Transactional
-class UEService{
+class EditorService{
 
     //从文件读取配置、保存上传图片、返回结果json String
     String processUEAction(request,response,storeDir) {

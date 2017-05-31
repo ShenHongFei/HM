@@ -89,4 +89,6 @@ bootRun {
     addResources = true
 }
 
-
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.5'
+}

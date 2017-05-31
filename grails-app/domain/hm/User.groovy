@@ -28,7 +28,7 @@ class User {
         password size:1..20
         username matches:/[0-9a-zA-Z\u4e00-\u9fa5_-~`·]{1,20}/,unique:true
         email email:true,nullable:false,unique:true
-        phoneNumber matches:/(^1(3[0-9]|4[57]|5[0-35-9]|7[0135678]|8[0-9])\d{8}$)|(^$)/
+        phone matches:/(^1(3[0-9]|4[57]|5[0-35-9]|7[0135678]|8[0-9])\d{8}$)|(^$)/
     }
     
 }
