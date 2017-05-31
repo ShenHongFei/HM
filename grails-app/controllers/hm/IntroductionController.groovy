@@ -5,11 +5,11 @@ import static hm.Application.introductionDir
 class IntroductionController {
 	static responseFormats = ['json']
     
-    UEService UEService
+    EditorService editorService
     
     // /introduction/ue?action=config&noCache=1494122902762
     def ue(){
-        render UEService.processUEAction(request,response,introductionDir)
+        render editorService.processUEAction(request,response,introductionDir)
     }
     
     // params content

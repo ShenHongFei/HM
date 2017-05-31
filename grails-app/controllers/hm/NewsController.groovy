@@ -1,19 +1,13 @@
 package hm
 
-
-import grails.rest.*
-import grails.converters.*
 import org.hibernate.SessionFactory
 
-import java.util.concurrent.atomic.AtomicInteger
-
-import static hm.Application.dataDir
 import static hm.Application.newsDir
 
 class NewsController {
 	static responseFormats = ['json']
     
-    def            UEService
+    EditorService  editorService
     SessionFactory sessionFactory
     
     
@@ -25,14 +19,14 @@ class NewsController {
         def storeDir = new File(newsDir,"$unsaved.id")
         storeDir.mkdirs()
         session.newsInEdit=unsaved
-        render UEService.processUEAction(request,response,storeDir)
+        render editorService.processUEAction(request,response,storeDir)
     }
 	
     // params title,content 
     // 新闻提交后需要重新初始化UE
     def addSubmit(){
         def newsInEdit = session.newsInEdit
-        if(!newsInEdit) return toFailure('提交失败，找不到正在编辑的新闻，可能是UE自上次提交后没有重新初始化')
+        if(!newsInEdit) return toFailure('提交失败，找不到正在编辑的新闻，可能是UE自上次提交后没有初始化')
         def htmlContent = params.content
         def fileNames=[] as Set<String>
         new File(newsDir,"$newsInEdit.id").listFiles().each{
@@ -84,7 +78,7 @@ class NewsController {
         def newsId = params.int('newsId')
         if(newsId==null||!(news=News.get(newsId))) return toFailure("id=$newsId 的新闻不存在")
         
-        render UEService.processUEAction(request,response,new File(newsDir,"$news.id"))
+        render editorService.processUEAction(request,response,new File(newsDir,"$news.id"))
     }
     
     //params newsId,title,content

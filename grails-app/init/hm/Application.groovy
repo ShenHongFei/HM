@@ -1,21 +1,18 @@
 package hm
 
 import grails.boot.GrailsApp
-import grails.boot.config.GrailsApplicationPostProcessor
 import grails.boot.config.GrailsAutoConfiguration
-import grails.core.GrailsApplication
-import grails.plugin.json.view.JsonViewConfiguration
-import org.h2.Driver
 
 class Application extends GrailsAutoConfiguration {
     
     public static File projectDir
+    public static File webDir
     public static File dataDir        
     public static File introductionDir
     public static File newsDir        
-    public static File uploadTmpDir
+    public static File uploadDir
 //    static Boolean tableExists
-    public static File webDir
+
     
     public static InputStream resetEmailTemplate
     
@@ -23,12 +20,14 @@ class Application extends GrailsAutoConfiguration {
         projectDir=new File(System.properties['user.dir'] as String)
         println "当前路径： $projectDir.absolutePath"
         
+	    webDir=new File(projectDir,'web')
+
         (dataDir=            new File(projectDir,'data'))       .mkdirs()
         (introductionDir=    new File(dataDir,'introduction'))  .mkdirs()
         (newsDir=            new File(dataDir,'news'))          .mkdirs()
-        (uploadTmpDir=       new File(dataDir,'uploadTmp'))     .mkdirs()
+        (uploadDir=       new File(dataDir,'upload')).mkdirs()
         
-        webDir=new File(projectDir,'web')
+        
         
         resetEmailTemplate= Application.classLoader.getResourceAsStream('reset-email-template.html')
         
