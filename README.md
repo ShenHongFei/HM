@@ -20,7 +20,7 @@
 
 7. 编程访问相应的后端接口写相对路径， 比如查看当前登录的用户 , Ajax中填 `url: user/info` 
 
-## ```后端会更新服务器 HM.jar，请适时下载覆盖本地服务器，脚本无需重下```
+## ```后端会更新服务器 HM.jar，请适时下载覆盖本地服务器```
 
 ####后端接口导入及更新（重导入）
 Postman：
@@ -30,11 +30,4 @@ https://www.getpostman.com/collections/948411cb62444b74997f
 ##如何提交修改
 
 参照 [https://git-scm.com/book/zh/v2](https://git-scm.com/book/zh/v2) 选择合适的方法提交到码云，即可同步到 http://shenhongfei.site 
-
-
-
-
-
-
-
 
