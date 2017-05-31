@@ -15,7 +15,7 @@
 
 4. 浏览器打开http://localhost
 
-5. 浏览器中显示的网页对应于**`HM/web/`**中的网页(前端工作目录)，修改文件内容后刷新浏览器即可看到效果.
+5. 浏览器中显示的网页`http://localhost/index.html`对应于本地文件夹中的**`HM/web/index.html`**，修改文件内容后刷新浏览器即可看到效果.
 
 6. Postman设置HM全局变量为`localhost` 后,即可正常使用
 
