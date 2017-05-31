@@ -3,6 +3,4 @@
 bak/
 build/
 data/
-src/main/groovy
-src/main/resources
-src/test
+src/
