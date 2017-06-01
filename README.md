@@ -11,7 +11,7 @@
 
 2. 下载服务器 [http://shenhongfei.site/HM.jar](http://shenhongfei.site/HM.jar) 
 
-3. 将服务器`HM.jar`放到HM根目录,运行启动脚本 `启动槐盟服务器.bat`，（JRE 1.8 Required)
+3. 将服务器`HM.jar`和`启动槐盟服务器.bat`放到HM文件夹内,运行启动脚本 `启动槐盟服务器.bat`，（JRE 1.8 Required)
     
     if 脚本输出java 不是内部或外部命令，先安装https://www.java.com/zh_CN/
     

@@ -13,6 +13,6 @@ json{
         first               myPage.first
         last                myPage.last
 //        content             tmpl."$template"(myPage.content)
-        content             g.render([template:template,collection:myPage.content])
+        content             g.render(template:template,collection:myPage.content)
     })
 }

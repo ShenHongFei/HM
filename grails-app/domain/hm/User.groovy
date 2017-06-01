@@ -1,7 +1,7 @@
 package hm
 
 class User {
-    static enum Role {
+    static enum Role {//前四个 manager 管理员
         GUEST,USER,VIP,MANAGER,BOSS,ROOT
     }
     public static User GUEST = new User(id:-1,email:'guest@hm.com',username: 'Guest',role: Role.GUEST)
