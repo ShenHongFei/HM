@@ -1,7 +1,10 @@
 package hm
 
+import grails.gorm.transactions.Transactional
+
 import static hm.Application.introductionDir
 
+@Transactional
 class IntroductionController {
 	static responseFormats = ['json']
     

@@ -1,11 +1,15 @@
 package hm
 
+import grails.gorm.transactions.Transactional
+
 import java.util.jar.JarEntry
 
+@Transactional
 class UserManageController {
+    
 	static responseFormats = ['json']
 	
-    def getUser(){
+    def get(){
         def id = params.int'id'
         def user
         if(id==null||!(user=User.get(id))) return fail('查询id不正确或用户不存在')

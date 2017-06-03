@@ -1,0 +1,1569 @@
+{
+	"variables": [],
+	"info": {
+		"name": "HM",
+		"_postman_id": "7048d61a-751e-7b9e-0ca9-4f87f98dbcbe",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "了解我们",
+			"description": "",
+			"item": [
+				{
+					"name": "UE初始化及后续上传请求",
+					"request": {
+						"url": "{{HM}}/introduction/ue",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "action",
+									"value": "config",
+									"type": "text"
+								},
+								{
+									"key": "noCache",
+									"value": "1494122902762",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "查看",
+					"request": {
+						"url": "{{HM}}/introduction/get",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "设置",
+					"request": {
+						"url": "{{HM}}/introduction/set",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "<p>sdafasdfasdf123456135</p><p style=\\\"text-align: center;\\\"><span style=\\\"color: rgb(255, 0, 0);\\\">135151</span></p><p><img src=\\\"file/introduction/0df8a7aa-c852-11e5-8539-ab27a204022b.png\\\" title=\\\"0df8a7aa-c852-11e5-8539-ab27a204022b.png\\\" alt=\\\"0df8a7aa-c852-11e5-8539-ab27a204022b.png\\\"/></p>",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "公示",
+			"description": "",
+			"item": [
+				{
+					"name": "查看",
+					"request": {
+						"url": {
+							"raw": "{{HM}}/notice/get?id=1",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"notice",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "分页列出",
+					"request": {
+						"url": {
+							"raw": "{{HM}}/notice/list?size=2&page=0&sort=id,desc",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"notice",
+								"list"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "2",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "sort",
+									"value": "id,desc",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-UE初始化及后续上传请求",
+					"request": {
+						"url": "{{HM}}/notice/add/ue",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "action",
+									"value": "config",
+									"type": "text"
+								},
+								{
+									"key": "noCache",
+									"value": "1494122902762",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-提交",
+					"request": {
+						"url": "{{HM}}/notice/add/submit",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "测试新闻",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "<p>测试新闻测试新闻测试新闻测试新闻测试新闻测试新闻测试新闻</p>",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-放弃正在编辑的内容",
+					"request": {
+						"url": "{{HM}}/notice/add/discard",
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "删除",
+					"request": {
+						"url": "{{HM}}/notice/delete",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "257",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "修改-UE初始化及后续上传请求",
+					"request": {
+						"url": "{{HM}}/notice/update/ue",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "225",
+									"type": "text"
+								},
+								{
+									"key": "action",
+									"value": "config",
+									"type": "text"
+								},
+								{
+									"key": "noCache",
+									"value": "149412290276",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "修改-提交",
+					"request": {
+						"url": "{{HM}}/notice/update/submit",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "353",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "新标题",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "<p>新内容新内容新内容新内容新内容</p>",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "内部活动",
+			"description": "",
+			"item": [
+				{
+					"name": "查看",
+					"request": {
+						"url": {
+							"raw": "{{HM}}/private-activity/get?id=1",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"private-activity",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "分页列出",
+					"request": {
+						"url": {
+							"raw": "{{HM}}/private-activity/list?size=2&page=0&sort=id,desc",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"private-activity",
+								"list"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "2",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "sort",
+									"value": "id,desc",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-UE初始化及后续上传请求",
+					"request": {
+						"url": "{{HM}}/private-activity/add/ue",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "action",
+									"value": "config",
+									"type": "text"
+								},
+								{
+									"key": "noCache",
+									"value": "1494122902762",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-提交",
+					"request": {
+						"url": "{{HM}}/private-activity/add/submit",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "测试新闻",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "<p>测试新闻测试新闻测试新闻测试新闻测试新闻测试新闻测试新闻</p>",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-放弃正在编辑的内容",
+					"request": {
+						"url": "{{HM}}/private-activity/add/discard",
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "删除",
+					"request": {
+						"url": "{{HM}}/private-activity/delete",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "257",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "修改-UE初始化及后续上传请求",
+					"request": {
+						"url": "{{HM}}/private-activity/update/ue",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "225",
+									"type": "text"
+								},
+								{
+									"key": "action",
+									"value": "config",
+									"type": "text"
+								},
+								{
+									"key": "noCache",
+									"value": "149412290276",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "修改-提交",
+					"request": {
+						"url": "{{HM}}/private-activity/update/submit",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "353",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "新标题",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "<p>新内容新内容新内容新内容新内容</p>",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "培训",
+			"description": "",
+			"item": [
+				{
+					"name": "查看",
+					"request": {
+						"url": {
+							"raw": "{{HM}}/training/get?trainingId=353",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"training",
+								"get"
+							],
+							"query": [
+								{
+									"key": "trainingId",
+									"value": "353",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "分页列出",
+					"request": {
+						"url": {
+							"raw": "{{HM}}/training/list?size=2&page=0&sort=id,desc",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"training",
+								"list"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "2",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "sort",
+									"value": "id,desc",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-UE初始化及后续上传请求",
+					"request": {
+						"url": "{{HM}}/training/add/ue",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "action",
+									"value": "config",
+									"type": "text"
+								},
+								{
+									"key": "noCache",
+									"value": "1494122902762",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-提交",
+					"request": {
+						"url": "{{HM}}/training/add/submit",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "测试新闻",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "<p>测试新闻测试新闻测试新闻测试新闻测试新闻测试新闻测试新闻</p>",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-放弃正在编辑的内容",
+					"request": {
+						"url": "{{HM}}/training/add/discard",
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "删除",
+					"request": {
+						"url": "{{HM}}/training/delete",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "257",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "修改-UE初始化及后续上传请求",
+					"request": {
+						"url": "{{HM}}/training/update/ue",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "225",
+									"type": "text"
+								},
+								{
+									"key": "action",
+									"value": "config",
+									"type": "text"
+								},
+								{
+									"key": "noCache",
+									"value": "149412290276",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "修改-提交",
+					"request": {
+						"url": "{{HM}}/training/update/submit",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "353",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "新标题",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "<p>新内容新内容新内容新内容新内容</p>",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "新闻",
+			"description": "",
+			"item": [
+				{
+					"name": "查看",
+					"request": {
+						"url": {
+							"raw": "{{HM}}/news/get?id=353",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"news",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "353",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "分页列出",
+					"request": {
+						"url": "{{HM}}/news/list?size=2&page=0&sort=id,desc",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-UE初始化及后续上传请求",
+					"request": {
+						"url": "{{HM}}/news/add/ue",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "action",
+									"value": "config",
+									"type": "text"
+								},
+								{
+									"key": "noCache",
+									"value": "1494122902762",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-提交",
+					"request": {
+						"url": "{{HM}}/news/add/submit",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "测试新闻",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "<p>测试新闻测试新闻测试新闻测试新闻测试新闻测试新闻测试新闻</p>",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-放弃正在编辑的内容",
+					"request": {
+						"url": "{{HM}}/news/add/discard",
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "删除",
+					"request": {
+						"url": "{{HM}}/news/delete",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "257",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "修改-UE初始化及后续上传请求",
+					"request": {
+						"url": "{{HM}}/news/update/ue",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "225",
+									"type": "text"
+								},
+								{
+									"key": "action",
+									"value": "config",
+									"type": "text"
+								},
+								{
+									"key": "noCache",
+									"value": "149412290276",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "修改-提交",
+					"request": {
+						"url": "{{HM}}/news/update/submit",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "353",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "新标题",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "<p>新内容新内容新内容新内容新内容</p>",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "活动",
+			"description": "",
+			"item": [
+				{
+					"name": "报名",
+					"request": {
+						"url": "{{HM}}/activity/enroll",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "realname",
+									"value": "报名用户名",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "MAN",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "18",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "balbal",
+									"type": "text"
+								},
+								{
+									"key": "company",
+									"value": "...",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "13757144018",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "查看",
+					"request": {
+						"url": {
+							"raw": "{{HM}}/activity/get?id=353",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"activity",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "353",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "删除",
+					"request": {
+						"url": "{{HM}}/news/delete",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "257",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-UE初始化及后续上传请求",
+					"request": {
+						"url": "{{HM}}/activity/add/ue",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-提交",
+					"request": {
+						"url": "{{HM}}/activity/add/submit",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "修改-UE初始化及后续上传请求",
+					"request": {
+						"url": "{{HM}}/activity/update/ue",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "225",
+									"type": "text"
+								},
+								{
+									"key": "action",
+									"value": "config",
+									"type": "text"
+								},
+								{
+									"key": "noCache",
+									"value": "149412290276",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "修改-提交",
+					"request": {
+						"url": "{{HM}}/activity/update/submit",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "353",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "新标题",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "<p>新内容新内容新内容新内容新内容</p>",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "列出报名者",
+					"request": {
+						"url": "{{HM}}/activity/list",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "查询是否报名",
+					"request": {
+						"url": {
+							"raw": "{{HM}}/activity/query?realname&email&phone",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"activity",
+								"query"
+							],
+							"query": [
+								{
+									"key": "realname",
+									"value": "",
+									"equals": false,
+									"description": ""
+								},
+								{
+									"key": "email",
+									"value": "",
+									"equals": false,
+									"description": ""
+								},
+								{
+									"key": "phone",
+									"value": "",
+									"equals": false,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "用户",
+			"description": "",
+			"item": [
+				{
+					"name": "查看当前登录用户信息",
+					"request": {
+						"url": "{{HM}}/user/info",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "注册",
+					"request": {
+						"url": "{{HM}}/user/register",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "shf19961009@163.com",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "test11",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								}
+							]
+						},
+						"description": "除了JSON还新增id,username,role三个Cookie,会话期间有效"
+					},
+					"response": [
+						{
+							"id": "08af5606-faf8-4a2c-a39e-1cef9ddbd675",
+							"name": "空提交",
+							"originalRequest": {
+								"url": "{{HM}}/user/register",
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "username",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "",
+											"type": "text"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-store",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Language",
+									"value": "zh-CN",
+									"name": "Content-Language",
+									"description": "The language the content is in"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Mar 2017 13:44:58 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Mar 27 2018 13:08:57 GMT+0800 (中国标准时间)",
+									"httpOnly": true,
+									"domain": "45.78.7.182",
+									"path": "/HM",
+									"secure": false,
+									"value": "9961051253BEA955019255F07A019B39",
+									"key": "JSESSIONID"
+								}
+							],
+							"responseTime": 591,
+							"body": "{\"result\":false,\"msg\":[\"用户名含有非法字符或长度不正确\",\"密码长度不正确\"]}"
+						}
+					]
+				},
+				{
+					"name": "登录",
+					"request": {
+						"url": "{{HM}}/user/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "shf19961008@163.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "autologin",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"description": "除了JSON还新增id,username,role三个Cookie,会话期间有效。\r\nautologin：根据上次登录IP及cookieId判断，（同一浏览器同一IP）"
+					},
+					"response": []
+				},
+				{
+					"name": "注销",
+					"request": {
+						"url": "{{HM}}/user/logout",
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": "除了JSON还修改id,username,role三个Cookie(访客身份(id=0,username=Guest,role=GUEST)),会话期间有效"
+					},
+					"response": []
+				},
+				{
+					"name": "更新信息",
+					"request": {
+						"url": "{{HM}}/user/update-info",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "oldPassword",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "newUsername",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "newPassword",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "原密码必填\n不修改用户名可不填username\n不修改原密码可不填newPassword"
+					},
+					"response": []
+				},
+				{
+					"name": "发送重置密码邮件",
+					"request": {
+						"url": "{{HM}}/user/send-reset-email",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "shf19961008@163.com",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "重置密码为123456",
+					"request": {
+						"url": "{{HM}}/user/reset-password?id=1&uuid=123123",
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "管理-分页列出",
+					"request": {
+						"url": "{{HM}}/user/manage/list?size=2&page=0&sort=id,desc",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "GET user/manage?size={页面大小}&page={页数}&sort={属性,升序/降序}\n所有属性均能排序\n      {页面大小} 中的大括号不需要输入，下同\n      \"last\": false,是否最后一页\n            \"totalPages\": 7,\n            \"totalElements\": 21,\n            \"number\": 0,第几页（从0开始算）\n            \"size\": 3,\n      排序方法 逗号分隔 属性必填\n      \"first\": true 第一页"
+					},
+					"response": []
+				},
+				{
+					"name": "管理-搜索用户",
+					"request": {
+						"url": {
+							"raw": "{{HM}}/user/manage/search?username=aaa",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"user",
+								"manage",
+								"search"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "aaa",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "email",
+									"value": "bbb@bbb.com",
+									"equals": true,
+									"description": "",
+									"disabled": true
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "管理-设置权限",
+					"request": {
+						"url": "{{HM}}/user/manage/set-permission",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "MANAGER",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "管理-查看某个用户",
+					"request": {
+						"url": {
+							"raw": "{{HM}}/user/manage/get?id=6",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"user",
+								"manage",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "管理-删除",
+					"request": {
+						"url": "{{HM}}/user/manage/delete",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "主页",
+			"request": {
+				"url": "{{HM}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "新增id,username,role三个Cookie(访客身份(id=0,username=Guest,role=GUEST))"
+			},
+			"response": []
+		}
+	]
+}

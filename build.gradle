@@ -11,7 +11,7 @@ buildscript {
 }
 
 //version "0.0.1"
-group "hm"
+group "HM"
 
 apply plugin:"idea"
 //apply plugin:"war"

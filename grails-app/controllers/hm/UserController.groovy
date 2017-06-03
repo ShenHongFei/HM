@@ -1,6 +1,6 @@
 package hm
 
-import grails.transaction.Transactional
+import grails.gorm.transactions.Transactional
 import groovy.text.SimpleTemplateEngine
 import org.springframework.mail.javamail.JavaMailSenderImpl
 import org.springframework.mail.javamail.MimeMessageHelper

@@ -1,9 +1,11 @@
 package hm
 
+import grails.gorm.transactions.Transactional
 import org.hibernate.SessionFactory
 
 import static hm.Application.newsDir
 
+@Transactional
 class NewsController {
 	static responseFormats = ['json']
     
@@ -48,7 +50,7 @@ class NewsController {
     def list(){
         def page        = (params.page?:0) as Integer
         def size        = (params.size?:5) as Integer
-        def sortParams  = (params.sort as String).split(',') as List
+        def sortParams  = (params.sort as String)?.split(',') as List
         def sortBy      = sortParams[0]?:'id'
         def order       = sortParams[1]?:'desc'
         render view:'/mypage',
@@ -60,12 +62,12 @@ class NewsController {
                       template:'/news/details']
     }
     
-    //params newsId
+    //params id
     def delete(){
         //校验存在
         News news
-        def newsId = params.int('newsId')
-        if(newsId==null||!(news=News.get(newsId))) return toFailure("id=$newsId 的新闻不存在")
+        def id = params.int('id')
+        if(id==null||!(news=News.get(id))) return toFailure("id=$id 的新闻不存在")
         
         new File(newsDir,"$news.id").deleteDir()
         news.delete()
@@ -75,18 +77,18 @@ class NewsController {
     def updateUE(){
         //校验存在
         News news
-        def newsId = params.int('newsId')
-        if(newsId==null||!(news=News.get(newsId))) return toFailure("id=$newsId 的新闻不存在")
+        def id = params.int('id')
+        if(id==null||!(news=News.get(id))) return toFailure("id=$id 的新闻不存在")
         
         render editorService.processUEAction(request,response,new File(newsDir,"$news.id"))
     }
     
-    //params newsId,title,content
+    //params id,title,content
     def updateSubmit(){
         //校验存在
         News news
-        def newsId = params.int('newsId')
-        if(newsId==null||!(news=News.get(newsId))||!news.saved) return toFailure("id=$newsId 的新闻不存在,可能是id错误或新闻未提交")
+        def id = params.int('id')
+        if(id==null||!(news=News.get(id))||!news.saved) return toFailure("id=$id 的新闻不存在,可能是id错误或新闻未提交")
         
         def htmlContent=params.content
         def fileNames=[] as Set<String>
@@ -107,9 +109,9 @@ class NewsController {
     def get(){
         //校验存在
         News news
-        def newsId = params.int('newsId')
-        if(newsId==null||!(news=News.get(newsId))) return toFailure("id=$newsId 的新闻不存在")
-        if(!news.saved) return toFailure("id=$newsId 的新闻未保存，可能是正在编辑中还未提交")
+        def id = params.int('id')
+        if(id==null||!(news=News.get(id))) return toFailure("id=$id 的新闻不存在")
+        if(!news.saved) return toFailure("id=$id 的新闻未保存，可能是正在编辑中还未提交")
         render(view: 'getSuccess',model:[news:news])
     }
     

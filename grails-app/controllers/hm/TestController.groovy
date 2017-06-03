@@ -1,9 +1,10 @@
 package hm
 
-
+import grails.gorm.transactions.Transactional
 import grails.rest.*
 import grails.converters.*
 
+@Transactional
 class TestController {
 	static responseFormats = ['json', 'xml']
 	
