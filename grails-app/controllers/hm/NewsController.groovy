@@ -108,19 +108,18 @@ class NewsController {
         render view:'/success',model:[message:'修改成功',objTemplate:'/news/info',obj:news]
     }
     
+    def addGet(){
+        if(!session.newsInEdit) return fail('没有正在编辑的新闻')
+        return render(view: '/success',model:[obj:session.newsInEdit,objTemplate:'/news/details'])
+    }
+    
     def get(){
         //校验存在
         def id = params.int('id')
-        if(id==null){
-            if(!session.newsInEdit) return fail('没有正在编辑的新闻')
-            return render(view: '/success',model:[obj:session.newsInEdit,objTemplate:'/news/details'])
-        }else{
-            def news=News.get(id)
-            if(!news) return fail("id=$id 的新闻不存在")
-            if(!news.saved) return fail("id=$id 的新闻未成功提交，处于草稿状态")
-            return render(view: '/success',model:[obj:news,objTemplate:'/news/details'])
-        }
-        
+        def news=News.get(id)
+        if(!news) return fail("id=$id 的新闻不存在")
+        if(!news.saved) return fail("id=$id 的新闻未成功提交，处于草稿状态")
+        return render(view: '/success',model:[obj:news,objTemplate:'/news/details'])
     }
     
     private def fail(def obj,String failureMessage){

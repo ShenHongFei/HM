@@ -13,9 +13,13 @@ class Application extends GrailsAutoConfiguration {
     public static File projectDir
     public static File webDir
     public static File dataDir
-    public static File introductionDir
-    public static File newsDir        
-    public static File uploadDir
+        public static File introductionDir
+        public static File uploadDir
+    
+        public static File newsDir
+        public static File privateActivityDir
+        public static File trainingDir
+        public static File knowledgeDir
 //    static Boolean tableExists
 
     
@@ -30,8 +34,10 @@ class Application extends GrailsAutoConfiguration {
         (dataDir=            new File(projectDir,'data'))       .mkdirs()
         (introductionDir=    new File(dataDir,'introduction'))  .mkdirs()
         (newsDir=            new File(dataDir,'news'))          .mkdirs()
-        (uploadDir=       new File(dataDir,'upload')).mkdirs()
-        
+        (uploadDir=       new File(dataDir,'upload'))               .mkdirs()
+        (trainingDir=  new File(dataDir,'training')).mkdirs()
+        (knowledgeDir=  new File(dataDir,'knowledge')).mkdirs()
+        (privateActivityDir=  new File(dataDir,'private-activity')).mkdirs()
         
         
         resetEmailTemplate= Application.classLoader.getResourceAsStream('reset-email-template.html')

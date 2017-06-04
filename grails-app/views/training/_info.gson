@@ -1,0 +1,20 @@
+import hm.Application
+import hm.Training
+
+model{
+    Training training
+}
+
+json g.render(training,[excludes: ['content']]){
+    if(!training.saved){
+        publishedAt '未发布'
+        modifiedAt '未发布'
+    }
+    if(training.saved){
+        publishedAtString Application.timeFormat.format(training.publishedAt)
+        modifiedAtString Application.timeFormat.format(training.modifiedAt)
+    }
+    //先加上，以后考虑留不留
+    files(training.content?.files)
+    content(training.content?.text)
+}

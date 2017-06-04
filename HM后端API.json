@@ -293,10 +293,21 @@
 			"description": "",
 			"item": [
 				{
-					"name": "查看",
+					"name": "查看-正在编辑",
+					"request": {
+						"url": "{{HM}}/private-activity/add/get",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "查看-根据id",
 					"request": {
 						"url": {
-							"raw": "{{HM}}/private-activity/get?id=1",
+							"raw": "{{HM}}/private-activity/get?id=353",
 							"auth": {},
 							"host": [
 								"{{HM}}"
@@ -308,7 +319,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "1",
+									"value": "353",
 									"equals": true,
 									"description": ""
 								}
@@ -512,10 +523,21 @@
 			"description": "",
 			"item": [
 				{
-					"name": "查看",
+					"name": "查看-正在编辑",
+					"request": {
+						"url": "{{HM}}/training/add/get",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "查看-根据id",
 					"request": {
 						"url": {
-							"raw": "{{HM}}/training/get?trainingId=353",
+							"raw": "{{HM}}/training/get?id=353",
 							"auth": {},
 							"host": [
 								"{{HM}}"
@@ -526,7 +548,7 @@
 							],
 							"query": [
 								{
-									"key": "trainingId",
+									"key": "id",
 									"value": "353",
 									"equals": true,
 									"description": ""
@@ -731,10 +753,21 @@
 			"description": "",
 			"item": [
 				{
-					"name": "查看",
+					"name": "查看-正在编辑",
+					"request": {
+						"url": "{{HM}}/news/add/get",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "查看-根据id",
 					"request": {
 						"url": {
-							"raw": "{{HM}}/news/get?id=353",
+							"raw": "{{HM}}/news/get?id=1",
 							"auth": {},
 							"host": [
 								"{{HM}}"
@@ -746,7 +779,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "353",
+									"value": "1",
 									"equals": true,
 									"description": ""
 								}
@@ -843,7 +876,7 @@
 							"formdata": [
 								{
 									"key": "id",
-									"value": "257",
+									"value": "1",
 									"type": "text"
 								}
 							]
@@ -863,7 +896,7 @@
 							"formdata": [
 								{
 									"key": "id",
-									"value": "225",
+									"value": "4",
 									"type": "text"
 								},
 								{
@@ -955,6 +988,12 @@
 								{
 									"key": "phone",
 									"value": "13757144018",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "",
+									"description": "",
 									"type": "text"
 								}
 							]
@@ -1225,7 +1264,7 @@
 					},
 					"response": [
 						{
-							"id": "c3d6c38a-af9a-407f-85ae-02f7bbc41c5e",
+							"id": "2b7ec0cf-694d-4e67-80fd-e7e885488763",
 							"name": "空提交",
 							"originalRequest": {
 								"url": "{{HM}}/user/register",
@@ -1419,7 +1458,198 @@
 					"response": []
 				},
 				{
-					"name": "管理-搜索用户",
+					"name": "管理-分页列出-普通用户",
+					"request": {
+						"url": "{{HM}}/user/manage/list?size=2&page=0&sort=id,desc",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "GET user/manage?size={页面大小}&page={页数}&sort={属性,升序/降序}\n所有属性均能排序\n      {页面大小} 中的大括号不需要输入，下同\n      \"last\": false,是否最后一页\n            \"totalPages\": 7,\n            \"totalElements\": 21,\n            \"number\": 0,第几页（从0开始算）\n            \"size\": 3,\n      排序方法 逗号分隔 属性必填\n      \"first\": true 第一页"
+					},
+					"response": []
+				},
+				{
+					"name": "管理-列出所有-高级用户",
+					"request": {
+						"url": {
+							"raw": "{{HM}}/user/manage/list?role=VIP",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"user",
+								"manage",
+								"list"
+							],
+							"query": [
+								{
+									"key": "role",
+									"value": "VIP",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "GET user/manage?size={页面大小}&page={页数}&sort={属性,升序/降序}\n所有属性均能排序\n      {页面大小} 中的大括号不需要输入，下同\n      \"last\": false,是否最后一页\n            \"totalPages\": 7,\n            \"totalElements\": 21,\n            \"number\": 0,第几页（从0开始算）\n            \"size\": 3,\n      排序方法 逗号分隔 属性必填\n      \"first\": true 第一页"
+					},
+					"response": []
+				},
+				{
+					"name": "管理-查看某个用户",
+					"request": {
+						"url": {
+							"raw": "{{HM}}/user/manage/get?id=1",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"user",
+								"manage",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "管理-删除-单个",
+					"request": {
+						"url": "{{HM}}/user/manage/delete",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "194",
+									"type": "text",
+									"description": ""
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "管理-删除-批量",
+					"request": {
+						"url": "{{HM}}/user/manage/delete",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ids[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "ids[]",
+									"value": "167",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "管理-设置权限-单个",
+					"request": {
+						"url": "{{HM}}/user/manage/set-permission",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "管理-设置权限-批量",
+					"request": {
+						"url": "{{HM}}/user/manage/set-permission",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "role",
+									"value": "VIP",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "ids[]",
+									"value": "197",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "ids[]",
+									"value": "167",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "ids[]",
+									"value": "3",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "ids[]",
+									"value": "226",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "ids[]",
+									"value": "168",
+									"type": "text",
+									"description": ""
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "todo-管理-搜索用户",
 					"request": {
 						"url": {
 							"raw": "{{HM}}/user/manage/search?username=aaa",
@@ -1462,93 +1692,6 @@
 							]
 						},
 						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "管理-设置权限",
-					"request": {
-						"url": "{{HM}}/user/manage/set-permission",
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "role",
-									"value": "VIP",
-									"type": "text"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "管理-查看某个用户",
-					"request": {
-						"url": {
-							"raw": "{{HM}}/user/manage/get?id=6",
-							"auth": {},
-							"host": [
-								"{{HM}}"
-							],
-							"path": [
-								"user",
-								"manage",
-								"get"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "6",
-									"equals": true,
-									"description": ""
-								}
-							],
-							"variable": []
-						},
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "管理-删除",
-					"request": {
-						"url": "{{HM}}/user/manage/delete",
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "id",
-									"value": "",
-									"type": "text"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "管理-分页列出",
-					"request": {
-						"url": "{{HM}}/user/manage/list?size=2&page=0&sort=id,desc",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": "GET user/manage?size={页面大小}&page={页数}&sort={属性,升序/降序}\n所有属性均能排序\n      {页面大小} 中的大括号不需要输入，下同\n      \"last\": false,是否最后一页\n            \"totalPages\": 7,\n            \"totalElements\": 21,\n            \"number\": 0,第几页（从0开始算）\n            \"size\": 3,\n      排序方法 逗号分隔 属性必填\n      \"first\": true 第一页"
 					},
 					"response": []
 				}

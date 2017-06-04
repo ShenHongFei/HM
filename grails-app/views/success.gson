@@ -8,7 +8,8 @@ json{
     result true
     message message
     if(objTemplate){
-        def className=obj.class.simpleName.toLowerCase()
+        def simpleName=obj.class.simpleName
+        def className=simpleName[0].toLowerCase()+simpleName[1..-1]
         "${className}" g.render([template:objTemplate.toString(),model:[(className):obj]])
     }
 }
