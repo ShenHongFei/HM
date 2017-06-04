@@ -66,8 +66,12 @@ class PrivateActivityController{
         def sortParams  = ((params.sort as String)?.split(',') as List)?:[]
         def sortBy      = sortParams[0]?:'modifiedAt'
         def order       = sortParams[1]?:'desc'
-        def privateActivitys = PrivateActivity.findAll("from PrivateActivity as privateActivity where privateActivity.saved=true order by privateActivity.$sortBy $order".toString(),[max:size,offset:page*size])
-        render view:'/my-page',model:[myPage:new MyPage(privateActivitys,PrivateActivity.countBySaved(true),size,page),template:'/private-activity/info']
+        if(!params.type) return fail('参数 type 不能为空')
+        if(!Department.values()*.toString().contains(params.type)) return fail("参数 type=$params.type 不正确")
+        def privateActivitys = PrivateActivity.findAll(
+        "from PrivateActivity as privateActivity where privateActivity.saved=true and privateActivity.department='${params.type}' order by privateActivity.$sortBy $order".toString(),
+        [max:size,offset:page*size])
+        render view:'/my-page',model:[myPage:new MyPage(privateActivitys,PrivateActivity.countBySaved(true),size,page),template:'/private-activity/info'] 
     }
     
     //params id

@@ -66,7 +66,9 @@ class TrainingController{
         def sortParams  = ((params.sort as String)?.split(',') as List)?:[]
         def sortBy      = sortParams[0]?:'modifiedAt'
         def order       = sortParams[1]?:'desc'
-        def trainings = Training.findAll("from Training as training where training.saved=true order by training.$sortBy $order".toString(),[max:size,offset:page*size])
+        if(!params.type) return fail('参数 type 不能为空')
+        if(!Department.values()*.toString().contains(params.type)) return fail("参数 type=$params.type 不正确")
+        def trainings = Training.findAll("from Training as training where training.saved=true and training.department='${params.type}' order by training.$sortBy $order".toString(),[max:size,offset:page*size])
         render view:'/my-page',model:[myPage:new MyPage(trainings,Training.countBySaved(true),size,page),template:'/training/info']
     }
     

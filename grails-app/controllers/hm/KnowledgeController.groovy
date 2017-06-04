@@ -66,7 +66,9 @@ class KnowledgeController{
         def sortParams  = ((params.sort as String)?.split(',') as List)?:[]
         def sortBy      = sortParams[0]?:'modifiedAt'
         def order       = sortParams[1]?:'desc'
-        def knowledges = Knowledge.findAll("from Knowledge as knowledge where knowledge.saved=true order by knowledge.$sortBy $order".toString(),[max:size,offset:page*size])
+        if(!params.type) return fail('参数 type 不能为空')
+        if(!Knowledge.Type.values()*.toString().contains(params.type)) return fail("参数 type=$params.type 不正确")
+        def knowledges = Knowledge.findAll("from Knowledge as knowledge where knowledge.saved=true and knowledge.type='${params.type}' order by knowledge.$sortBy $order".toString(),[max:size,offset:page*size])
         render view:'/my-page',model:[myPage:new MyPage(knowledges,Knowledge.countBySaved(true),size,page),template:'/knowledge/info']
     }
     

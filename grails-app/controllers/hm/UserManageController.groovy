@@ -79,4 +79,3 @@ class UserManageController {
         render(view:'/batch',model:[message:message,ids:ids,effectives:effectives])
     }
 }
- 
