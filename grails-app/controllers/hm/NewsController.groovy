@@ -59,9 +59,9 @@ class NewsController {
     
     def list(){
         def page        = (params.page?:0) as Integer
-        def size        = (params.size?:5) as Integer
-        def sortParams  = (params.sort as String)?.split(',') as List
-        def sortBy      = sortParams[0]?:'id'
+        def size        = (params.size?:10) as Integer
+        def sortParams  = ((params.sort as String)?.split(',') as List)?:[]
+        def sortBy      = sortParams[0]?:'modifiedAt'
         def order       = sortParams[1]?:'desc'
         def newss = News.findAll("from News as news where news.saved=true order by news.$sortBy $order".toString(),[max:size,offset:page*size])
         render view:'/my-page',model:[myPage:new MyPage(newss,News.countBySaved(true),size,page),template:'/news/info']

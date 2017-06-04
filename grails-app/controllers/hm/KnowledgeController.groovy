@@ -60,11 +60,11 @@ class KnowledgeController{
         return render(view:'/success',model:[message:'废弃成功'])
     }
     
-    def list(){ 
+    def list(){
         def page        = (params.page?:0) as Integer
-        def size        = (params.size?:5) as Integer
-        def sortParams  = (params.sort as String)?.split(',') as List
-        def sortBy      = sortParams[0]?:'id'
+        def size        = (params.size?:10) as Integer
+        def sortParams  = ((params.sort as String)?.split(',') as List)?:[]
+        def sortBy      = sortParams[0]?:'modifiedAt'
         def order       = sortParams[1]?:'desc'
         def knowledges = Knowledge.findAll("from Knowledge as knowledge where knowledge.saved=true order by knowledge.$sortBy $order".toString(),[max:size,offset:page*size])
         render view:'/my-page',model:[myPage:new MyPage(knowledges,Knowledge.countBySaved(true),size,page),template:'/knowledge/info']

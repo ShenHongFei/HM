@@ -10,7 +10,7 @@ class PrivateActivity {
     Date    modifiedAt
     
     static constraints = {
-        title nullable:false,matches:/[0-9a-zA-Z\u4e00-\u9fa5_-~`· ]{1,200}/
+        title nullable:false,size:1..100
     }
     
     def beforeInsert(){

@@ -202,17 +202,17 @@
                     alert(model?model.message:'unknown error');
                     return;
                 }
-                $('#introduction').html(model.content);
+                $('#about').html(model.content);
             });
             
             $("#edit").click(function(){
-                $("#introduction").css("display","none");
+                $("#about").css("display","none");
                 $("#edit").css("display","none");
                 $("#cancel").css("display","block");
                 $("button").css("display","block");
                 // alert($('#introduction').html());
                 ueditor.setShow();
-                ueditor.setContent($('#introduction').html());
+                ueditor.setContent($('#about').html());
             });
 
 
@@ -231,7 +231,7 @@
         });
 
         function cancelEdit(){
-            $("#introduction").css("display","block");
+            $("#about").css("display","block");
             $("#edit").css("display","block");
             $("#cancel").css("display","none");
             $("button").css("display","none");
@@ -251,7 +251,7 @@
                     alert(model?model.message:'unknown error');
                     return;
                 }
-                $('#introduction').html(content);
+                $('#about').html(content);
                 alert('上传成功');
                 cancelEdit();
             });

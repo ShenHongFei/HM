@@ -9,6 +9,7 @@ class UrlMappings {
                 
             }*/
         }
+        
         "/user/manage/$action"          controller:'userManage'
         
         "/$controller/add/get"                 action:'addGet'
@@ -18,7 +19,7 @@ class UrlMappings {
         "/$controller/update/ue"               action:'updateUE'
         "/$controller/update/submit"           action:'updateSubmit'
         
-        
+        "/about/$type/$action"          controller:'about'
         
         
         "500"(view: '/error')

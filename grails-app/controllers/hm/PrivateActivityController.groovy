@@ -60,11 +60,11 @@ class PrivateActivityController{
         return render(view:'/success',model:[message:'废弃成功'])
     }
     
-    def list(){ 
+    def list(){
         def page        = (params.page?:0) as Integer
-        def size        = (params.size?:5) as Integer
-        def sortParams  = (params.sort as String)?.split(',') as List
-        def sortBy      = sortParams[0]?:'id'
+        def size        = (params.size?:10) as Integer
+        def sortParams  = ((params.sort as String)?.split(',') as List)?:[]
+        def sortBy      = sortParams[0]?:'modifiedAt'
         def order       = sortParams[1]?:'desc'
         def privateActivitys = PrivateActivity.findAll("from PrivateActivity as privateActivity where privateActivity.saved=true order by privateActivity.$sortBy $order".toString(),[max:size,offset:page*size])
         render view:'/my-page',model:[myPage:new MyPage(privateActivitys,PrivateActivity.countBySaved(true),size,page),template:'/private-activity/info']

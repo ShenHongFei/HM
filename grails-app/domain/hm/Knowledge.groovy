@@ -3,7 +3,7 @@ package hm
 class Knowledge {
     
     enum Type{
-        PROJECT,PUBLIC_WELFARE
+        PROJECT,WELFARE
     }
     
     String  title
@@ -14,7 +14,7 @@ class Knowledge {
     Date    modifiedAt
     
     static constraints = {
-        title nullable:false,matches:/[0-9a-zA-Z\u4e00-\u9fa5_-~`· ]{1,200}/
+        title nullable:false,size:1..100
     }
     
     def beforeInsert(){

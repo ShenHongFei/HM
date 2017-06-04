@@ -10,20 +10,26 @@ class Application extends GrailsAutoConfiguration {
     public static def timeFormat=new SimpleDateFormat('yyyy-MM-dd a h:mm',Locale.CHINA)
     public static def fileTimeFormat=new SimpleDateFormat('yyyy-MM-dd-a-h-mm',Locale.CHINA)
     
-    public static File projectDir
+public static File projectDir
     public static File webDir
     public static File dataDir
-        public static File introductionDir
+        
         public static File uploadDir
     
         public static File newsDir
         public static File privateActivityDir
         public static File trainingDir
         public static File knowledgeDir
+    
+        public static File aboutDir
+            public static File introductionDir
+            public static File contactDir
+            public static File galleryDir
+    
+    public static InputStream resetEmailTemplate
 //    static Boolean tableExists
 
     
-    public static InputStream resetEmailTemplate
     
     static{
         projectDir=new File(System.properties['user.dir'] as String)
@@ -31,14 +37,20 @@ class Application extends GrailsAutoConfiguration {
         
 	    webDir=new File(projectDir,'web')
 
-        (dataDir=            new File(projectDir,'data'))       .mkdirs()
-        (introductionDir=    new File(dataDir,'introduction'))  .mkdirs()
-        (newsDir=            new File(dataDir,'news'))          .mkdirs()
-        (uploadDir=       new File(dataDir,'upload'))               .mkdirs()
-        (trainingDir=  new File(dataDir,'training')).mkdirs()
-        (knowledgeDir=  new File(dataDir,'knowledge')).mkdirs()
-        (privateActivityDir=  new File(dataDir,'private-activity')).mkdirs()
+        (dataDir=                       new File(projectDir,'data'))       .mkdirs()
+            
+            (uploadDir=                 new File(dataDir,'upload'))               .mkdirs()
         
+            (newsDir=                   new File(dataDir,'news'))          .mkdirs()
+            (trainingDir=               new File(dataDir,'training')).mkdirs()
+            (knowledgeDir=              new File(dataDir,'knowledge')).mkdirs()
+            (privateActivityDir=        new File(dataDir,'private-activity')).mkdirs()
+        
+            (aboutDir=                  new File(dataDir,'about')).mkdirs()
+                (contactDir=            new File(aboutDir,'contact')).mkdirs()
+                (introductionDir=       new File(aboutDir,'introduction'))  .mkdirs()
+                (galleryDir=            new File(aboutDir,'private-activity')).mkdirs()
+            
         
         resetEmailTemplate= Application.classLoader.getResourceAsStream('reset-email-template.html')
         
