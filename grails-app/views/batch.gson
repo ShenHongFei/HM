@@ -1,0 +1,17 @@
+model{
+    def message
+    List ids
+    List effectives
+}
+
+json {
+    result true
+    message message
+    batchResult {
+        successCount effectives.size()
+        successIds effectives*.id
+        ignoreCount ids.size()-effectives.size()
+        ignoreIds ids-(effectives*.id)
+        message "生效：${effectives.size()} 个,未生效: ${ids.size()-effectives.size()} 个,生效的id: ${(effectives*.id).toString()},忽略的id: ${(ids-(effectives*.id)).toString()}"
+    }
+}

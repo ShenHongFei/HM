@@ -1,7 +1,6 @@
 package hm
 
 import grails.gorm.transactions.Transactional
-import org.hibernate.SessionFactory
 
 import static hm.Application.newsDir
 
@@ -10,13 +9,13 @@ class NewsController {
 	static responseFormats = ['json']
     
     EditorService  editorService
-    SessionFactory sessionFactory
-    
-    
-//    if(session.newsInEdit) return render(view:'news-unsubmitted',model:[news:session.newsInEdit])
     
     //用户添加新闻时先初始化UE，创建某一id的新闻，设置状态为未保存， 文件存放在 news/id 中，并将该新闻放入session(不允许用户同时编辑两个新闻）
     def addUE(){
+        //暂时不禁止有正在编辑新闻时再次初始化UE
+/*        if(session.newsInEdit){
+            return render(view:'news-in-edit',model:[news:session.newsInEdit])
+        }*/
         def unsaved = new News(title:'unsaved').save()
         def storeDir = new File(newsDir,"$unsaved.id")
         storeDir.mkdirs()
@@ -28,24 +27,35 @@ class NewsController {
     // 新闻提交后需要重新初始化UE
     def addSubmit(){
         def newsInEdit = session.newsInEdit
-        if(!newsInEdit) return toFailure('提交失败，找不到正在编辑的新闻，可能是UE自上次提交后没有初始化')
+        if(!newsInEdit) return fail('提交失败，找不到正在编辑的新闻，可能是UE自上次提交后没有重新初始化')
+        newsInEdit.attach()
         def htmlContent = params.content
-        def fileNames=[] as Set<String>
+        def files=[] as Set<String>
         new File(newsDir,"$newsInEdit.id").listFiles().each{
             if(!htmlContent?.contains(it.name)) it.delete()
-            else fileNames<<it.name
+            else files<<it.name
         }
         newsInEdit.with{
             title=params.title
-            content=new Content(text:htmlContent,files:fileNames)
-            publishedAt=new Date()
+            content=new Content(text:htmlContent,files:files)
         }
-        if(!newsInEdit.validate()) return toFailure(newsInEdit,'添加失败')
+        if(!newsInEdit.validate()) return fail(newsInEdit,'添加失败')
         newsInEdit.saved=true
-        newsInEdit.save()
         session.newsInEdit=null
-        render view:'addSuccess',model:[news:newsInEdit,message:'添加成功']
-    } 
+        render(view:'/success',model:[message:'添加成功',obj:newsInEdit,objTemplate:'/news/info'])
+    }
+    
+    def addDiscard(){
+        if(!session.newsInEdit){
+            return fail('没有正在编辑中的新闻')
+        }
+        session.newsInEdit.with{
+            it.dir.deleteDir()
+            it.delete()
+        }
+        session.newsInEdit=null
+        return render(view:'/success',model:[message:'废弃成功'])
+    }
     
     def list(){
         def page        = (params.page?:0) as Integer
@@ -53,13 +63,8 @@ class NewsController {
         def sortParams  = (params.sort as String)?.split(',') as List
         def sortBy      = sortParams[0]?:'id'
         def order       = sortParams[1]?:'desc'
-        render view:'/mypage',
-               model:[myPage:new MyPage(
-                       News.findAll("from News as news where news.saved=true order by news.$sortBy $order".toString(),[max:size,offset:page*size]),
-                       News.countBySaved(true),
-                       size,
-                       page),
-                      template:'/news/details']
+        def newss = News.findAll("from News as news where news.saved=true order by news.$sortBy $order".toString(),[max:size,offset:page*size])
+        render view:'/my-page',model:[myPage:new MyPage(newss,News.countBySaved(true),size,page),template:'/news/info']
     }
     
     //params id
@@ -67,20 +72,18 @@ class NewsController {
         //校验存在
         News news
         def id = params.int('id')
-        if(id==null||!(news=News.get(id))) return toFailure("id=$id 的新闻不存在")
-        
-        new File(newsDir,"$news.id").deleteDir()
+        if(id==null||!(news=News.get(id))) return fail("id=$id 的新闻不存在")
+        news.dir.deleteDir()
         news.delete()
-        toSuccess('删除成功')
+        render(view:'/success',model:[message:'删除成功'])
     }
     
     def updateUE(){
         //校验存在
         News news
         def id = params.int('id')
-        if(id==null||!(news=News.get(id))) return toFailure("id=$id 的新闻不存在")
-        
-        render editorService.processUEAction(request,response,new File(newsDir,"$news.id"))
+        if(id==null||!(news=News.get(id))) return fail("id=$id 的新闻不存在")
+        render editorService.processUEAction(request,response,news.dir)
     }
     
     //params id,title,content
@@ -88,7 +91,7 @@ class NewsController {
         //校验存在
         News news
         def id = params.int('id')
-        if(id==null||!(news=News.get(id))||!news.saved) return toFailure("id=$id 的新闻不存在,可能是id错误或新闻未提交")
+        if(id==null||!(news=News.get(id))||!news.saved) return fail("id=$id 的新闻不存在,可能是id错误或未成功提交")
         
         def htmlContent=params.content
         def fileNames=[] as Set<String>
@@ -101,27 +104,29 @@ class NewsController {
             content.text=htmlContent
             content.files=fileNames
         }
-        if(!news.validate()) return toFailure(news,'修改失败')
-        news.save()
-        render view:'addSuccess',model:[news:news,message:'修改成功']
+        if(!news.validate()) return fail(news,'修改失败')
+        render view:'/success',model:[message:'修改成功',objTemplate:'/news/info',obj:news]
     }
     
     def get(){
         //校验存在
-        News news
         def id = params.int('id')
-        if(id==null||!(news=News.get(id))) return toFailure("id=$id 的新闻不存在")
-        if(!news.saved) return toFailure("id=$id 的新闻未保存，可能是正在编辑中还未提交")
-        render(view: 'getSuccess',model:[news:news])
+        if(id==null){
+            if(!session.newsInEdit) return fail('没有正在编辑的新闻')
+            return render(view: '/success',model:[obj:session.newsInEdit,objTemplate:'/news/details'])
+        }else{
+            def news=News.get(id)
+            if(!news) return fail("id=$id 的新闻不存在")
+            if(!news.saved) return fail("id=$id 的新闻未成功提交，处于草稿状态")
+            return render(view: '/success',model:[obj:news,objTemplate:'/news/details'])
+        }
+        
     }
     
-    private def toFailure(def obj,String failureMessage){
+    private def fail(def obj,String failureMessage){
         render view:'/failure',model:[errors:obj?.errors,message:failureMessage]
     }
-    private def toFailure(String failureMessage){
+    private def fail(String failureMessage){
         render view:'/failure',model:[message:failureMessage]
-    }
-    private def toSuccess(String message){
-        render view:'/success',model:[message:message]
     }
 }

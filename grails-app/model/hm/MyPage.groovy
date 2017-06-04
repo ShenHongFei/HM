@@ -10,7 +10,7 @@ class MyPage{
     MyPage(List content,Long totalElements,Integer size,Integer number){
         this.content=content
         this.totalElements=totalElements
-        this.size=size
+        this.size=size>0?size:5
         this.number=number
     }
     

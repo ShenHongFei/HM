@@ -5,7 +5,7 @@ model{
     News news
 }
 
-json g.render(news,{
+json g.render(news,[excludes: ['content']]){
     if(!news.saved){
         publishedAt '未发布'
         modifiedAt '未发布'
@@ -14,6 +14,7 @@ json g.render(news,{
         publishedAtString Application.timeFormat.format(news.publishedAt)
         modifiedAtString Application.timeFormat.format(news.modifiedAt)
     }
+    //先加上，以后考虑留不留
     files(news.content?.files)
     content(news.content?.text)
-})
+}

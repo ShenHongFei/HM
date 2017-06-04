@@ -6,7 +6,7 @@ model{
 
 json{
     result true
-    user tmpl.info(user:user)
+    user tmpl.'/user/info'(user:user)
 }
 
 

@@ -1,7 +1,13 @@
+import static hm.Application.timeFormat
 import hm.User
+
 
 model{
     User user
 }
-
-json g.render(user,[excludes: ['password','cookieId','uuid']])
+//管理员查看修改个人信息
+json g.render(user,[excludes: ['password','cookieId','uuid']],{
+    if(user.registerTime){
+        registerTimeString(timeFormat.format(user.registerTime))
+    }
+})

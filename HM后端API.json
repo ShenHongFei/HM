@@ -1225,7 +1225,7 @@
 					},
 					"response": [
 						{
-							"id": "08af5606-faf8-4a2c-a39e-1cef9ddbd675",
+							"id": "c3d6c38a-af9a-407f-85ae-02f7bbc41c5e",
 							"name": "空提交",
 							"originalRequest": {
 								"url": "{{HM}}/user/register",
@@ -1419,17 +1419,6 @@
 					"response": []
 				},
 				{
-					"name": "管理-分页列出",
-					"request": {
-						"url": "{{HM}}/user/manage/list?size=2&page=0&sort=id,desc",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": "GET user/manage?size={页面大小}&page={页数}&sort={属性,升序/降序}\n所有属性均能排序\n      {页面大小} 中的大括号不需要输入，下同\n      \"last\": false,是否最后一页\n            \"totalPages\": 7,\n            \"totalElements\": 21,\n            \"number\": 0,第几页（从0开始算）\n            \"size\": 3,\n      排序方法 逗号分隔 属性必填\n      \"first\": true 第一页"
-					},
-					"response": []
-				},
-				{
 					"name": "管理-搜索用户",
 					"request": {
 						"url": {
@@ -1492,7 +1481,7 @@
 								},
 								{
 									"key": "role",
-									"value": "MANAGER",
+									"value": "VIP",
 									"type": "text"
 								}
 							]
@@ -1549,6 +1538,17 @@
 							]
 						},
 						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "管理-分页列出",
+					"request": {
+						"url": "{{HM}}/user/manage/list?size=2&page=0&sort=id,desc",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "GET user/manage?size={页面大小}&page={页数}&sort={属性,升序/降序}\n所有属性均能排序\n      {页面大小} 中的大括号不需要输入，下同\n      \"last\": false,是否最后一页\n            \"totalPages\": 7,\n            \"totalElements\": 21,\n            \"number\": 0,第几页（从0开始算）\n            \"size\": 3,\n      排序方法 逗号分隔 属性必填\n      \"first\": true 第一页"
 					},
 					"response": []
 				}

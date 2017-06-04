@@ -1,0 +1,20 @@
+import groovy.json.JsonBuilder
+import groovy.json.JsonOutput
+import hm.MyPage
+
+model{
+    MyPage myPage
+    def template
+}
+ 
+json{
+    result true
+    'page' g.render(myPage,[excludes:['content']],{
+        totalPages myPage.totalPages
+        numberOfElements myPage.numberOfElements
+        first myPage.first
+        last myPage.last
+//        content             tmpl."$template"(myPage.content)
+        content             g.render(template:template.toString(),collection:myPage.content)
+    })
+}

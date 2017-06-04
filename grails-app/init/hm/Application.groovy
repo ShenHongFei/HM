@@ -3,11 +3,16 @@ package hm
 import grails.boot.GrailsApp
 import grails.boot.config.GrailsAutoConfiguration
 
+import java.text.SimpleDateFormat
+
 class Application extends GrailsAutoConfiguration {
+    
+    public static def timeFormat=new SimpleDateFormat('yyyy-MM-dd a h:mm',Locale.CHINA)
+    public static def fileTimeFormat=new SimpleDateFormat('yyyy-MM-dd-a-h-mm',Locale.CHINA)
     
     public static File projectDir
     public static File webDir
-    public static File dataDir        
+    public static File dataDir
     public static File introductionDir
     public static File newsDir        
     public static File uploadDir

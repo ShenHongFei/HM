@@ -1,8 +1,14 @@
 model{
-    String message
+    def message
+    def obj
+    def objTemplate
 }
 
 json{
     result true
     message message
+    if(objTemplate){
+        def className=obj.class.simpleName.toLowerCase()
+        "${className}" g.render([template:objTemplate.toString(),model:[(className):obj]])
+    }
 }

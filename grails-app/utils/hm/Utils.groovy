@@ -1,5 +1,0 @@
-package hm
-
-class Utils{
-    
-}

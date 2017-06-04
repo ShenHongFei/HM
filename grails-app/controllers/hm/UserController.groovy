@@ -9,7 +9,7 @@ import javax.mail.internet.MimeMessage
 import javax.servlet.http.Cookie
 import javax.servlet.http.HttpServletResponse
 
-import static hm.User.GUEST
+import static hm.User.*
 
 @Transactional
 class UserController {

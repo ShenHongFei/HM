@@ -2,7 +2,7 @@ import org.springframework.validation.Errors
 
 model {
     Errors errors
-    String message
+    def message
 }
 
 json{

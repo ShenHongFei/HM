@@ -12,6 +12,7 @@ class UrlMappings {
         "/user/manage/$action"          controller:'userManage'
         "/news/add/ue"                  controller:'news',          action:'addUE'
         "/news/add/submit"              controller:'news',          action:'addSubmit'
+        "/news/add/discard"              controller:'news',          action:'addDiscard'
         "/news/update/ue"               controller:'news',          action:'updateUE'
         "/news/update/submit"           controller:'news',          action:'updateSubmit'
         "500"(view: '/error')
