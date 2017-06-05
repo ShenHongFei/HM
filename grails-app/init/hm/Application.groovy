@@ -17,16 +17,18 @@ public static File projectDir
         public static File uploadDir
     
         public static File newsDir
+        public static File activityNewsDir
         public static File privateActivityDir
         public static File trainingDir
         public static File knowledgeDir
+        public static File activityDir
+        public static File noticeDir
     
         public static File aboutDir
             public static File introductionDir
             public static File contactDir
             public static File galleryDir
     
-    public static InputStream resetEmailTemplate
 //    static Boolean tableExists
 
     
@@ -42,8 +44,11 @@ public static File projectDir
             (uploadDir=                 new File(dataDir,'upload'))               .mkdirs()
         
             (newsDir=                   new File(dataDir,'news'))          .mkdirs()
+            (activityNewsDir=                   new File(dataDir,'activity-news'))          .mkdirs()
             (trainingDir=               new File(dataDir,'training')).mkdirs()
             (knowledgeDir=              new File(dataDir,'knowledge')).mkdirs()
+            (activityDir=              new File(dataDir,'activity')).mkdirs()
+            (noticeDir=              new File(dataDir,'notice')).mkdirs()
             (privateActivityDir=        new File(dataDir,'private-activity')).mkdirs()
         
             (aboutDir=                  new File(dataDir,'about')).mkdirs()
@@ -52,8 +57,13 @@ public static File projectDir
                 (galleryDir=            new File(aboutDir,'private-activity')).mkdirs()
             
         
-        resetEmailTemplate= Application.classLoader.getResourceAsStream('reset-email-template.html')
-        
+    }
+    
+    static getResetEmailTemplateInputStream(){
+        Application.classLoader.getResourceAsStream('reset-email-template.html')
+    }
+    static getLawTemplateInputStream(){
+        Application.classLoader.getResourceAsStream('law-template.html')
     }
     
     @Override

@@ -3,7 +3,7 @@ package hm
 class Activity {
     
     enum Type{
-        PROJECT,PUBLIC_WELFARE
+        PRESENTATION,PREPARATION
     }
     
     String  title
@@ -12,6 +12,8 @@ class Activity {
     Boolean saved=false
     Date    publishedAt
     Date    modifiedAt
+    
+    List<User> members=[]
 
     static constraints = {
     }
@@ -24,5 +26,14 @@ class Activity {
     def beforeUpdate(){
         modifiedAt=new Date()
         true
+    }
+    
+    def getDir(){
+        new File(Application.activityDir,"$id").with{mkdirs();it}
+    }
+    
+    @Override
+    boolean equals(Object obj){
+        return id==obj?.id
     }
 }

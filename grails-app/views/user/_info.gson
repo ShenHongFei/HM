@@ -5,7 +5,8 @@ model{
     User user
 }
 //用户查看修改个人信息
-json g.render(user,[includes: ['id','email','username','role','realname','gender','registerTime','phoneNumber']],{
+json g.render(user,[includes: ['id','email','username','realname','gender','registerTime','phone','age','company','address']],{
+    role user.role
     if(user.registerTime){
         registerTimeString(timeFormat.format(user.registerTime))
     }

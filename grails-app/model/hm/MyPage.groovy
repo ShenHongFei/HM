@@ -6,6 +6,12 @@ class MyPage{
     Integer size
     Integer number //页码 从0计数
     
+    MyPage(Long totalElements,Integer size,Integer number){
+        this.totalElements=totalElements
+        this.size=size>0?size:5
+        this.number=number
+    }
+    
     
     MyPage(List content,Long totalElements,Integer size,Integer number){
         this.content=content
@@ -28,5 +34,9 @@ class MyPage{
     
     Boolean getLast(){
         totalPages==0?:number==totalPages-1
+    }
+    
+    Integer getOffset(){
+        number*size
     }
 }

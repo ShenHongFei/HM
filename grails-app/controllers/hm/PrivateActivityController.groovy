@@ -9,6 +9,7 @@ class PrivateActivityController{
 	static responseFormats = ['json']
     
     EditorService  editorService
+    ContentService contentService
     
     //用户添加内部活动时先初始化UE，创建某一id的内部活动，设置状态为未保存， 文件存放在 privateActivity/id 中，并将该内部活动放入session(不允许用户同时编辑两个内部活动）
     def addUE(){
@@ -17,10 +18,9 @@ class PrivateActivityController{
             return render(view:'private-activity-in-edit',model:[privateActivity:session.privateActivityInEdit])
         }*/
         def unsaved = new PrivateActivity(title:'unsaved').save()
-        def storeDir = new File(privateActivityDir,"$unsaved.id".toString())
-        storeDir.mkdirs()
+        
         session.privateActivityInEdit=unsaved
-        render editorService.processUEAction(request,response,storeDir)
+        render editorService.processUEAction(request,response,unsaved.dir)
     }
 	
     // params title,content **department**
@@ -79,7 +79,7 @@ class PrivateActivityController{
         //校验存在
         PrivateActivity privateActivity
         def id = params.int('id')
-        if(id==null||!(privateActivity=PrivateActivity.get(id))) return fail("id=$id 的内部活动不存在")
+        if(id==null||!(privateActivity=PrivateActivity.get(id))||!privateActivity.saved) return fail("id=$id 的内部活动不存在或处于草稿状态，无法删除")
         privateActivity.dir.deleteDir()
         privateActivity.delete()
         render(view:'/success',model:[message:'删除成功'])
@@ -89,7 +89,7 @@ class PrivateActivityController{
         //校验存在
         PrivateActivity privateActivity
         def id = params.int('id')
-        if(id==null||!(privateActivity=PrivateActivity.get(id))) return fail("id=$id 的内部活动不存在")
+        if(id==null||!(privateActivity=PrivateActivity.get(id))||!privateActivity.saved) return fail("id=$id 的内部活动不存在")
         render editorService.processUEAction(request,response,privateActivity.dir)
     }
     

@@ -47,6 +47,7 @@ class UserController {
             save()
         }
         session.user=user
+        setUserCookies(response,user)
         success '注册成功'
     }
     
@@ -123,7 +124,7 @@ class UserController {
         helper.setFrom('350986489@qq.com')
         helper.setTo(params.email as String)
         message.setSubject("大连高校环境联盟 重置密码")
-        helper.setText(templateEngine.createTemplate(Application.resetEmailTemplate.newReader('UTF-8')).make([username:user.username,id:user.id,uuid:user.uuid]).toString(),true)
+        helper.setText(templateEngine.createTemplate(Application.resetEmailTemplateInputStream.newReader('UTF-8')).make([username:user.username,id:user.id,uuid:user.uuid]).toString(),true)
         try{
             mailSender.send(message)
         }catch(Exception e){

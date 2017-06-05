@@ -28,6 +28,6 @@ class Knowledge {
     }
     
     def getDir(){
-        new File(Application.knowledgeDir,"$id")
+        new File(Application.knowledgeDir,"$id").with{mkdirs();it}
     }
 }

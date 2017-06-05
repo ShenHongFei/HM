@@ -1,6 +1,6 @@
 package hm
 
-class News {
+class ActivityNews{
     
     String  title
     Content content

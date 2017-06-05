@@ -2,14 +2,22 @@ model{
     def message
     def obj
     def objTemplate
+    Map map
 }
 
 json{
     result true
-    message message
+    if(message){
+        message message
+    }
     if(objTemplate){
         def simpleName=obj.class.simpleName
         def className=simpleName[0].toLowerCase()+simpleName[1..-1]
         "${className}" g.render([template:objTemplate.toString(),model:[(className):obj]])
+    }
+    if(map){
+        map.each{k,v->
+            "$k" v
+        }
     }
 }

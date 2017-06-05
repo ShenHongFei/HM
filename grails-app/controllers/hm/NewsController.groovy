@@ -9,6 +9,7 @@ class NewsController {
 	static responseFormats = ['json']
     
     EditorService  editorService
+    ContentService contentService
     
     //用户添加新闻时先初始化UE，创建某一id的新闻，设置状态为未保存， 文件存放在 news/id 中，并将该新闻放入session(不允许用户同时编辑两个新闻）
     def addUE(){
@@ -17,10 +18,8 @@ class NewsController {
             return render(view:'news-in-edit',model:[news:session.newsInEdit])
         }*/
         def unsaved = new News(title:'unsaved').save()
-        def storeDir = new File(newsDir,"$unsaved.id")
-        storeDir.mkdirs()
         session.newsInEdit=unsaved
-        render editorService.processUEAction(request,response,storeDir)
+        render editorService.processUEAction(request,response,unsaved.dir)
     }
 	
     // params title,content 
@@ -72,7 +71,7 @@ class NewsController {
         //校验存在
         News news
         def id = params.int('id')
-        if(id==null||!(news=News.get(id))) return fail("id=$id 的新闻不存在")
+        if(id==null||!(news=News.get(id))||!news.saved) return fail("id=$id 的新闻不存在或处于草稿状态，无法删除")
         news.dir.deleteDir()
         news.delete()
         render(view:'/success',model:[message:'删除成功'])
@@ -82,7 +81,7 @@ class NewsController {
         //校验存在
         News news
         def id = params.int('id')
-        if(id==null||!(news=News.get(id))) return fail("id=$id 的新闻不存在")
+        if(id==null||!(news=News.get(id))||!news.saved) return fail("id=$id 的新闻不存在")
         render editorService.processUEAction(request,response,news.dir)
     }
     

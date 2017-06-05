@@ -1,16 +1,19 @@
 package hm
 
-class News {
+class Notice {
+    
+    enum Type{
+        PROJECT,HM
+    }
     
     String  title
     Content content
+    Type type
     Boolean saved=false
     Date    publishedAt
     Date    modifiedAt
     
     static constraints = {
-        title nullable:false,size:1..100
-        /*matches:/[0-9a-zA-Z\u4e00-\u9fa5_-~`· ]{1,200}/*/
     }
     
     def beforeInsert(){
@@ -24,7 +27,6 @@ class News {
     }
     
     def getDir(){
-        new File(Application.newsDir,"$id").with{mkdirs();it}
+        new File(Application.noticeDir,"$id").with{mkdirs();it}
     }
 }
-//    static hasOne = [content:Content]

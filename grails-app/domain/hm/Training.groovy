@@ -24,6 +24,6 @@ class Training {
     }
     
     def getDir(){
-        new File(Application.trainingDir,"$id")
+        new File(Application.trainingDir,"$id").with{mkdirs();it}
     }
 }

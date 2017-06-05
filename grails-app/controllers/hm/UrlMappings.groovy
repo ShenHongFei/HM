@@ -21,6 +21,8 @@ class UrlMappings {
         
         "/about/$type/$action"          controller:'about'
         
+        "/activity/law/get"              controller:'activity',  action:'lawGet'
+        
         
         "500"(view: '/error')
         "404"(view: '/notFound')

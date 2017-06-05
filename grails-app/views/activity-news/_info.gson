@@ -1,0 +1,20 @@
+import hm.Application
+import hm.ActivityNews
+
+model{
+    ActivityNews activityNews
+}
+
+json g.render(activityNews,[excludes: ['content']]){
+    if(!activityNews.saved){
+        publishedAt '未发布'
+        modifiedAt '未发布'
+    }
+    if(activityNews.saved){
+        publishedAtString Application.timeFormat.format(activityNews.publishedAt)
+        modifiedAtString Application.timeFormat.format(activityNews.modifiedAt)
+    }
+    //先加上，以后考虑留不留
+    files(activityNews.content?.files)
+    content(activityNews.content?.text)
+}

@@ -24,7 +24,7 @@ class PrivateActivity {
     }
     
     def getDir(){
-        new File(Application.privateActivityDir,"$id")
+        new File(Application.privateActivityDir,"$id").with{mkdirs();it}
     }
 
 }

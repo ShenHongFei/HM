@@ -9,6 +9,7 @@ class TrainingController{
 	static responseFormats = ['json']
     
     EditorService  editorService
+    ContentService contentService
     
     //用户添加培训时先初始化UE，创建某一id的培训，设置状态为未保存， 文件存放在 training/id 中，并将该培训放入session(不允许用户同时编辑两个培训）
     def addUE(){
@@ -17,10 +18,8 @@ class TrainingController{
             return render(view:'training-in-edit',model:[training:session.trainingInEdit])
         }*/
         def unsaved = new Training(title:'unsaved').save()
-        def storeDir = new File(trainingDir,"$unsaved.id".toString())
-        storeDir.mkdirs()
         session.trainingInEdit=unsaved
-        render editorService.processUEAction(request,response,storeDir)
+        render editorService.processUEAction(request,response,unsaved.dir)
     }
 	
     // params title,content **department**
@@ -77,7 +76,7 @@ class TrainingController{
         //校验存在
         Training training
         def id = params.int('id')
-        if(id==null||!(training=Training.get(id))) return fail("id=$id 的培训不存在")
+        if(id==null||!(training=Training.get(id))||!training.saved) return fail("id=$id 的培训不存在或处于草稿状态，无法删除")
         training.dir.deleteDir()
         training.delete()
         render(view:'/success',model:[message:'删除成功'])
@@ -87,7 +86,7 @@ class TrainingController{
         //校验存在
         Training training
         def id = params.int('id')
-        if(id==null||!(training=Training.get(id))) return fail("id=$id 的培训不存在")
+        if(id==null||!(training=Training.get(id))||!training.saved) return fail("id=$id 的培训不存在")
         render editorService.processUEAction(request,response,training.dir)
     }
     

@@ -8,18 +8,29 @@ class User {
     
     String  email
     String  username
-    Role    role
+    Role    role=Role.GUEST
     String  password //**
+    
+    
     String  realname
-    String  gender
+    static enum Gender{
+        MAN,WOMAN
+    }
+    Gender  gender
     Date    registerTime
     String  phone
+    Integer age
+    String company
+    String address
+    
+    
     String  cookieId //**
     String  lastIp //*
     Boolean autologin = false //*
     String  uuid //**
-//    Date birthday
-//    String address
+
+    
+    Set<Activity> activities=[] as Set
     
     @Override
     String toString(){ "{id: $id, username:$username, password:$password, role:$role}" }
@@ -31,6 +42,10 @@ class User {
         phone matches:/(^1(3[0-9]|4[57]|5[0-35-9]|7[0135678]|8[0-9])\d{8}$)|(^$)/
     }
     
+    @Override
+    boolean equals(Object obj){
+        return id==obj?.id
+    }
 }
 /*    void update( User u ){
         username = u.username

@@ -9,6 +9,7 @@ class KnowledgeController{
 	static responseFormats = ['json']
     
     EditorService  editorService
+    ContentService contentService
     
     //用户添加知识时先初始化UE，创建某一id的知识，设置状态为未保存， 文件存放在 knowledge/id 中，并将该知识放入session(不允许用户同时编辑两个知识）
     def addUE(){
@@ -17,10 +18,8 @@ class KnowledgeController{
             return render(view:'knowledge-in-edit',model:[knowledge:session.knowledgeInEdit])
         }*/
         def unsaved = new Knowledge(title:'unsaved').save()
-        def storeDir = new File(knowledgeDir,"$unsaved.id".toString())
-        storeDir.mkdirs()
         session.knowledgeInEdit=unsaved
-        render editorService.processUEAction(request,response,storeDir)
+        render editorService.processUEAction(request,response,unsaved.dir)
     }
 	
     // params title,content **type**
@@ -77,7 +76,7 @@ class KnowledgeController{
         //校验存在
         Knowledge knowledge
         def id = params.int('id')
-        if(id==null||!(knowledge=Knowledge.get(id))) return fail("id=$id 的知识不存在")
+        if(id==null||!(knowledge=Knowledge.get(id))||!knowledge.saved) return fail("id=$id 的知识不存在或处于草稿状态，无法删除")
         knowledge.dir.deleteDir()
         knowledge.delete()
         render(view:'/success',model:[message:'删除成功'])
@@ -87,7 +86,7 @@ class KnowledgeController{
         //校验存在
         Knowledge knowledge
         def id = params.int('id')
-        if(id==null||!(knowledge=Knowledge.get(id))) return fail("id=$id 的知识不存在")
+        if(id==null||!(knowledge=Knowledge.get(id))||!knowledge.saved) return fail("id=$id 的知识不存在")
         render editorService.processUEAction(request,response,knowledge.dir)
     }
     
