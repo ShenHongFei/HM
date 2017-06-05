@@ -19,11 +19,14 @@ class ActivityController {
     }
     
     def signup(){
+        def errors=[]
         ['email','phone','realname','gender','age','company','id'].each{
-            if(!params[it]) return fail("$it 不能为空")
+            if(!params[it]) errors<<"$it 不能为空"
         }
+        if(errors) return fail(errors.toString())
         def activity=Activity.get(params.int('id'))
-        if(!activity) return fail("id=$id 的活动不存在")
+        if(!activity) return fail("id=$params.id 的活动不存在")
+        if(!User.Gender.values()*.toString().contains(params.gender)) return fail("参数 gender=$params.gender 不正确")
         def user=User.findByEmail(params.email)
         if(user&&user.activities.contains(activity)) return fail("该用户已报名 id=$activity.id 的活动")
         if(!user) user=new User(email:params.email)

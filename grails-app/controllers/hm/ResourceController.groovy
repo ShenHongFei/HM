@@ -32,8 +32,9 @@ class ResourceController{
             return render(view:'/failure',model:[message:"RESOURCE ${uri} NOT FOUND".toString()],status:404)
         }
         response.addHeader('Content-Length',resource.size() as String)
-        render(file:resource,contentType:contentNegotiationStrategy.getMediaTypeForResource(new FileSystemResource(resource)))
+        try{
+            render(file:resource,contentType:contentNegotiationStrategy.getMediaTypeForResource(new FileSystemResource(resource)))
+        }catch(any){}
     }
-    
 }
 

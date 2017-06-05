@@ -12,9 +12,20 @@
 			"description": "",
 			"item": [
 				{
-					"name": "UE初始化及后续上传请求",
+					"name": "槐盟介绍-查看",
 					"request": {
-						"url": "{{HM}}/introduction/ue",
+						"url": "{{HM}}/about/introduction/get",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "槐盟介绍-UE初始化及后续上传请求",
+					"request": {
+						"url": "{{HM}}/about/introduction/ue",
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -37,9 +48,29 @@
 					"response": []
 				},
 				{
-					"name": "查看",
+					"name": "槐盟介绍-设置",
 					"request": {
-						"url": "{{HM}}/introduction/get",
+						"url": "{{HM}}/about/introduction/set",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "<p>sdafasdfasdf123456135</p><p style=\\\"text-align: center;\\\"><span style=\\\"color: rgb(255, 0, 0);\\\">135151</span></p><p><img src=\\\"file/introduction/0df8a7aa-c852-11e5-8539-ab27a204022b.png\\\" title=\\\"0df8a7aa-c852-11e5-8539-ab27a204022b.png\\\" alt=\\\"0df8a7aa-c852-11e5-8539-ab27a204022b.png\\\"/></p>",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "联系我们-查看",
+					"request": {
+						"url": "{{HM}}/about/contact/get",
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -48,9 +79,90 @@
 					"response": []
 				},
 				{
-					"name": "设置",
+					"name": "联系我们-UE初始化及后续上传请求",
 					"request": {
-						"url": "{{HM}}/introduction/set",
+						"url": "{{HM}}/about/contact/ue",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "action",
+									"value": "config",
+									"type": "text"
+								},
+								{
+									"key": "noCache",
+									"value": "1494122902762",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "联系我们-设置",
+					"request": {
+						"url": "{{HM}}/about/contact/set",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "<p>sdafasdfasdf123456135</p><p style=\\\"text-align: center;\\\"><span style=\\\"color: rgb(255, 0, 0);\\\">135151</span></p><p><img src=\\\"file/introduction/0df8a7aa-c852-11e5-8539-ab27a204022b.png\\\" title=\\\"0df8a7aa-c852-11e5-8539-ab27a204022b.png\\\" alt=\\\"0df8a7aa-c852-11e5-8539-ab27a204022b.png\\\"/></p>",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "活动图片-查看",
+					"request": {
+						"url": "{{HM}}/about/gallery/get",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "活动图片-UE初始化及后续上传请求",
+					"request": {
+						"url": "{{HM}}/about/gallery/ue",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "action",
+									"value": "config",
+									"type": "text"
+								},
+								{
+									"key": "noCache",
+									"value": "1494122902762",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "活动图片-设置",
+					"request": {
+						"url": "{{HM}}/about/gallery/set",
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -74,10 +186,21 @@
 			"description": "",
 			"item": [
 				{
-					"name": "查看",
+					"name": "查看-正在编辑",
+					"request": {
+						"url": "{{HM}}/notice/add/get",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "查看-根据id",
 					"request": {
 						"url": {
-							"raw": "{{HM}}/notice/get?id=1",
+							"raw": "{{HM}}/notice/get?id=353",
 							"auth": {},
 							"host": [
 								"{{HM}}"
@@ -89,7 +212,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "1",
+									"value": "353",
 									"equals": true,
 									"description": ""
 								}
@@ -107,7 +230,7 @@
 					"name": "分页列出",
 					"request": {
 						"url": {
-							"raw": "{{HM}}/notice/list?size=2&page=0&sort=id,desc",
+							"raw": "{{HM}}/notice/list?size=2&page=0&sort=id,desc&type=OFFICE",
 							"auth": {},
 							"host": [
 								"{{HM}}"
@@ -132,6 +255,12 @@
 								{
 									"key": "sort",
 									"value": "id,desc",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "type",
+									"value": "OFFICE",
 									"equals": true,
 									"description": ""
 								}
@@ -187,6 +316,12 @@
 								{
 									"key": "content",
 									"value": "<p>测试新闻测试新闻测试新闻测试新闻测试新闻测试新闻测试新闻</p>",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "HM",
+									"description": "",
 									"type": "text"
 								}
 							]
@@ -337,7 +472,7 @@
 					"name": "分页列出",
 					"request": {
 						"url": {
-							"raw": "{{HM}}/private-activity/list?size=2&page=0&sort=id,desc",
+							"raw": "{{HM}}/private-activity/list?size=2&page=0&sort=id,desc&type=OFFICE",
 							"auth": {},
 							"host": [
 								"{{HM}}"
@@ -362,6 +497,12 @@
 								{
 									"key": "sort",
 									"value": "id,desc",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "type",
+									"value": "OFFICE",
 									"equals": true,
 									"description": ""
 								}
@@ -417,6 +558,12 @@
 								{
 									"key": "content",
 									"value": "<p>测试新闻测试新闻测试新闻测试新闻测试新闻测试新闻测试新闻</p>",
+									"type": "text"
+								},
+								{
+									"key": "department",
+									"value": "OFFICE",
+									"description": "",
 									"type": "text"
 								}
 							]
@@ -567,7 +714,7 @@
 					"name": "分页列出",
 					"request": {
 						"url": {
-							"raw": "{{HM}}/training/list?size=2&page=0&sort=id,desc",
+							"raw": "{{HM}}/training/list?size=2&page=0&sort=id,desc&type=OFFICE",
 							"auth": {},
 							"host": [
 								"{{HM}}"
@@ -592,6 +739,12 @@
 								{
 									"key": "sort",
 									"value": "id,desc",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "type",
+									"value": "OFFICE",
 									"equals": true,
 									"description": ""
 								}
@@ -647,6 +800,12 @@
 								{
 									"key": "content",
 									"value": "<p>测试新闻测试新闻测试新闻测试新闻测试新闻测试新闻测试新闻</p>",
+									"type": "text"
+								},
+								{
+									"key": "department",
+									"value": "OFFICE",
+									"description": "",
 									"type": "text"
 								}
 							]
@@ -796,7 +955,38 @@
 				{
 					"name": "分页列出",
 					"request": {
-						"url": "{{HM}}/news/list?size=2&page=0&sort=id,desc",
+						"url": {
+							"raw": "{{HM}}/news/list?size=3&page=0&sort=id,desc",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"news",
+								"list"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "3",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "sort",
+									"value": "id,desc",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -952,61 +1142,10 @@
 			"description": "",
 			"item": [
 				{
-					"name": "报名",
-					"request": {
-						"url": "{{HM}}/activity/enroll",
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "realname",
-									"value": "报名用户名",
-									"type": "text"
-								},
-								{
-									"key": "gender",
-									"value": "MAN",
-									"type": "text"
-								},
-								{
-									"key": "age",
-									"value": "18",
-									"type": "text"
-								},
-								{
-									"key": "address",
-									"value": "balbal",
-									"type": "text"
-								},
-								{
-									"key": "company",
-									"value": "...",
-									"type": "text"
-								},
-								{
-									"key": "phone",
-									"value": "13757144018",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "",
-									"description": "",
-									"type": "text"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "查看",
+					"name": "查看-根据id",
 					"request": {
 						"url": {
-							"raw": "{{HM}}/activity/get?id=353",
+							"raw": "{{HM}}/activity/get?id=1",
 							"auth": {},
 							"host": [
 								"{{HM}}"
@@ -1018,7 +1157,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "353",
+									"value": "1",
 									"equals": true,
 									"description": ""
 								}
@@ -1033,21 +1172,54 @@
 					"response": []
 				},
 				{
-					"name": "删除",
+					"name": "分页列出",
 					"request": {
-						"url": "{{HM}}/news/delete",
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
+						"url": {
+							"raw": "{{HM}}/activity/list?size=3&page=0&sort=id,desc",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"activity",
+								"list"
+							],
+							"query": [
 								{
-									"key": "id",
-									"value": "257",
-									"type": "text"
+									"key": "size",
+									"value": "3",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "sort",
+									"value": "id,desc",
+									"equals": true,
+									"description": ""
 								}
-							]
+							],
+							"variable": []
 						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-查看-正在编辑",
+					"request": {
+						"url": "{{HM}}/activity/add/get",
+						"method": "GET",
+						"header": [],
+						"body": {},
 						"description": ""
 					},
 					"response": []
@@ -1062,10 +1234,14 @@
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "",
-									"value": "",
-									"type": "text",
-									"disabled": true
+									"key": "action",
+									"value": "config",
+									"type": "text"
+								},
+								{
+									"key": "noCache",
+									"value": "1494122902762",
+									"type": "text"
 								}
 							]
 						},
@@ -1084,12 +1260,43 @@
 							"formdata": [
 								{
 									"key": "title",
-									"value": "",
+									"value": "测试活动",
 									"type": "text"
 								},
 								{
 									"key": "content",
-									"value": "",
+									"value": "<p>测试活动测试活动测试活动测试活动测试活动测试活动测试活动</p>",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-放弃正在编辑的内容",
+					"request": {
+						"url": "{{HM}}/activity/add/discard",
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "删除",
+					"request": {
+						"url": "{{HM}}/activity/delete",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "1",
 									"type": "text"
 								}
 							]
@@ -1109,7 +1316,7 @@
 							"formdata": [
 								{
 									"key": "id",
-									"value": "225",
+									"value": "4",
 									"type": "text"
 								},
 								{
@@ -1124,6 +1331,17 @@
 								}
 							]
 						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "查看-正在编辑 copy",
+					"request": {
+						"url": "{{HM}}/news/add/get",
+						"method": "GET",
+						"header": [],
+						"body": {},
 						"description": ""
 					},
 					"response": []
@@ -1159,9 +1377,9 @@
 					"response": []
 				},
 				{
-					"name": "列出报名者",
+					"name": "查看条款",
 					"request": {
-						"url": "{{HM}}/activity/list",
+						"url": "{{HM}}/activity/law/get",
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -1173,32 +1391,35 @@
 					"name": "查询是否报名",
 					"request": {
 						"url": {
-							"raw": "{{HM}}/activity/query?realname&email&phone",
-							"auth": {},
+							"raw": "{{HM}}/activity/query?email=aaaa@bb.com&phone=13757144018&id=1",
+							"auth": {
+								"user": "{{HM}}/activity/query?email=aaaa",
+								"password": ""
+							},
 							"host": [
-								"{{HM}}"
+								"bb",
+								"com&phone=13757144018&id=1"
 							],
 							"path": [
-								"activity",
-								"query"
+								""
 							],
 							"query": [
 								{
-									"key": "realname",
-									"value": "",
-									"equals": false,
-									"description": ""
-								},
-								{
 									"key": "email",
-									"value": "",
-									"equals": false,
+									"value": "aaaa@bb.com",
+									"equals": true,
 									"description": ""
 								},
 								{
 									"key": "phone",
-									"value": "",
-									"equals": false,
+									"value": "13757144018",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "id",
+									"value": "1",
+									"equals": true,
 									"description": ""
 								}
 							],
@@ -1207,6 +1428,353 @@
 						"method": "GET",
 						"header": [],
 						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "列出某活动报名者",
+					"request": {
+						"url": {
+							"raw": "{{HM}}/activity/list-members?id=1",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"activity",
+								"list-members"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "报名某活动",
+					"request": {
+						"url": "{{HM}}/activity/signup",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "aaa@bb.com",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "13757144018",
+									"type": "text"
+								},
+								{
+									"key": "realname",
+									"value": "报名用户名",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "MAN",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "18",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "balbal",
+									"type": "text"
+								},
+								{
+									"key": "company",
+									"value": "...",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "查看-根据id copy",
+					"request": {
+						"url": {
+							"raw": "{{HM}}/news/get?id=1",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"news",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "活动新闻",
+			"description": "",
+			"item": [
+				{
+					"name": "查看-正在编辑",
+					"request": {
+						"url": "{{HM}}/activity-news/add/get",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "查看-根据id",
+					"request": {
+						"url": {
+							"raw": "{{HM}}/activity-news/get?id=1",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"activity-news",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "分页列出",
+					"request": {
+						"url": {
+							"raw": "{{HM}}/activity-news/list?size=3&page=0&sort=id,desc",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"activity-news",
+								"list"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "3",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "sort",
+									"value": "id,desc",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-UE初始化及后续上传请求",
+					"request": {
+						"url": "{{HM}}/activity-news/add/ue",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "action",
+									"value": "config",
+									"type": "text"
+								},
+								{
+									"key": "noCache",
+									"value": "1494122902762",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-提交",
+					"request": {
+						"url": "{{HM}}/activity-news/add/submit",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "测试新闻",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "<p>测试新闻测试新闻测试新闻测试新闻测试新闻测试新闻测试新闻</p>",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-放弃正在编辑的内容",
+					"request": {
+						"url": "{{HM}}/activity-news/add/discard",
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "删除",
+					"request": {
+						"url": "{{HM}}/activity-news/delete",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "修改-UE初始化及后续上传请求",
+					"request": {
+						"url": "{{HM}}/activity-news/update/ue",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "action",
+									"value": "config",
+									"type": "text"
+								},
+								{
+									"key": "noCache",
+									"value": "149412290276",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "修改-提交",
+					"request": {
+						"url": "{{HM}}/activity-news/update/submit",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "353",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "新标题",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "<p>新内容新内容新内容新内容新内容</p>",
+									"type": "text"
+								}
+							]
+						},
 						"description": ""
 					},
 					"response": []
@@ -1245,7 +1813,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "shf19961009@163.com",
+									"value": "shf19961008@163.com",
 									"type": "text"
 								},
 								{
@@ -1255,7 +1823,7 @@
 								},
 								{
 									"key": "password",
-									"value": "123",
+									"value": "123456",
 									"type": "text"
 								}
 							]
@@ -1264,7 +1832,7 @@
 					},
 					"response": [
 						{
-							"id": "2b7ec0cf-694d-4e67-80fd-e7e885488763",
+							"id": "1fba64fb-0525-4088-aba2-2435e3ac9870",
 							"name": "空提交",
 							"originalRequest": {
 								"url": "{{HM}}/user/register",
@@ -1687,6 +2255,248 @@
 								{
 									"key": "username",
 									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "知识",
+			"description": "",
+			"item": [
+				{
+					"name": "查看-正在编辑",
+					"request": {
+						"url": "{{HM}}/knowledge/add/get",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "查看-根据id",
+					"request": {
+						"url": {
+							"raw": "{{HM}}/knowledge/get?id=353",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"knowledge",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "353",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "分页列出",
+					"request": {
+						"url": {
+							"raw": "{{HM}}/knowledge/list?size=2&page=0&sort=id,desc&type=PROJECT",
+							"auth": {},
+							"host": [
+								"{{HM}}"
+							],
+							"path": [
+								"knowledge",
+								"list"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "2",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "sort",
+									"value": "id,desc",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "type",
+									"value": "PROJECT",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-UE初始化及后续上传请求",
+					"request": {
+						"url": "{{HM}}/knowledge/add/ue",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "action",
+									"value": "config",
+									"type": "text"
+								},
+								{
+									"key": "noCache",
+									"value": "1494122902762",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-提交",
+					"request": {
+						"url": "{{HM}}/knowledge/add/submit",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "测试新闻",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "<p>测试新闻测试新闻测试新闻测试新闻测试新闻测试新闻测试新闻</p>",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "PROJECT",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "新增-放弃正在编辑的内容",
+					"request": {
+						"url": "{{HM}}/knowledge/add/discard",
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "删除",
+					"request": {
+						"url": "{{HM}}/knowledge/delete",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "257",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "修改-UE初始化及后续上传请求",
+					"request": {
+						"url": "{{HM}}/knowledge/update/ue",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "225",
+									"type": "text"
+								},
+								{
+									"key": "action",
+									"value": "config",
+									"type": "text"
+								},
+								{
+									"key": "noCache",
+									"value": "149412290276",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "修改-提交",
+					"request": {
+						"url": "{{HM}}/knowledge/update/submit",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "353",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "新标题",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "<p>新内容新内容新内容新内容新内容</p>",
 									"type": "text"
 								}
 							]
