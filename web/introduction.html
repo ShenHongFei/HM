@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress JSJQueryEfficiency -->
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
@@ -18,7 +19,7 @@
             padding: .7rem 0;
         }
         
-        #editor{
+        #ueditor{
             display: none;
         }
         /*针对移动端*/
@@ -135,11 +136,8 @@
 
                         </div>
                     </nav>
-
                 </div>
-
             </div>
-
         </div>
         <div class="main-container">
             <div class="explore-index-view">
@@ -169,8 +167,6 @@
                     </div>
                     <div class="company">© 版权所有 大连理工大学红蚂蚁实验室</div>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -184,7 +180,7 @@
         $(function(){
             //初始化默认不显示
                 ueditor=UE.getEditor('ueditor',{
-                serverUrl:'/introduction/ue',
+                serverUrl:'/about/introduction/ue',
                 isShow:false,
                 zIndex:1,
                 elementPathEnabled:false,
@@ -193,7 +189,7 @@
 
 
             $.ajax({
-                url:'/introduction/get',
+                url:'about/introduction/get',
                 method:'GET'
             }).fail(function(jqXHR,textStatus){
                 alert('ajax GET request failed\n'+textStatus);
@@ -206,6 +202,7 @@
             });
             
             $("#edit").click(function(){
+                $('#ueditor').css('display','block')
                 $("#about").css("display","none");
                 $("#edit").css("display","none");
                 $("#cancel").css("display","block");
@@ -242,7 +239,7 @@
             var content=UE.getEditor('ueditor').getContent();
             $.ajax({
                 method:'POST',
-                url:'/introduction/set',
+                url:'about/introduction/set',
                 data:{content:content}
             }).fail(function(jqXHR, textStatus){
                 alert('ajax post request failed\n'+textStatus);
