@@ -135,6 +135,7 @@ class ActivityController {
         def id = params.int('id')
         if(id==null||!(activity=Activity.get(id))||!activity.saved) return fail("id=$id 的活动不存在")
         activity.dir.deleteDir()
+        activity.members.each{it.activities.remove(activity)}
         activity.delete()
         render(view:'/success',model:[message:'删除成功'])
     }

@@ -10,8 +10,6 @@ class ResourceController{
     
     static responseFormats = ['json','gsp']
     
-    def HOME_PAGE='index.html'
-    
     def contentNegotiationStrategy=new PathExtensionContentNegotiationStrategy()
     
     def resource(){
@@ -20,11 +18,11 @@ class ResourceController{
         uri-='/ueditor/dialogs/preview'
         if(uri=='/') uri='index.html'
         if(uri.contains('/data')){
-            def fileuri=uri-'/data/'
-            println "uri=$fileuri"
-            resource=new File(dataDir,fileuri)
+            def dataUri=uri-'/data/'
+            println "DATA-URI=\t$dataUri"
+            resource=new File(dataDir,dataUri)
         }else{
-            println "uri=$uri"
+            println "WEB-URI=\t$uri"
             resource=new File(webDir,uri)
         }
         if(!resource.exists()||resource.directory) {

@@ -11,8 +11,13 @@ class AuthorizationInterceptor {
     }
 
     boolean before() {
-        println "原始请求： $request.requestURI"
-        
+        def uri = URLDecoder.decode(request.requestURI-request.contextPath,'UTF-8')
+        try{
+            if(!uri.split('/')[-1].contains('.')){
+                println "API=\t$uri"
+                println "参数=\t$request.parameterMap"
+            }
+        }catch(any){}
         def refreshCookie=false
         //首次访问网站
         if(!session.user){

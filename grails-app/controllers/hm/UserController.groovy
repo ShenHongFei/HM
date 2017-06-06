@@ -38,7 +38,7 @@ class UserController {
     @SuppressWarnings("UnnecessaryQualifiedReference")
     def register(){
         User user=new User(params)
-        if(!user.validate()) return toFailure(user,'注册失败')
+        if(!user.validate()) return fail(user,'注册失败')
         user.with{
             registerTime=new Date()
             role=User.Role.USER
@@ -63,10 +63,10 @@ class UserController {
     //params email,password,autologin
     def login(){
         def temp = new User(params)
-        if(temp.hasErrors()) return toFailure(temp,'登录失败，参数错误')
+        if(temp.hasErrors()) return fail(temp,'登录失败，参数错误')
         def user = User.find{email==temp.email}
-        if(!user) return toFailure('登录失败，无此用户')
-        if(temp.password!=user.password) return toFailure('登录失败，密码错误')
+        if(!user) return fail('登录失败，无此用户')
+        if(temp.password!=user.password) return fail('登录失败，密码错误')
         user.lastIp=request.remoteAddr
         session.user=user
         setUserCookies(response,user)
@@ -97,19 +97,20 @@ class UserController {
     //params oldPassword [newPassword] [newUsername]
     def updateInfo(){
         def user=session.user
-        if(params.oldPassword!=user.password) return toFailure(user,'原密码错误')
+        if(user==GUEST) return fail(user,'当前无已登录的用户')
+        if(params.oldPassword!=user.password) return fail(user,'原密码错误')
         //修改用户名
         def newUsername = params.newUsername
         if(newUsername&&newUsername!=user.username){
             if(User.find{username==newUsername}){
-                return toFailure("用户名${newUsername}已存在")
+                return fail("用户名${newUsername}已存在")
             }
             user.username=newUsername
         }
         //按需修改密码
         if(params.newPassword)
         user.password=params.password
-        if(!user.validate()) return toFailure(user,'更新失败')
+        if(!user.validate()) return fail(user,'更新失败')
         user.save()
         success '更新成功'
     }
@@ -117,7 +118,7 @@ class UserController {
     //params email
     def sendResetEmail(){
         def user = User.find{email==params.email}
-        if(!user) return toFailure('该邮箱未注册')
+        if(!user) return fail('该邮箱未注册')
         MimeMessage message = mailSender.createMimeMessage()
         //使用MimeMessageHelper构建Mime类型邮件,第二个参数true表明信息类型是multipart类型
         MimeMessageHelper helper = new MimeMessageHelper(message,true,'UTF-8')
@@ -129,7 +130,7 @@ class UserController {
             mailSender.send(message)
         }catch(Exception e){
             e.printStackTrace()
-            return toFailure(e.localizedMessage)
+            return fail(e.localizedMessage)
         }
         success '邮件发送成功'
     }
@@ -146,10 +147,10 @@ class UserController {
     private def success(String message){
         render view:'/success',model:[message:message]
     }
-    private def toFailure(User user,String failureMessage){
+    private def fail(User user,String failureMessage){
         render view:'/failure',model:[errors:user?.errors,message:failureMessage]
     }
-    private def toFailure(String failureMessage){
+    private def fail(String failureMessage){
         render view:'/failure',model:[message:failureMessage]
     }
     static void setCookie(HttpServletResponse response,String name,String value,Integer maxAge ){
