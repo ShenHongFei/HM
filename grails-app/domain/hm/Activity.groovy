@@ -16,6 +16,7 @@ class Activity {
     List<User> members=[]
 
     static constraints = {
+        title nullable:false,size:1..100
     }
     
     def beforeInsert(){

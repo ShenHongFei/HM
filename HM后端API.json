@@ -1391,14 +1391,14 @@
 					"name": "查询是否报名",
 					"request": {
 						"url": {
-							"raw": "{{HM}}/activity/query?email=aaaa@bb.com&phone=13757144018&id=1",
+							"raw": "{{HM}}/activity/query?email=aaaa@bb.com&id=1",
 							"auth": {
 								"user": "{{HM}}/activity/query?email=aaaa",
 								"password": ""
 							},
 							"host": [
 								"bb",
-								"com&phone=13757144018&id=1"
+								"com&id=1"
 							],
 							"path": [
 								""
@@ -1407,12 +1407,6 @@
 								{
 									"key": "email",
 									"value": "aaaa@bb.com",
-									"equals": true,
-									"description": ""
-								},
-								{
-									"key": "phone",
-									"value": "13757144018",
 									"equals": true,
 									"description": ""
 								},
@@ -1832,7 +1826,7 @@
 					},
 					"response": [
 						{
-							"id": "1fba64fb-0525-4088-aba2-2435e3ac9870",
+							"id": "5683b2fa-87a4-4dd0-83a8-4c301ea01163",
 							"name": "空提交",
 							"originalRequest": {
 								"url": "{{HM}}/user/register",
@@ -2037,7 +2031,7 @@
 					"response": []
 				},
 				{
-					"name": "管理-列出所有-高级用户",
+					"name": "管理-分页列出-高级用户",
 					"request": {
 						"url": {
 							"raw": "{{HM}}/user/manage/list?role=VIP",
