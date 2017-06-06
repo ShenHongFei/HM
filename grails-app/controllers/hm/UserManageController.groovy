@@ -16,20 +16,15 @@ class UserManageController {
         render view:'/user/details',model:[user:user]
     }
     
-    //高级用户不分页 参数只有role=VIP
+    //高级用户参数只有role=VIP
     def list(){
-        if(params.role==Role.VIP.toString()){
-            return render(view:'/user/list',model:[users:User.findAll{role==Role.VIP.toString()}])
-//            return render(view:'/user/list',model:[users:findAll(max:1,offset:0,{role==Role.VIP.toString()})])
-        }else{
-            def page        = (params.page?:0) as Integer
-            def size        = (params.size?:10) as Integer
-            def sortParams  = ((params.sort as String)?.split(',') as List)?:[]
-            def sortBy      = sortParams[0]?:'id'
-            def order       = sortParams[1]?:'desc'
-            def users = User.findAll("from User as user where user.role='${Role.USER}' order by user.$sortBy $order".toString(),[max:size,offset:page*size])
-            return render(view:'/my-page',model:[myPage:new MyPage(users,users.size(),size,page),template:'/user/details'])
-        }
+        def page        = (params.page?:0) as Integer
+        def size        = (params.size?:10) as Integer
+        def sortParams  = ((params.sort as String)?.split(',') as List)?:[]
+        def sortBy      = sortParams[0]?:'id'
+        def order       = sortParams[1]?:'desc'
+        def users = User.findAll("from User as user where user.role='${params.role==Role.VIP.toString()?Role.VIP:Role.USER}' order by user.$sortBy $order".toString(),[max:size,offset:page*size])
+        return render(view:'/my-page',model:[myPage:new MyPage(users,users.size(),size,page),template:'/user/details'])
     }
     
     def delete(){

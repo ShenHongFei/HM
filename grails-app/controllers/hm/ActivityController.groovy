@@ -28,7 +28,7 @@ class ActivityController {
         if(!activity) return fail("id=$params.id 的活动不存在")
         if(!User.Gender.values()*.toString().contains(params.gender)) return fail("参数 gender=$params.gender 不正确")
         def user=User.findByEmail(params.email)
-        if(user&&user.activities.contains(activity)) return fail("该用户已报名 id=$activity.id 的活动")
+        if(user&&user.activities.contains(activity)) return fail("您已用该邮箱报名")
         if(!user) user=new User(email:params.email)
         user.with{
             phone=params.phone
@@ -39,12 +39,13 @@ class ActivityController {
             company=params.company
             address=params.address
         }
-        if(!user.validate()) return fail(user,'报名失败,参数不符合要求')
+        if(!user.validate()) return fail(user,'请检查邮箱格式')
         user.activities<<activity
         activity.members<<user
         user.save()
         return render(view:'/success',model:[message:'报名成功',obj:user,objTemplate:'/user/info'])
     }
+    
     
     def listMembers(){
         def activity=Activity.get(params.int('id'))
@@ -52,6 +53,7 @@ class ActivityController {
         def page        = (params.page?:0) as Integer
         def size        = (params.size?:10) as Integer
         def members=activity.members
+        if(!activity.members) return render(view:'/my-page',model:[myPage:new MyPage([],0,size,page),template:'/user/info'])
         def offset=0<=page*size&&page*size<=members.size()-1?page*size:0
         def upperBound=offset+size<=members.size()-1?offset+size:members.size()-1
         def myPage = new MyPage(activity.members[offset..upperBound],activity.members.size(),size,page)
@@ -59,12 +61,12 @@ class ActivityController {
     }
     
     def query(){
-        ['email','phone','id'].each{
+        ['email','id'].each{
             if(!params[it]) return fail("$it 不能为空")
         }
         def activity=Activity.get(params.int('id'))
         if(!activity) return fail("id=$params.id 的活动不存在")
-        def user = User.find{email==params.email&&phone==params.phone}
+        def user = User.findByEmail(params.email)
         if(!user) return fail('找不到符合条件的用户')
         if(!user.activities.contains(activity)) return fail("该用户未报名 id=$activity.id 的活动")
         return render(view:'/success',model:[message:"用户已报名 id=$activity.id 的活动",obj:activity,objTemplate:'/activity/info'])
