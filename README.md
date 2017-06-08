@@ -3,7 +3,7 @@
 
 ![LOGO](http://tva2.sinaimg.cn/crop.0.0.180.180.180/a121378fjw1e8qgp5bmzyj2050050aa8.jpg)
 
-##如何在本地开发及调试代码
+## 如何在本地开发及调试代码
 1. `git clone https://git.oschina.net/shenhongfei/HM.git` 
     将项目下载到本地或导入IDE
     
@@ -26,12 +26,12 @@
 7. 编程访问相应的后端接口写相对路径， 比如查看当前登录的用户 , Ajax中填 `url: user/info` 
 
 
-####后端接口导入及更新（重导入）
+#### 后端接口导入及更新（重导入）
 Postman：
 
 https://www.getpostman.com/collections/948411cb62444b74997f
 
-##如何提交修改
+## 如何提交修改
 
 参照 [https://git-scm.com/book/zh/v2](https://git-scm.com/book/zh/v2) 选择合适的方法提交到码云，即可同步到 http://shenhongfei.site 
 
