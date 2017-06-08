@@ -19,13 +19,12 @@
 
 4. 浏览器打开http://localhost
 
-5. 浏览器中显示的网页`http://localhost/index.html`对应于本地文件夹中的**`HM/web/index.html`**，修改文件内容后刷新浏览器即可看到效果.
+5. 浏览器中显示的网页`http://localhost/index.html`对应于本地文件夹中的`HM/web/index.html`，修改文件内容后刷新浏览器即可看到效果.
 
 6. Postman设置HM全局变量为`localhost` 后,即可正常使用
 
 7. 编程访问相应的后端接口写相对路径， 比如查看当前登录的用户 , Ajax中填 `url: user/info` 
 
-## ```后端会更新服务器 HM.jar，请适时下载覆盖本地服务器```
 
 ####后端接口导入及更新（重导入）
 Postman：

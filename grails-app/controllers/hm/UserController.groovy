@@ -39,7 +39,7 @@ class UserController {
     def register(){
         User user=new User(params)
         if(!user.validate()) return fail(user,'注册失败')
-        user.with{
+            user.with{
             registerTime=new Date()
             role=User.Role.USER
             uuid=UUID.randomUUID().toString()
@@ -69,7 +69,6 @@ class UserController {
         if(temp.password!=user.password) return fail('登录失败，密码错误')
         user.lastIp=request.remoteAddr
         session.user=user
-        setUserCookies(response,user)
         // 自动登录cookie处理
         user.autologin=params.boolean('autologin',false)
         if(user.autologin){
@@ -85,7 +84,7 @@ class UserController {
             user.cookieId=UUID.randomUUID().toString()
             if(request.cookies.find{it.name=='autologin'}) clearCookie(response,'autologin')
         }
-        user.save()
+        setUserCookies(response,user)
         success '登录成功'
     }
     
@@ -101,6 +100,7 @@ class UserController {
         if(params.oldPassword!=user.password) return fail(user,'原密码错误')
         //修改用户名
         def newUsername = params.newUsername
+        def oldUsername=user.username
         if(newUsername&&newUsername!=user.username){
             if(User.find{username==newUsername}){
                 return fail("用户名${newUsername}已存在")
@@ -108,10 +108,16 @@ class UserController {
             user.username=newUsername
         }
         //按需修改密码
+        def oldPassword=user.password
         if(params.newPassword)
-        user.password=params.password
-        if(!user.validate()) return fail(user,'更新失败')
+            user.password=params.newPassword
+        if(!user.validate()) {
+            user.username=oldUsername
+            user.password=oldPassword
+            return fail(user,'更新失败')
+        }
         user.save()
+        setUserCookies(response,user)
         success '更新成功'
     }
     
@@ -138,8 +144,10 @@ class UserController {
     //params id,uuid
     def resetPassword(){
         def user = User.find{id==params.id&&uuid==params.uuid}
-        if(!user) return 
+        if(!user) return fail("重置失败，id和uuid不匹配")
         user.password='123456'
+        session.user=user
+        setUserCookies(response,user)
         success('重置成功，新密码为123456，请及时更改。')
     }
     

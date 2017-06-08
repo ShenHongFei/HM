@@ -9,7 +9,7 @@ model{
  
 json{
     result true
-    'page' g.render(myPage,[excludes:['content']],{
+    'page' g.render(myPage,{
         totalPages myPage.totalPages
         numberOfElements myPage.numberOfElements
         first myPage.first

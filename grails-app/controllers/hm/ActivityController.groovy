@@ -118,7 +118,7 @@ class ActivityController {
         return render(view:'/success',model:[message:'废弃成功'])
     }
     
-    def list(){
+    def list(){ 
         def page        = (params.page?:0) as Integer
         def size        = (params.size?:10) as Integer
         def sortParams  = ((params.sort as String)?.split(',') as List)?:[]
