@@ -1,30 +1,11 @@
 package hm
 
-class News {
+class News extends Item{
     
-    String  title
-    Content content
-    Boolean saved=false
-    Date    publishedAt
-    Date    modifiedAt
+    public static File classDir=new File(Application.dataDir,'news').with{mkdirs();it}
     
-    static constraints = {
-        title nullable:false,size:1..100
-        /*matches:/[0-9a-zA-Z\u4e00-\u9fa5_-~`· ]{1,200}/*/
-    }
-    
-    def beforeInsert(){
-        publishedAt=new Date()
-        true
-    }
-    
-    def beforeUpdate(){
-        modifiedAt=new Date()
-        true
-    }
-    
-    def getDir(){
-        new File(Application.newsDir,"$id").with{mkdirs();it}
+    File getDir(){
+        new File(classDir,"$id").with{mkdirs();it}
     }
 }
 //    static hasOne = [content:Content]

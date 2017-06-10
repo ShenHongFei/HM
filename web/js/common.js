@@ -1,3 +1,4 @@
+ENV=''
 //  ajaxSetup
 // ============================================================
 $.ajaxSetup({
@@ -10,7 +11,7 @@ $(function() {
     //  编辑器初始化
     // ============================================================
     editor = UE.getEditor('editor', {
-        serverUrl: ENV + '/news/add/ue',
+        serverUrl:  'news/add/ue',
         zIndex: 1,
         elementPathEnabled: false,
         wordCount: false
@@ -98,12 +99,13 @@ function checkContent(data) {
 function getContentList() {
     $("#contentPage").pagination({
         pageIndex: 0,
-        pageSize: 5,
+        pageSize:10,
         total: 100,
         debug: false,
         showInfo: true,
         showJump: false,
-        showPageSizes: true,
+        infoFormat: '{start} ~ {end}条，共{total}条',
+        showPageSizes: false,
         pageElementSort: ['$page', '$size', '$jump', '$info'],
         remote: {
             url: ENV + '/news/list',

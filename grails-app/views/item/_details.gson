@@ -1,0 +1,38 @@
+import hm.Application
+import hm.Item
+import hm.User
+
+import static hm.User.GUEST
+
+model{
+    def item
+}
+
+json g.render(item,[excludes:['type','department','author']],{
+    if(!item.saved){
+        publishedAt '未发布'
+        modifiedAt '未发布'
+    }else{
+        publishedAtString Application.timeFormat.format(item.publishedAt)
+        modifiedAtString Application.timeFormat.format(item.modifiedAt)
+    }
+    if(item.hasProperty('type')){
+        type item.type
+    }
+    if(item.hasProperty('department')){
+        type item.department
+    }
+    //todo:用户摘要
+    author {
+        if(!item.author){
+            id GUEST.id
+            username GUEST.username
+        }else{
+            id item.author.id
+            username item.author.username
+        }
+        
+    }
+    files(item.content?.files)
+    content(item.content?.text)
+})

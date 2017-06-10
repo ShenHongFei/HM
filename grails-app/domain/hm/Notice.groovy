@@ -1,33 +1,15 @@
 package hm
 
-class Notice {
+class Notice extends Item{
     
     enum Type{
         PROJECT,HM
     }
-    
-    String  title
-    Content content
     Type type
-    Boolean saved=false
-    Date    publishedAt
-    Date    modifiedAt
     
-    static constraints = {
-        title nullable:false,size:1..100
-    }
+    public static File classDir=new File(Application.dataDir,'notice').with{mkdirs();it}.with{mkdirs();it}
     
-    def beforeInsert(){
-        publishedAt=new Date()
-        true
-    }
-    
-    def beforeUpdate(){
-        modifiedAt=new Date()
-        true
-    }
-    
-    def getDir(){
-        new File(Application.noticeDir,"$id").with{mkdirs();it}
+    File getDir(){
+        new File(classDir,"$id").with{mkdirs();it}
     }
 }

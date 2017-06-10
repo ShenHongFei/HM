@@ -1,30 +1,13 @@
 package hm
 
-class PrivateActivity {
+class PrivateActivity extends Item{
     
-    String  title
-    Content content
     Department department
-    Boolean saved=false
-    Date    publishedAt
-    Date    modifiedAt
     
-    static constraints = {
-        title nullable:false,size:1..100
-    }
+    public static File classDir=new File(Application.dataDir,'private-activity').with{mkdirs();it}
     
-    def beforeInsert(){
-        publishedAt=new Date()
-        true
-    }
-    
-    def beforeUpdate(){
-        modifiedAt=new Date()
-        true
-    }
-    
-    def getDir(){
-        new File(Application.privateActivityDir,"$id").with{mkdirs();it}
+    File getDir(){
+        new File(classDir,"$id").with{mkdirs();it}
     }
 
 }

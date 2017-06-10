@@ -16,14 +16,8 @@ public static File projectDir
         
         public static File uploadDir
     
-        public static File newsDir
-        public static File activityNewsDir
-        public static File privateActivityDir
         public static File trainingDir
-        public static File knowledgeDir
-        public static File activityDir
-        public static File noticeDir
-    
+
         public static File aboutDir
             public static File introductionDir
             public static File contactDir
@@ -43,20 +37,10 @@ public static File projectDir
             
             (uploadDir=                 new File(dataDir,'upload'))               .mkdirs()
         
-            (newsDir=                   new File(dataDir,'news'))          .mkdirs()
-            (activityNewsDir=                   new File(dataDir,'activity-news'))          .mkdirs()
-            (trainingDir=               new File(dataDir,'training')).mkdirs()
-            (knowledgeDir=              new File(dataDir,'knowledge')).mkdirs()
-            (activityDir=              new File(dataDir,'activity')).mkdirs()
-            (noticeDir=              new File(dataDir,'notice')).mkdirs()
-            (privateActivityDir=        new File(dataDir,'private-activity')).mkdirs()
-        
             (aboutDir=                  new File(dataDir,'about')).mkdirs()
                 (contactDir=            new File(aboutDir,'contact')).mkdirs()
                 (introductionDir=       new File(aboutDir,'introduction'))  .mkdirs()
-                (galleryDir=            new File(aboutDir,'private-activity')).mkdirs()
-            
-        
+                (galleryDir=            new File(aboutDir,'gallery')).mkdirs()
     }
     
     static getResetEmailTemplateInputStream(){

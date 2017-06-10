@@ -1,6 +1,6 @@
 package hm
 
-import grails.transaction.Transactional
+import grails.gorm.transactions.Transactional
 import ueditor.ActionEnter
 
 import static hm.Application.introductionDir

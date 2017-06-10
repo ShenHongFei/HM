@@ -127,3 +127,11 @@ h6 {
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
 }
+
+
+/*首页  轮播*/
+
+.carousel-inner img {
+    margin: auto;
+    width: 100%;
+}

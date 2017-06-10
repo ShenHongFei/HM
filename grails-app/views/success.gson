@@ -10,10 +10,13 @@ json{
     if(message){
         message message
     }
-    if(objTemplate){
+    if(objTemplate&&obj){
         def simpleName=obj.class.simpleName
         def className=simpleName[0].toLowerCase()+simpleName[1..-1]
         "${className}" g.render([template:objTemplate.toString(),model:[(className):obj]])
+    }else if(obj){
+//        'item' tmpl.'/item/details'(obj)
+        'item' g.render(template:'/item/details',model:[item:obj])
     }
     if(map){
         map.each{k,v->

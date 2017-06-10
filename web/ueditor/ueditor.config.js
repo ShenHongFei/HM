@@ -34,17 +34,17 @@
 
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的重新定义
         , toolbars: [[
-            'fullscreen', 'source', '|', 'undo', 'redo', '|',
-            'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+            'fullscreen','|', 'undo', 'redo', '|',
+            'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', '|', 'forecolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
             'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
             'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
-            'directionalityltr', 'directionalityrtl', 'indent', '|',
+            'indent', '|',
             'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
-            'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-            'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
-            'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
-            'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
-            'print', 'preview', 'searchreplace', 'drafts', 'help'
+             '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+            'simpleupload', 'insertimage',   'attachment',   '|',
+            'horizontal', 'date', 'time', '|',
+            'inserttable', 'deletetable', 'insertparagraphbeforetable', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', '|',
+    
         ]]
         //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
         //,labelMap:{
@@ -90,22 +90,22 @@
         //,indentValue:'2em'
 
         //,initialFrameWidth:1000  //初始化编辑器宽度,默认1000
-        //,initialFrameHeight:480  //初始化编辑器高度,默认320
+        ,initialFrameHeight:250  //初始化编辑器高度,默认320
 
         //,readonly : false //编辑器初始化结束后,编辑区域是否是只读的，默认是false
 
         //,autoClearEmptyNode : true //getContent时，是否删除空的inlineElement节点（包括嵌套的情况）
 
         //启用自动保存
-        ,enableAutoSave: true
+        ,enableAutoSave: false
         //自动保存间隔时间， 单位ms
-        ,saveInterval: 3000
+        ,saveInterval: 1000000000
 
         //,fullscreen : false //是否开启初始化时即全屏，默认关闭
 
         //,imagePopup:true      //图片操作的浮层开关，默认打开
 
-        //,autoSyncData:true //自动同步编辑器要提交的数据
+        ,autoSyncData:false //自动同步编辑器要提交的数据
         //,emotionLocalization:false //是否开启表情本地化，默认关闭。若要开启请确保emotion文件夹下包含官网提供的images表情文件夹
 
         //粘贴只保留标签，去除标签所有属性
@@ -144,7 +144,7 @@
 
         //insertorderedlist
         //有序列表的下拉配置,值留空时支持多语言自动识别，若配置值，则以此值为准
-        //,'insertorderedlist':{
+        ,'insertorderedlist':{
         //      //自定的样式
         //        'num':'1,2,3...',
         //        'num1':'1),2),3)...',
@@ -153,22 +153,22 @@
         //        'cn1':'一),二),三)....',
         //        'cn2':'(一),(二),(三)....',
         //     //系统自带
-        //     'decimal' : '' ,         //'1,2,3...'
-        //     'lower-alpha' : '' ,    // 'a,b,c...'
-        //     'lower-roman' : '' ,    //'i,ii,iii...'
-        //     'upper-alpha' : '' , lang   //'A,B,C'
-        //     'upper-roman' : ''      //'I,II,III...'
-        //}
+             'decimal' : '' ,         //'1,2,3...'
+             'lower-alpha' : '' ,    // 'a,b,c...'
+            'lower-roman' : '' ,    //'i,ii,iii...'
+             'upper-alpha' : '' ,   //'A,B,C'
+             'upper-roman' : ''      //'I,II,III...'
+        }
 
         //insertunorderedlist
         //无序列表的下拉配置，值留空时支持多语言自动识别，若配置值，则以此值为准
-        //,insertunorderedlist : { //自定的样式
+        ,insertunorderedlist : { //自定的样式
         //    'dash' :'— 破折号', //-破折号
         //    'dot':' 。 小圆圈', //系统自带
-        //    'circle' : '',  // '○ 小圆圈'
-        //    'disc' : '',    // '● 小圆点'
-        //    'square' : ''   //'■ 小方块'
-        //}
+            'circle' : '',  // '○ 小圆圈'
+            'disc' : '',    // '● 小圆点'
+            'square' : ''   //'■ 小方块'
+        }
         //,listDefaultPaddingLeft : '30'//默认的左边缩进的基数倍
         //,listiconpath : 'http://bs.baidu.com/listicon/'//自定义标号的路径
         //,maxListLevel : 3 //限制可以tab的级数, 设置-1为不限制
@@ -247,7 +247,7 @@
 
         //elementPathEnabled
         //是否启用元素路径，默认是显示
-        //,elementPathEnabled : true
+        ,elementPathEnabled : false
 
         //wordCount
         //,wordCount:true          //是否开启字数统计

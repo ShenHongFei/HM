@@ -18,6 +18,7 @@ class UrlMappings {
         "/$controller/add/discard"             action:'addDiscard'
         "/$controller/update/ue"               action:'updateUE'
         "/$controller/update/submit"           action:'updateSubmit'
+        "/$controller/list"                    action:'list'
         
         "/about/$type/$action"          controller:'about'
         

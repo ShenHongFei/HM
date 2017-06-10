@@ -6,22 +6,23 @@ function viewContent() {
     var request = getRequest();
     if (request['menu'] == undefined) return;
     var id = request['id'];
-    console.log(3);
     $("#item-header").val('活动 - 相关新闻');
-    console.log(4);
     $.ajax({
-            url: ENV + '/news/get',
+            url: ENV + '/activity/get',
             method: 'get',
             data: {
-                newsId: id
+                id: id
             },
         })
         .fail(function(jqXHR, textStatus) {
             alertWarning('获取失败!');
         })
         .done(function(data) {
-            $("#item-title").html(data.news.title);
-            $("#item-time").html(transUTC(data.news.publishedAt));
-            $("#item-content").html(data.news.content);
+            $("#item-title").html(data.activity.title);
+            $("#item-time").html(transUTC(data.activity.modifiedAt));
+            $("#item-content").html(data.activity.content);
+
+            $("#sigEnroll").attr("href",'/enroll.html?menu=activity&id=' + id);
+            $("#sigForget").attr("href",'/forSig.html?menu=activity&id=' + id);
         })
 }

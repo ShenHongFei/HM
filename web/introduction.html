@@ -1,259 +1,216 @@
 <!DOCTYPE html>
-<!--suppress JSJQueryEfficiency -->
-<html lang="zh">
+<html lang="zh-CN">
+
 <head>
-    <meta charset="UTF-8">
-    <title>了解我们</title>
-    <link rel="stylesheet" href="css/icon.min.css">
-    <link rel="stylesheet" href="css/m_introduction.css">
-    <style type="text/css">
-        #introduction {
-            position: relative;
-            overflow: hidden;
-        }
-        #introduction img{
-            display: block; 
-            max-width: 80%;
-        }
-        .explore-entry-list .empty{
-            padding: .7rem 0;
-        }
-        
-        #ueditor{
-            display: none;
-        }
-        /*针对移动端*/
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>大连高校环境联盟</title>
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-dialog.min.css">
+    <link rel="stylesheet" type="text/css" href="css/mricode.pagination.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <!-- Javascript -->
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+     <script type="text/javascript" src="js/bootstrap-dialog.min.js"></script>
+    <script type="text/javascript" src="js/mricode.pagination.js"></script>
+    <script type="text/javascript" src="ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript" src="ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" src="ueditor/ueditor.parse.js"></script>
+    <script type="text/javascript" src="js/date_fns.min.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script type="text/javascript" src="js/nav.js"></script>
 
-        @media(max-width: 768px) {
-            .phone-show-menu span {
-                margin-right: .5rem;
-            }
-            .phone-show-menu {
-                height: 5rem;
-                display:-webkit-box;
-                display: -ms-flexbox;
-                display: flex;
-                -webkit-box-align: center;
-                -ms-flex-align: center;
-                align-items: center;
-                color: #007fff;
-                font-size: 1.3rem;
-                -webkit-box-pack: center;
-                -ms-flex-pack: center;
-                justify-content: center;
-                font-weight: 600;
-                padding: 0 2rem;
-                cursor: pointer;
-            }
-            .caret {
-                display: inline-block;
-                -webkit-box-align: center;
-                -ms-flex-align: center;
-                /*align-item*/
-                align-items: center;
-                -webkit-box-pack: justify;
-                -ms-flex-pack: justify;
-                justify-content:space-between;
-            }
-            .caret:before {
-                content: "\f104";
-            }
-            .phone-hidden {
-                position: absolute;
-                top: 5rem;
-                right:12rem;
-                display: block;
-                background-color: #fff;
-                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
-                border: 1px solid hsla(217, 5%, 71%, .45);
-                border-radius: 4px;
-                font-size: 1.2rem;
-            }
-            .phone-hidden .nav-item {
-                height: 4rem;
-            }
-            .main-nav-list.nav-item: last-child {
-                padding: 0 2rem;
-            }
-            .main-nav-list .nav-item.search {
-                display: none;
-            }
-        }
-    </style>
 </head>
-<body>
-    <div class="view-container">
-        <!-- 不能点击不是结构的问题 -->
-        <div class="main-header-box">
-            <div class="main-header">
-                <div class="container">
-                    <a href="#" class="logo">
-                        <img src="img/logo.jpg" alt="">
-                    </a>
-                    <nav class="main-nav">
-                        <div class="nav-list">
-                            <ul class="main-nav-list">
-                                <div class="phone-show-menu" id="phone-menu">
-                                    <span>了解我们</span>
-                                    <i class="caret down icon"></i>
-                                </div>
-                                <div class="phone-hidden" id="phone-hidden">
-                                    <li class="nav-item">
-                                        <a herf="#">
-                                            首页
-                                        </a>
-                                    </li>
-                                    <li class="nav-item active">
-                                        <a herf="#">
-                                            了解我们
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a herf="#">
-                                            活动
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a herf="#">
-                                            科普知识
-                                        </a>
-                                    </li>
-                                </div>
-                                <!--phone hidden-->
-                                <li class="nav-item search">
-                                    <form action="" role="search" class="search-form">
-                                        <input type="text" maxlength="32" placeholder="搜索">
-                                        <i class="search icon"></i>
-                                    </form>
-                                </li><!--end search-->
-                                <li class="nav-item auth">
-                                    <span class="login">登录</span>
-                                    <span class="register">注册</span>
 
+<body>
+    <div>
+        <div style="background-color: #036eb8; height: 3px"></div>
+        <div style="background-image: url('images/bg1.gif'); height: 120px;">
+            <div class="container">
+                <div class="pull-right" style="margin-top: 10px;">
+                    <a href="#" style="font-size: 13px;" data-toggle="modal" data-target="#signInModal">登录</a>
+                    <a href="signup.html" style="font-size: 13px;">注册</a>
+                </div>
+                <div class="container" style="padding-top: 15px">
+                    <img src="images/logo_title.png" alt="logo">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-default no-radius" role="navigation">
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a href="#">首页</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">了解我们</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">槐盟介绍</a></li>
+                                        <li><a href="#">联系我们</a></li>
+                                        <li><a href="#">活动图片</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">活动</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">活动预告</a></li>
+                                        <li><a href="#">活动展示</a></li>
+                                        <li><a href="#">相关新闻</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">科普知识</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">项目知识</a></li>
+                                        <li><a href="#">公益知识</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">内部活动</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">办公室</a> </li>
+                                        <li><a href="#">外联部</a> </li>
+                                        <li><a href="#">宣传部</a> </li>
+                                        <li><a href="#">财务部</a> </li>
+                                        <li><a href="#">项目部</a> </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">培训</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">办公室</a> </li>
+                                        <li><a href="#">外联部</a> </li>
+                                        <li><a href="#">宣传部</a> </li>
+                                        <li><a href="#">财务部</a> </li>
+                                        <li><a href="#">项目部</a> </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">公示</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">项目一览</a></li>
+                                        <li><a href="#">槐盟公示</a></li>
+                                    </ul>
                                 </li>
                             </ul>
-
-
+                            <form class="navbar-form navbar-right" role="search">
+                                <div class="form-group input-group">
+                                    <input type="text" class="form-control no-radius" />
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default no-radius">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </nav>
                 </div>
             </div>
-        </div>
-        <div class="main-container">
-            <div class="explore-index-view">
-                <nav class="view-nav" id="view-nav">
-                    <ul class="nav-list">
-                        <li class="nav-item active">槐盟介绍</li>
-                        <li class="nav-item">活动图片</li>
-                        <li class="nav-item">联系我们</li>
-                    </ul>
-                </nav>
-                <div class="explore-entry-list">
-                    <div class="empty" id="edit">
-                        点击编辑
+            <div class="row clearfix">
+                <div class="col-md-3">
+                    <div class="panel panel-primary no-radius">
+                        <div class="panel-heading no-radius">
+                            <h3 class="panel-title">了解我们</h3>
+                        </div>
+                        <ul class="list-group no-radius">
+                            <li class="list-group-item no-radius"><a style="color: black ; text-decoration: none"href="introduction.html?page=0">槐盟介绍</a></li>
+                            <li class="list-group-item no-radius"><a style="color: black ; text-decoration: none" href="introduction.html?page=1">联系我们</a></li>
+                            <li class="list-group-item no-radius"><a style="color: black ; text-decoration: none" href="introduction.html?page=2">活动图片</a></li>
+                        </ul>
                     </div>
-                    <div class="empty" id="cancel">
-                        再次点击退出编辑
-                    </div>
-                    <div id="introduction"></div>
-                    
-                    <script id="ueditor" type="text/plain" ></script>
-                    <button class="button" onclick="submitIntroduction()">确定</button>
-
                 </div>
-                <div class="footer">
-                    <div class="link">
-                        <span class="item"><a href="#">关于我们</a> - <a href="#">联系我们</a> - <a href="#">English</a></span>
+                <div class="col-md-9">
+                    <div>
+                        <p id="depart">了解我们 - 槐盟介绍</p>
+                        <p id="department" style="color: #046eB8; font-size: 18px; font-weight: bold;">槐盟介绍</p>
+                        <hr>
                     </div>
-                    <div class="company">© 版权所有 大连理工大学红蚂蚁实验室</div>
+                    <div>
+                    <div class="btn btn-primary no-radius" id="edit">
+                        点击此处编辑槐盟介绍
+                    </div>
+                    <!--<div class="empty" id="cancel">
+                        再次点击退出编辑
+                    </div>-->
+                            <div id="Introduction"></div>
+                           <script id="container" name="content" type="text/plain"></script>
+                            <!-- 实例化编辑器 -->
+                            <script id="editor" type="text/plain" style="display:none;"></script>
+                            <div class="form-group">
+                                <div class="pull-right" style="margin: 10px 0px 10px 0px;">
+                                    <button type="button" class="btn btn-primary no-radius" id="add" onclick="submitIntroduction()">确定</button>
+                                </div>
+                            </div>
+                    </div>
+                    <div id="contentPage" class="m-pagination"></div>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="js/jquery.js"></script>
-    <!--添加富文本框-->
-    <script src="ueditor/ueditor.config.js"></script>
-    <script src="ueditor/ueditor.all.js"></script>
-    <script src="ueditor/lang/zh-cn/zh-cn.js"></script>
-    <script>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer">
+                        <div class="item">
+                            <a href="#">关于我们</a>
+                            <a href="#">联系我们</a>
+                        </div>
+                        <div class="item">
+                            <a>&copy 版权所有 大连理工大学红蚂蚁实验室</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sign In Modal -->
+        <div class="modal fade" id="signInModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content no-radius" style="height: 215px;margin-top: 200px;">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">登录槐盟</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="account" class="col-md-2 control-label">账号</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control no-radius" id="account" placeholder="请输入账号" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-md-2 control-label">密码</label>
+                                <div class="col-md-10">
+                                    <input type="password" class="form-control no-radius" id="password" placeholder="请输入密码" autocomplete="off">
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-md-2" style="margin-top: 10px;">
+                                    <a href="findpw.html">忘记密码</a>
+                                </div>
+                                <div class="col-md-10">
+                                    <button type="submit" class="btn btn-primary pull-right no-radius" data-dismiss="modal">确认登录</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!--Modal end-->
+        <!--<script>
         let ueditor
-        $(function(){
-            //初始化默认不显示
-                ueditor=UE.getEditor('ueditor',{
-                serverUrl:'/about/introduction/ue',
-                isShow:false,
-                zIndex:1,
-                elementPathEnabled:false,
-                wordCount:false
-            })
 
-
-            $.ajax({
-                url:'about/introduction/get',
-                method:'GET'
-            }).fail(function(jqXHR,textStatus){
-                alert('ajax GET request failed\n'+textStatus);
-            }).done(function(model){
-                if(!model||!model.result){
-                    alert(model?model.message:'unknown error');
-                    return;
-                }
-                $('#about').html(model.content);
-            });
-            
-            $("#edit").click(function(){
-                $('#ueditor').css('display','block')
-                $("#about").css("display","none");
-                $("#edit").css("display","none");
-                $("#cancel").css("display","block");
-                $("button").css("display","block");
-                // alert($('#introduction').html());
-                ueditor.setShow();
-                ueditor.setContent($('#about').html());
-            });
-
-
-            $("#cancel").click(cancelEdit);
-
-            // 菜单栏调整
-            $("#phone-menu").click(function(){
-                if ($("#phone-hidden").css("display") == "none") {
-                    $("#phone-hidden").css("display","block");
-                }
-                else{
-                    $("#phone-hidden").css("display","none");
-                }
-            });
-
-        });
-
-        function cancelEdit(){
-            $("#about").css("display","block");
-            $("#edit").css("display","block");
-            $("#cancel").css("display","none");
-            $("button").css("display","none");
-            UE.getEditor('ueditor').setHide();
-        }
-        
-        function submitIntroduction(){
-            var content=UE.getEditor('ueditor').getContent();
-            $.ajax({
-                method:'POST',
-                url:'about/introduction/set',
-                data:{content:content}
-            }).fail(function(jqXHR, textStatus){
-                alert('ajax post request failed\n'+textStatus);
-            }).done(function(model){
-                if(!model|| !model.result){
-                    alert(model?model.message:'unknown error');
-                    return;
-                }
-                $('#about').html(content);
-                alert('上传成功');
-                cancelEdit();
-            });
-        }
-</script>
+        </script>-->
 
 </body>
+<script type="text/javascript" src="js/introduction.js"></script>
 </html>

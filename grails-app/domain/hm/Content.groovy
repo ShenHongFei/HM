@@ -2,8 +2,6 @@ package hm
 
 class Content {
     
-
-    
     String text
     Set<String> files=[]
     static constraints = {

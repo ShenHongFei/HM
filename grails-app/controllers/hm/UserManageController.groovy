@@ -10,7 +10,7 @@ class UserManageController {
     
     
     def get(){
-        def id = params.int'id'
+        def id = params.int('id')
         def user
         if(id==null||!(user=User.get(id))) return fail('查询id不正确或用户不存在')
         render view:'/user/details',model:[user:user]
@@ -46,7 +46,6 @@ class UserManageController {
     //批量设置权限 params ids,role 若ids中某id对应的用户不存在则忽略
     def setPermission(){
         if(![Role.USER,Role.VIP]*.toString().contains(params.role)) return fail("参数 role=$params.role 不正确")
-//        if(!Role.values()*.toString().contains(params.role)) return fail("参数 role=$params.role 不正确")
         def role=Role.valueOf(params.role)
         //单个用户权限设置
         def id=params.int('id')
