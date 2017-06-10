@@ -124,7 +124,7 @@ class UserController {
     //params email
     def sendResetEmail(){
         def user = User.find{email==params.email}
-        if(!user) return fail('该邮箱未注册')
+        if(!user||user.role==Role.GUEST) return fail('该邮箱未注册')
         MimeMessage message = mailSender.createMimeMessage()
         //使用MimeMessageHelper构建Mime类型邮件,第二个参数true表明信息类型是multipart类型
         MimeMessageHelper helper = new MimeMessageHelper(message,true,'UTF-8')

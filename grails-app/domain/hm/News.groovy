@@ -2,6 +2,10 @@ package hm
 
 class News extends Item{
     
+    enum Type{
+        ACTIVITY,PRESENTATION
+    }
+    
     public static File classDir=new File(Application.dataDir,'news').with{mkdirs();it}
     
     File getDir(){

@@ -5,6 +5,9 @@ import grails.boot.config.GrailsAutoConfiguration
 
 import java.text.SimpleDateFormat
 
+import static hm.User.Role.GUEST
+import static hm.User.Role.MANAGER
+
 class Application extends GrailsAutoConfiguration {
     
     public static def timeFormat=new SimpleDateFormat('yyyy-MM-dd a h:mm',Locale.CHINA)
@@ -53,6 +56,11 @@ public static File projectDir
     @Override
     void doWithApplicationContext(){
         println config
+        User.withNewTransaction{
+            if(!User.findByRole(MANAGER)){
+                new User(username:'管理员',realname:'管理员',role:MANAGER,email:'manager@hm.com',password:'123123').save()
+            }
+        }
     }
     
     static void main(String[] args) {

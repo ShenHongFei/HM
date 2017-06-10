@@ -14,10 +14,8 @@ class Item<T>{
     static constraints = {
         title nullable:false,size:1..100
         /*matches:/[0-9a-zA-Z\u4e00-\u9fa5_-~`· ]{1,200}/*/
-        author validator:{val,obj->true}
+        author validator:{val,obj->val!=null}
     }
-    
-
     
 
     @Override

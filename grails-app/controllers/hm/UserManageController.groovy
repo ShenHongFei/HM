@@ -21,8 +21,8 @@ class UserManageController {
         def page        = (params.page?:0) as Integer
         def size        = (params.size?:10) as Integer
         def sortParams  = ((params.sort as String)?.split(',') as List)?:[]
-        def sortBy      = sortParams[0]?:'id'
-        def order       = sortParams[1]?:'desc'
+        def sortBy      = User.hasProperty(sortParams[0])?sortParams[0]:'id'
+        def order       = ['asc','desc'].contains(sortParams[1])?sortParams[1]:'desc'
         def users = User.findAll("from User as user where user.role='${params.role==Role.VIP.toString()?Role.VIP:Role.USER}' order by user.$sortBy $order".toString(),[max:size,offset:page*size])
         return render(view:'/my-page',model:[myPage:new MyPage(users,users.size(),size,page),template:'/user/details'])
     }

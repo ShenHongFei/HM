@@ -1,11 +1,11 @@
 package hm
 
 class Activity extends Item{
-    enum Type{
-        PRESENTATION,PREPARATION
-    }
     
-    Type type
+    static constraints = {
+        title nullable:false,size:1..100
+        author validator:{val,obj->true},cascadeValidation:false
+    }
     
     List<User> members=[]
     

@@ -1,6 +1,9 @@
 package hm
 
 import static hm.User.GUEST
+import static hm.User.Role.MANAGER
+import static hm.User.Role.USER
+import static hm.User.Role.VIP
 
 class AuthorizationInterceptor {
     
@@ -16,6 +19,7 @@ class AuthorizationInterceptor {
             if(!uri.split('/')[-1].contains('.')){
                 println "API=\t$uri"
                 println "参数=\t$request.parameterMap"
+                println "Role=\t$session.user.role"
             }
         }catch(any){}
         def refreshCookie=false
@@ -39,11 +43,22 @@ class AuthorizationInterceptor {
         if(refreshCookie||!request.cookies.find{it.name=='userId'}){
             UserController.setUserCookies(response,session.user)
         }
+        
+        //权限控制
+        def userLevel=[~'.*/(private-activity|training|notice)/.*']
+        def vipLevel=[~'.*/(add|update)/.*',~'.*/delete$',~'/about/.*/(ue|set)']
+        def managerLevel=[~'.*/user/manage/.*']
+        if(userLevel.any{uri.matches(it)}&&session.user.role<USER||
+           vipLevel.any{uri.matches(it)}&&session.user.role<VIP||
+           managerLevel.any{uri.matches(it)}&&session.user.role<MANAGER){
+            response.status=403
+            render('权限不足')
+            return false
+        }
         true
     }
     
     boolean after() {
-        sessionFactory.currentSession.flush()
         true
     }
 

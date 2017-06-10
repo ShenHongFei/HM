@@ -17,23 +17,23 @@ class ItemController<T extends Item>{
 /*        if(session.itemInEdit){
             return render(view:'item-in-edit',model:[item:session.itemInEdit])
         }*/
+        session.user.attach()
         itemInEdit=itemClass.newInstance(title:'unsaved',author:session.user==GUEST?null:session.user).save(failOnError:true)
         render editorService.processUEAction(request,response,itemInEdit.dir)
     }
     
     // params title,content 
     // 新闻提交后需要重新初始化UE
+    @SuppressWarnings("GroovyAssignabilityCheck")
     def addSubmit(){
         if(!itemInEdit) return fail("提交失败，找不到正在编辑的${itemClassName}，可能是UE自上次提交后没有重新初始化")
-        itemInEdit.attach()
-    
         //相对ItemController增加类型校验及设置
         if(itemClass.declaredFields*.toString().grep(~/.*department.*/)){
             def departmentParam=params.department?:params.type
             if(!Department.values()*.toString().contains(departmentParam)) return fail("参数不正确，可能的值=${Department.values()}")
             itemInEdit.department=Department.valueOf(departmentParam)
         }
-        if(itemClass.declaredFields*.toString().grep(~/.*${Knowledge.simpleName}\.type.*/)){
+        if(itemClass.declaredFields*.toString().grep(~/.*${itemClass.simpleName}\.type.*/)){
             def typeEnumClass = Class.forName("$itemClass.name\$Type")
             if(!typeEnumClass.enumConstants*.toString().contains(params.type)) return fail("参数 type=$params.type 不正确，可能的type=${typeEnumClass.enumConstants}")
             itemInEdit.type=typeEnumClass.valueOf(params.type)
@@ -49,7 +49,10 @@ class ItemController<T extends Item>{
             content=new Content(text:params.content,files:files)
             modifiedAt=publishedAt=new Date()
         }
-        if(!itemInEdit.validate()) return fail(itemInEdit,'添加失败')
+        //todo: 别的方法!!
+        itemInEdit.attach()
+        itemInEdit.author.attach()
+        if(!itemInEdit.validate(deepValidate:false)) return fail(itemInEdit,'添加失败')
         itemInEdit.saved=true
         itemInEdit=null
         success message:'添加成功',obj:itemInEdit
@@ -83,7 +86,7 @@ class ItemController<T extends Item>{
             //类型过滤,分页及计数
             return pagenate(new MyPage(itemClass.findAll("from ${itemClassName} as item where item.saved=true and item.department='$departmentParam' order by item.$sortBy $order".toString(),[max:size,offset:page*size]),itemClass.countBySavedAndDepartment(true,departmentParam),size,page))
         }
-        if(itemClass.declaredFields*.toString().grep(~/.*${Knowledge.simpleName}\.type.*/)){
+        if(itemClass.declaredFields*.toString().grep(~/.*${itemClass.simpleName}\.type.*/)){
             def typeEnumClass = Class.forName("$itemClass.name\$Type")
             if(!typeEnumClass.enumConstants*.toString().contains(params.type)) return fail("参数 type=$params.type 不正确，可能的type=${typeEnumClass.enumConstants}")
             
@@ -131,6 +134,7 @@ class ItemController<T extends Item>{
             content.files=fileNames
             modifiedAt=new Date()
         }
+        item.author.attach()
         if(!item.validate()) return fail(item,'修改失败')
         success(message:'修改成功',obj:item)
     }

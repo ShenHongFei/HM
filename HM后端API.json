@@ -1826,7 +1826,7 @@
 					},
 					"response": [
 						{
-							"id": "5683b2fa-87a4-4dd0-83a8-4c301ea01163",
+							"id": "5285d332-8410-4c5a-a6d9-728837533849",
 							"name": "空提交",
 							"originalRequest": {
 								"url": "{{HM}}/user/register",
