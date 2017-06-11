@@ -131,7 +131,7 @@ function getContentList() {
         debug: false,
         showInfo: true,
         showJump: false,
-        infoFormat: '{start} ~ {end}条，共{total}条',
+        infoFormat: '{start} ~ {end}，共 {total} 条',
         showPageSizes: false,
         pageElementSort: ['$page', '$size', '$jump', '$info'],
         remote: {
@@ -249,8 +249,8 @@ function editItem(item) {
             alertWarning('获取失败!');
         })
         .done(function(data) {
-            $("#name").val(data.activity.title);
-            editor.setContent(data.activity.content);
+            $("#name").val(data.item.title);
+            editor.setContent(data.item.content);
             $("#name").attr('edit', true);
             $("#name").attr('editId', id);
         })

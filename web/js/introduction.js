@@ -18,11 +18,14 @@ switch(user){
     default:
         role=0;
 }
+
 if (role == 0) {
-    $('#introTextArea').hide();
+    $('#edit').attr('display','none');
+
 } else {
-    $('#introTextArea').show();
+    $('#edit').attr('display','block');
 }
+
 //  查看内容
 // ============================================================
 function searchURL() {
@@ -111,7 +114,8 @@ $(function() {
 
 function cancelEdit(){
     $("#Introduction").css("display","block");
-    $("#edit").css("display","block");
+    if(role!=0)
+    {$("#edit").css("display","block");}
     $("#cancel").css("display","none");
     $("#add").css("display","none");
     UE.getEditor('editor').setHide();

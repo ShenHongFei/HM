@@ -81,7 +81,7 @@
                                      <li><a href="index.html?menu=private_activity&type=RELATIONS">外联部</a></li>
                                      <li><a href="index.html?menu=private_activity&type=PUBLICITY">宣传部</a></li>
                                      <li><a href="index.html?menu=private_activity&type=FINANCIAL">财务部</a></li>
-                                     <li><a href="index.html?menu=private_activity&type=FINANCIAL">项目部</a></li>
+                                     <li><a href="index.html?menu=private_activity&type=PROJECT">项目部</a></li>
                                  </ul>
                              </li>
                              <li class="dropdown user">
@@ -133,8 +133,8 @@
                             <h3 class="panel-title">个人中心</h3>
                         </div>
                         <ul class="list-group no-radius">
-                            <li class="list-group-item no-radius" id="user-info" onclick="showDiv(0)"><a>个人信息</a></li>
-                            <li class="list-group-item no-radius" id="re-pwd" onclick="showDiv(1)"><a>信息修改</a></li>
+                            <li class="list-group-item no-radius" id="user-info" onclick="showDiv(0)"><a href="#">个人信息</a></li>
+                            <li class="list-group-item no-radius" id="re-pwd" onclick="showDiv(1)"><a href="#">信息修改</a></li>
                         </ul>
                     </div>
                 </div>
@@ -209,7 +209,7 @@
                         <a href="introduction.html?page=1" style="margin-left: 5px;">联系我们</a>
                     </div>
                     <div class="item">
-                        <a>&copy 版权所有 大连理工大学红蚂蚁实验室</a>
+                        <label style="color:#8a8a8a;font-weight: normal">&copy 版权所有 大连理工大学红蚂蚁实验室</label>
                     </div>
                 </div>
             </div>
@@ -266,6 +266,7 @@ $("#save").bind("click", function(){
         data: {
 	        	"oldPassword": $('#pwd').val(),
 	        	"newPassword": pwd1,
+                "newUsername":$('#newName').val(),
         },
         success: function(result) {
         	if(result.message=="更新成功"){

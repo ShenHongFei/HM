@@ -16,9 +16,9 @@
     <script type="text/javascript" src="js/utils.js"></script>
 </head>
 
-<body class="ground" style="background-image: url(" http://dasai.lanqiao.cn/dasai/images/login/register-bg.jpg ") no-repeat">
+<body class="ground">
     <div class="logo">
-        <a href="main.html"><img src="images/logo_title.png"></a>
+        <a href="../"><img src="images/logo_title.png"></a>
     </div>
     <div class="signUp">
         <div class="a-title">找回密码</div>
@@ -61,11 +61,10 @@ $(document).ready(function() {
             data: {
                 email: $('#email').val(),
             },
-            success: function(result) {
-               if(result.message=="邮件发送成功"){
-                alertInfo(result.message);
+            success: function(model) {
+               if(model.result){
+                alertInfo(model.message);
                 //window.location.href = "fwd_success.html";//有问题，模态框闪退或不显示
-            },
             }
             else{
                 alertWarning("邮件发送失败，请检查邮箱是否存在");

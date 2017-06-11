@@ -118,7 +118,7 @@ function updateActivityContentTable(content) {
         line.append('<td>'+content[i].realname+'</td>');
         line.append('<td>'+content[i].gender+'</td>');
         line.append('<td>'+content[i].age+'</td>');
-        line.append('<td>'+content[i].adress+'</td>');
+        line.append('<td>'+content[i].address+'</td>');
         line.append('<td>'+content[i].company+'</td>');
         line.append('<td>'+content[i].email+'</td>');
         line.append('<td>'+content[i].phone+'</td>');

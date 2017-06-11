@@ -16,9 +16,9 @@
    
 </head>
 
-<body clss="ground" style="background-image: url("http://dasai.lanqiao.cn/dasai/images/login/register-bg.jpg") no-repeat">
+<body clss="ground">
 <div class="logo">
-    <a href="main.html"><img src="images/logo_title.png"></a>
+    <a href="../"><img src="images/logo_title.png"></a>
 </div>
 <div class="signUp">
     <div class="a-title">槐盟网注册</div>
@@ -100,23 +100,43 @@ $(document).ready(function(){
                 email: $('#email').val(),
                 password: $('#pwd1').val()
             },
-            success:function(result){
+            success:function(model){
+                if(model.result){
+                    alertInfoWithJump(model.message, "signup_return.html");
+                }
+                else{
+                    alertWarning(model.message);
+                }
 
-               alertInfo(result.message);
-               window.location.href = "signup_return.html";//有问题，模态框闪退或不显示
+              
             },
             fail:function(){
                 alertWarning("failed");
             },
             error:function(response){
-                alertWarning("shenhongfei error!!!");
+                alertWarning("error!!!");
             }
           });
         // alert("为什么要加上这一句，才能显示访问记录")
     });        
 })
 
-
+function alertInfoWithJump(msg, url) {
+    msg = "<h3 style='text-align:center;'>" + msg + "</h3>";
+    BootstrapDialog.show({
+        type: BootstrapDialog.TYPE_INFO,
+        cssClass: 'set-dialog',
+        title: "消息提示",
+        message: msg,
+        buttons: [{
+            label: '关闭',
+            action: function(dialogRef) {
+                dialogRef.close();
+                window.location.href = url;
+            }
+        }]
+    });
+}
 
 </script>
 </html>

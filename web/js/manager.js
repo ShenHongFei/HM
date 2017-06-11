@@ -47,6 +47,7 @@ $(document).ready(function() {
             debug: false,
             showInfo: true,
             showJump: false,
+            infoFormat: '{start}~{end} 共{total}条',
             showPageSizes: false,
             pageElementSort: ['$page', '$size', '$jump', '$info'],
             remote: {

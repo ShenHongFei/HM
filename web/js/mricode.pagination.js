@@ -50,7 +50,7 @@
             pageElementSort: ['$page', '$size', '$jump', '$info'],
             showInfo: false,
             infoFormat: '{start} ~ {end} of {total} entires',
-            noInfoText: '0 entires',
+            // noInfoText: '0 entires',
             showJump: false,
             jumpBtnText: 'Go',
             showPageSizes: false,
