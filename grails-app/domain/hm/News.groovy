@@ -14,4 +14,4 @@ class News extends Item{
     }
 }
 //    static hasOne = [content:Content]
-//some test
+//some test 333
