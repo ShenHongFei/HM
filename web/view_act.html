@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>大连高校环境联盟</title>
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-dialog.min.css">
+    <link rel="stylesheet" type="text/css" href="css/mricode.pagination.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/user.css">
+    <!-- Javascript -->
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-dialog.min.js"></script>
+    <script type="text/javascript" src="js/mricode.pagination.js"></script>
+    <script type="text/javascript" src="ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript" src="ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" src="ueditor/ueditor.parse.js"></script>
+    <script type="text/javascript" src="js/date_fns.min.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script type="text/javascript" src="js/nav.js"></script>
+    <script type="text/javascript" src="js/view_act.js"></script>
+    <script type="text/javascript" src="js/sign-up-in.js"></script>
+
+</head>
+
+<body>
+    <div>
+        <div style="background-color: #036eb8; height: 3px"></div>
+        <div style="background-image: url('images/bg1.gif'); height: 120px;">
+            <div class="container">
+                <div class="pull-right" style="margin-top: 10px;" id="pre_login">
+                    <a href="#" style="font-size: 13px;margin-right:15px;" data-toggle="modal" data-target="#signInModal">登录</a>
+                    <a href="signup.html" style="font-size: 13px;">注册</a>
+                </div>
+                <div class="pull-right" style="margin-top: 10px;" id="after_login">
+                    <a href="#" style="font-size: 13px;" id="exit">注销</a>
+                </div>
+                <div class="container" style="padding-top: 15px">
+                    <img src="images/logo_title.png" alt="logo">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-default no-radius" role="navigation">
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav" id="nav">
+                                <li  id="test_home" class="guest">
+                                    <a href="home.html">首页</a>
+                                </li>
+                                <li class="dropdown guest">
+                                    <a href="introduction.html?page=0" class="dropdown-toggle" data-toggle="dropdown">了解我们</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="introduction.html?page=0">槐盟介绍</a></li>
+                                        <li><a href="introduction.html?page=1">联系我们</a></li>
+                                        <li><a href="introduction.html?page=2">活动图片</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown guest">
+                                    <a href="activity.html" class="dropdown-toggle" data-toggle="dropdown">活动</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="activity.html">活动预告</a></li>
+                                        <li><a href="index.html?menu=activity&type=PRESENTATION">活动展示</a></li>
+                                        <li><a href="index.html?menu=activity&type=ACTIVITY">相关新闻</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown guest">
+                                    <a href="index.html?menu=knowledge&type=PROJECT" class="dropdown-toggle" data-toggle="dropdown">科普知识</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="index.html?menu=knowledge&type=PROJECT">项目知识</a></li>
+                                        <li><a href="index.html?menu=knowledge&type=WELFARE">公益知识</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown user">
+                                    <a href="index.html?menu=private_activity&type=OFFICE" class="dropdown-toggle" data-toggle="dropdown" id="hh">内部活动</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="index.html?menu=private_activity&type=OFFICE">办公室</a></li>
+                                        <li><a href="index.html?menu=private_activity&type=RELATIONS">外联部</a></li>
+                                        <li><a href="index.html?menu=private_activity&type=PUBLICITY">宣传部</a></li>
+                                        <li><a href="index.html?menu=private_activity&type=FINANCIAL">财务部</a></li>
+                                        <li><a href="index.html?menu=private_activity&type=PROJECT">项目部</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown user">
+                                    <a href="index.html?menu=training&type=OFFICE" class="dropdown-toggle" data-toggle="dropdown">培训</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="index.html?menu=training&type=OFFICE">办公室</a> </li>
+                                        <li><a href="index.html?menu=training&type=RELATIONS">外联部</a> </li>
+                                        <li><a href="index.html?menu=training&type=PUBLICITY">宣传部</a> </li>
+                                        <li><a href="index.html?menu=training&type=FINANCIAL">财务部</a> </li>
+                                        <li><a href="index.html?menu=training&type=PROJECT">项目部</a> </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown user">
+                                    <a href="index.html?menu=notice&type=PROJECT" class="dropdown-toggle" data-toggle="dropdown">公示</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="index.html?menu=notice&type=PROJECT">项目一览</a></li>
+                                        <li><a href="index.html?menu=notice&type=HM">槐盟公示</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown user">
+                                    <a href="individual.html" class="dropdown-toggle" data-toggle="dropdown">个人中心</a>
+                                    <!--<ul class="dropdown-menu">-->
+                                        <!--<li><a href="#" onclick="showDiv(0)">个人信息</a></li>-->
+                                        <!--<li><a href="#" onclick="showDiv(1)">信息修改</a></li>-->
+                                    <!--</ul>-->
+                                </li>
+                                <li class="dropdown manager">
+                                    <a href="manager.html" class="dropdown-toggle" data-toggle="dropdown">用户管理</a>
+                                </li>
+                            </ul>
+                            <form class="navbar-form navbar-right" role="search" style="width:20%">
+                                <div class="form-group input-group">
+                                    <input type="text" class="form-control no-radius" />
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default no-radius">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-3">
+                    <div class="panel panel-primary no-radius">
+                        <div class="panel-heading no-radius">
+                            <h3 class="panel-title">活动</h3>
+                        </div>
+                        <ul class="list-group no-radius">
+                            <li class="list-group-item no-radius"><a href="activity.html">活动预告</a></li>
+                            <li class="list-group-item no-radius"><a href="index.html?menu=activity&type=PRESENTATION">活动展示</a></li>
+                            <li class="list-group-item no-radius"><a href="index.html?menu=activity&type=ACTIVITY">相关新闻</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div>
+                        <p id="item-header">活动 - 相关新闻</p>
+                        <p style="font-size: 18px; font-weight: bold;text-align: center;" id="item-title">相关新闻</p>
+                        <p style="font-size: 14px; text-align: center;" id="item-time">2017-05-27 21:35</p>
+                    </div>
+                    <div id="item-content">
+
+                    </div>
+                    <div class="panel-heading" style="display: flex;flex-direction: row;justify-content:flex-end">
+                        <a style="font-size: 15px;color: #046eB8;margin:3px;" id="sigEnroll">我要报名</a>
+                        <a style="font-size: 12px;color:darkgray;margin-top: 6px;margin-left: 5px;" id="sigForget">(忘记?)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer">
+                        <div class="item">
+                            <a href="introduction.html?page=0" style="margin-right: 5px;">关于我们</a>
+                            <a href="introduction.html?page=1" style="margin-left: 5px;">联系我们</a>
+                        </div>
+                        <div class="item">
+                            <label style="color:#8a8a8a;font-weight: normal">&copy 版权所有 大连理工大学红蚂蚁实验室</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sign In Modal -->
+        <div class="modal fade" id="signInModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content no-radius" style="height: 215px;margin-top: 200px;">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">登录槐盟</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="account" class="col-md-2 control-label">账号</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control no-radius" id="login_account" placeholder="请输入账号" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-md-2 control-label">密码</label>
+                                <div class="col-md-10">
+                                    <input type="password" class="form-control no-radius" id="login_pwd" placeholder="请输入密码" autocomplete="off">
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-md-2" style="margin-top: 10px;">
+                                    <a href="findpw.html">忘记密码</a>
+                                </div>
+                                <div class="col-md-10">
+                                    <button type="submit" class="btn btn-primary pull-right no-radius" data-dismiss="modal" id="login_button">确认登录</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Modal end-->
+         <script type="text/javascript" src="js/user.js"></script>
+</body>
+
+</html>
