@@ -75,21 +75,15 @@ class UserController {
         if(temp.password!=user.password) return fail('登录失败，密码错误')
         user.lastIp=request.remoteAddr
         session.user=user
-        // 自动登录cookie处理
-        user.autologin=params.boolean('autologin',false)
-        if(user.autologin){
-            def cookieId = UUID.randomUUID().toString()
-            user.cookieId=cookieId
-            response.addCookie(new Cookie('autologin',cookieId).with{
-                maxAge=Integer.MAX_VALUE
-                path='/'
-                httpOnly=true
-                it
-            })
-        }else{
-            user.cookieId=UUID.randomUUID().toString()
-            if(request.cookies.find{it.name=='autologin'}) clearCookie(response,'autologin')
-        }
+        // 自动登录cookie处理（默认自动登录）
+        def cookieId = UUID.randomUUID().toString()
+        user.cookieId=cookieId
+        response.addCookie(new Cookie('autologin',cookieId).with{
+            maxAge=Integer.MAX_VALUE
+            path='/'
+            httpOnly=true
+            it
+        })
         setUserCookies(response,user)
         success '登录成功'
     }
