@@ -6,15 +6,19 @@
 
     <link rel="stylesheet" href="css/hv.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-dialog.min.css">
    
     <script src="js/sign-up-in.js"></script>
     <script src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-dialog.min.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
    
 </head>
 
 <body clss="ground" style="background-image: url("http://dasai.lanqiao.cn/dasai/images/login/register-bg.jpg") no-repeat">
 <div class="logo">
-    <a href="introduction.html"><img src="images/logo_title.png"></a>
+    <a href="../"><img src="images/logo_title.png"></a>
 </div>
 <div class="signUp">
     <div class="a-title">槐盟网注册</div>
@@ -41,6 +45,7 @@
             </div> 
             </div>
             <button type="button" class="submit" id="sign-up-button">立即注册</button>
+            
         </form>
     </div>
 </div>
@@ -52,10 +57,11 @@ $(document).ready(function(){
             var reEmail=/^\w+((-\w+)丨(\.\w+))*\@[A-Za-z0-9]+(\.丨-)*[A-Za-z0-9]+\.[A-Za-z0-9]+$/;
             if(!reEmail.test($('#email').val())){ 
                 if($('#email').val().length==0){
-                    alert("邮箱不能为空")
+                    alertWarning("邮箱不能为空")
                 }
                 else{
-                    alert("邮箱格式有误") 
+                    
+                    alertWarning("邮箱格式有误") 
                 }
                 return;
             }
@@ -63,9 +69,9 @@ $(document).ready(function(){
             var Acocunt=$('#account').val();
             if(Acocunt.length==0||Acocunt.length>20){ 
                 if(Acocunt.length==0){
-                    alert("用户名不能为空")
+                    alertWarning("用户名不能为空")
                 }else{
-                    alert("用户名长度超过20") 
+                    alertWarning("用户名长度超过20") 
                 }
                 return;
             }
@@ -73,17 +79,17 @@ $(document).ready(function(){
             var rePwd=/[A-Za-z0-9\.\_]{6,12}/;
             if(!rePwd.test($('#pwd1').val())){ 
                 if($('#pwd1').val().length==0){
-                    alert("密码不能为空")
+                    alertWarning("密码不能为空")
                 }
                 else{
-                    alert("密码格式有误") 
+                    alertWarning("密码格式有误") 
                 }
                 return;
             }
           var pwd1=$('#pwd1').val();
           var pwd2=$('#pwd2').val();
           if(pwd1!=pwd2){
-            alert("两次密码输入不一致");
+            alertWarning("两次密码输入不一致");
             return;
           }
           $.ajax({
@@ -94,21 +100,43 @@ $(document).ready(function(){
                 email: $('#email').val(),
                 password: $('#pwd1').val()
             },
-            success:function(result){
-               alert(result.message);
+            success:function(model){
+                if(model.result){
+                    alertInfoWithJump(model.message, "signup_return.html");
+                }
+                else{
+                    alertWarning(model.message);
+                }
+
+              
             },
             fail:function(){
-                alert("failed");
+                alertWarning("failed");
             },
             error:function(response){
-                alert("shenhongfei error!!!");
+                alertWarning("shenhongfei error!!!");
             }
           });
         // alert("为什么要加上这一句，才能显示访问记录")
     });        
 })
 
-
+function alertInfoWithJump(msg, url) {
+    msg = "<h3 style='text-align:center;'>" + msg + "</h3>";
+    BootstrapDialog.show({
+        type: BootstrapDialog.TYPE_INFO,
+        cssClass: 'set-dialog',
+        title: "消息提示",
+        message: msg,
+        buttons: [{
+            label: '关闭',
+            action: function(dialogRef) {
+                dialogRef.close();
+                window.location.href = url;
+            }
+        }]
+    });
+}
 
 </script>
 </html>

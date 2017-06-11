@@ -74,11 +74,12 @@ function transTimestamp(timestamp) {
 
 function transUTC(utc){
     var date = dateFns.parse(utc);
-    var result = date.getFullYear() + '年';
-    result += (date.getMonth() + 1) + '月';
-    result += date.getDate() + '日 ';
-    result += date.getHours() + ':';
-    result += date.getMinutes();
+    // var result = date.getFullYear() + '年';
+    // result += (date.getMonth() + 1) + '月';
+    // result += date.getDate() + '日 ';
+    // result += date.getHours() + ':';
+    // result += date.getMinutes();
+    var result = dateFns.format(date, 'YYYY-MM-DD HH:mm');
     return result;
 }
 
