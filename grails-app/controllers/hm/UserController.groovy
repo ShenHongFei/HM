@@ -148,7 +148,10 @@ class UserController {
         user.password='123456'
         session.user=user
         setUserCookies(response,user)
-        success('重置成功，新密码为123456，请及时更改。')
+        render('''
+            重置成功，新密码为 123456 ，请及时更改。
+            <a href="http://shenhongfei.site">http://shenhongfei.site</a>
+            ''')
     }
     
     //工具方法

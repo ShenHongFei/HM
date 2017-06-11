@@ -13,7 +13,7 @@ class ActivityController extends ItemController<Activity>{
         }
         if(errors) return fail(errors.toString())
         def activity=Activity.get(params.int('id'))
-        if(!activity) return fail("id=$params.id 的活动不存在")
+        if(!activity) return fail("活动不存在")
         if(!User.Gender.values()*.toString().contains(params.gender)) return fail("参数 gender=$params.gender 不正确")
         def user=User.findByEmail(params.email)
         if(user&&activity.members.contains(user)) return fail("您已用该邮箱报名")
