@@ -5,7 +5,6 @@ class Knowledge extends Item{
     enum Type{
         PROJECT,WELFARE
     }
-    
     Type type
     
     public static File classDir=new File(Application.dataDir,'knowledge').with{mkdirs();it}

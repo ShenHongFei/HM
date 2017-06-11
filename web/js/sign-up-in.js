@@ -1,5 +1,5 @@
 //sign_up
-//验证账号
+//验证邮箱
 function checkAccount(node) {
     var errorMsg = document.getElementById("statu_account");
     var account = node.value;

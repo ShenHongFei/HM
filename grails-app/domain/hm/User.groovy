@@ -26,7 +26,7 @@ class User {
     
     String  cookieId //**
     String  lastIp //*
-    Boolean autologin = false //*
+    Boolean autologin = true //*
     String  uuid //**
 
     

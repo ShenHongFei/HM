@@ -138,3 +138,7 @@ h6 {
 #after_login{
     display: none;
 }
+
+.navbar-form.navbar-right{
+    display: none;
+}
