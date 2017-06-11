@@ -6,10 +6,6 @@ $.ajaxSetup({
 
 var editor;
 var role = 1; //角色标记
-var menu;
-var menuStr;
-var menuUrl;
-var itemType;
 
 $(function() {
 
@@ -33,14 +29,10 @@ $(function() {
         $('#edit-area').show();
     }
 
-    //  设置面板
-    // ============================================================
-    setPanel();
-
     //  编辑器初始化
     // ============================================================
     editor = UE.getEditor('editor', {
-        serverUrl: menuUrl + '/add/ue',
+        serverUrl: ENV + '/activity/add/ue',
     });
 
     //  添加内容
@@ -57,7 +49,6 @@ $(function() {
             var data = {
                 title: $("#name").val(),
                 content: editor.getContent(),
-                type: itemType,
             };
             if (checkContent(data) == true) addContent(data);
         }
@@ -69,44 +60,11 @@ $(function() {
 
 })
 
-//  设置面版
-// ============================================================
-function setPanel() {
-    var request = getRequest();
-    if (request['menu'] == undefined) return;
-    menuStr = request['menu'];
-    menu = NAV[menuStr];
-    var menuList = menu['list'];
-    var type = request['type'];
-    var item;
-
-    // 设置左面板
-    $('#panel-header').html(menu.name);
-    $('#panel-list').empty();
-    menuUrl = menu.url;
-    for (var i = 0; i < menuList.length; i++) {
-        if (menu.hasUrl == 'true') {
-            $('#panel-list').append('<li class="list-group-item no-radius"><a href="' + menuList[i].url +'">' + menuList[i].title + '</a></li>');
-        } else {
-            var itemUrl = '/index.html?menu=' + menuStr + '&type=' + menuList[i].type;
-            $('#panel-list').append('<li class="list-group-item no-radius"><a href="' + itemUrl +'">' + menuList[i].title + '</a></li>');
-        }
-        if (menuList[i].type == type) {
-            item = menuList[i];
-        }
-    }
-
-    //设置右面板
-    $("#item-header").html(menu.name + ' - ' + item.title);
-    $("#item-title").html(item.title);
-    itemType = item.type;
-}
-
 //  添加内容
 // ============================================================
 function addContent(data) {
     $.ajax({
-            url: menuUrl + '/add/submit',
+            url: ENV + '/activity/add/submit',
             method: 'post',
             data: data
         })
@@ -125,7 +83,7 @@ function addContent(data) {
 function reInitEditor() {
     editor.destroy();
     editor = UE.getEditor('editor', {
-        serverUrl: menuUrl + '/add/ue',
+        serverUrl: ENV + '/activity/add/ue',
     });
 }
 
@@ -133,7 +91,7 @@ function reInitEditor() {
 // ============================================================
 function modifyContent(data) {
     $.ajax({
-            url: menuUrl + '/update/submit',
+            url: ENV + '/activity/update/submit',
             method: 'post',
             data: data
         })
@@ -173,17 +131,16 @@ function getContentList() {
         debug: false,
         showInfo: true,
         showJump: false,
-        infoFormat: '共{total}条',
+        infoFormat: '{start} ~ {end}条，共{total}条',
         showPageSizes: false,
         pageElementSort: ['$page', '$size', '$jump', '$info'],
         remote: {
-            url: menuUrl + '/list',
+            url: ENV + '/activity/list',
             pageParams: function(data) {
                 return {
                     size: data.pageSize,
                     page: data.pageIndex,
-                    type: itemType,
-                    //sort: encodeURI("id,desc")
+                    sort: encodeURI("id,desc")
                 };
             },
             totalName: 'page.totalElements',
@@ -219,23 +176,27 @@ function updateContentTable(content) {
         $('#contentHead').append(line);
     } else {
         var line = $('<tr></tr>');
-        line.append('<th class="col-md-4">标题</th>');
+        line.append('<th class="col-md-2">标题</th>');
         line.append('<th class="col-md-2">时间</th>');
         line.append('<th class="col-md-1">发布人</th>');
         line.append('<th class="col-md-1">修改</th>');
         line.append('<th class="col-md-1">删除</th>');
+        line.append('<th class="col-md-1">报名</th>');
+        line.append('<th class="col-md-1">人员名单</th>');
         $('#contentHead').append(line);
     }
 
     $("#contentTable").empty();
     for (var i = 0; i < content.length; i++) {
         var line = $('<tr itemId=' + content[i].id + '></tr>');
-        line.append('<td><a href="/view.html?menu=' + menuStr + '&type=' + itemType + '&id=' + content[i].id + '" target="_blank" title=' + content[i].title + ' >' + sliceTitle(content[i].title, 20) + '</a></td>');
+        line.append('<td><a href="/view_act.html?menu=activity&id=' + content[i].id + '" target="_blank" title=' + content[i].title + ' >' + sliceTitle(content[i].title, 20) + '</a></td>');
         line.append('<td>' + transUTC(content[i].modifiedAt) + '</td>');
-        line.append('<td>' + content[i].author.username + '</td>');
+        line.append('<td><label style="font-weight: normal;">'+content[i].author.username+'</label></td>');
         if (role == 1) {
             line.append('<td><a href="#" onclick="editItem(this)">修改</a></td>');
             line.append('<td><a href="#" onclick="deleteItem(this)">删除</a></td>');
+            line.append('<td><a href="/enroll.html?menu=activity&id=' + content[i].id + '" target="_blank" title="报名">报名</a></td>');
+            line.append('<td><a href="/parList.html?menu=activity&id=' + content[i].id + '" target="_blank" title="查看">查看</a></td>');
         }
         $('#contentTable').append(line);
     }
@@ -246,7 +207,7 @@ function updateContentTable(content) {
 function deleteItem(item) {
     var id = $(item).parent().parent().attr('itemId');
     $.ajax({
-            url: menuUrl + '/delete',
+            url: ENV + '/activity/delete',
             method: 'post',
             data: {
                 id: id
@@ -274,11 +235,11 @@ function editItem(item) {
     //  编辑器初始化
     // ============================================================
     editor = UE.getEditor('editor', {
-        serverUrl: menuUrl + '/update/ue?id=' + id,
+        serverUrl: ENV + '/activity/update/ue?id=' + id,
     });
 
     $.ajax({
-            url: menuUrl + '/get',
+            url: ENV + '/activity/get',
             method: 'get',
             data: {
                 id: id
@@ -288,8 +249,8 @@ function editItem(item) {
             alertWarning('获取失败!');
         })
         .done(function(data) {
-            $("#name").val(data.item.title);
-            editor.setContent(data.item.content);
+            $("#name").val(data.activity.title);
+            editor.setContent(data.activity.content);
             $("#name").attr('edit', true);
             $("#name").attr('editId', id);
         })

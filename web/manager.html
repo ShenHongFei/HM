@@ -23,11 +23,9 @@
     <script type="text/javascript" src="ueditor/ueditor.all.min.js"></script>
     <script type="text/javascript" src="ueditor/lang/zh-cn/zh-cn.js"></script>
     <script type="text/javascript" src="ueditor/ueditor.parse.js"></script>
-    <script type="text/javascript" src="js/date_fns.min.js"></script>
     <script type="text/javascript" src="js/utils.js"></script>
-    <script type="text/javascript" src="js/nav.js"></script>
-    <script type="text/javascript" src="js/view.js"></script>
-    <script type="text/javascript" src="js/hw.js"></script>
+    <script type="text/javascript" src="js/manager.js"></script>
+
 </head>
 
 <body>
@@ -35,12 +33,8 @@
         <div style="background-color: #036eb8; height: 3px"></div>
         <div style="background-image: url('images/bg1.gif'); height: 120px;">
             <div class="container">
-               <div class="pull-right" style="margin-top: 10px;" id="pre_login">
-                    <a href="#" style="font-size: 13px;" data-toggle="modal" data-target="#signInModal">登录</a>
-                    <a href="signup.html" style="font-size: 13px;">注册</a>
-                </div>
-                <div class="pull-right" style="margin-top: 10px;" id="after_login">
-                    <a href="#" style="font-size: 13px;" id="exit">注销</a>
+                <div class="pull-right" style="margin-top: 10px;">
+                    <a href="#" style="font-size: 13px;" data-toggle="modal" data-target="#signInModal" id="exit">注销</a>
                 </div>
                 <div class="container" style="padding-top: 15px">
                     <img src="images/logo_title.png" alt="logo">
@@ -134,80 +128,78 @@
             <div class="row clearfix">
                 <div class="col-md-3">
                     <div class="panel panel-primary no-radius">
-                        <div class="panel-heading no-radius" id="panel-header">
-                            <h3 class="panel-title">活动</h3>
+                        <div class="panel-heading no-radius">
+                            <h3 class="panel-title">用户管理</h3>
                         </div>
-                        <ul class="list-group no-radius" id="panel-list">
-                            <li class="list-group-item no-radius">活动预告</li>
-                            <li class="list-group-item no-radius">活动展示</li>
-                            <li class="list-group-item no-radius">相关新闻</li>
+                        <ul class="list-group no-radius">
+                            <li class="list-group-item no-radius" id="user"><a href="#">普通用户</a></li>
+                            <li class="list-group-item no-radius" id="vip"><a href="#">高级用户</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div>
-                        <p id="item-header">活动 - 相关新闻</p>
-                        <p style="font-size: 18px; font-weight: bold;text-align: center;" id="item-title">TEST</p>
-                        <p style="font-size: 14px; text-align: center;" id="item-time">2017-05-27 21:35</p>
-                    </div>
-                    <div id="item-content">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="footer">
-                        <div class="item">
-                            <a href="introduction.html?page=0" style="margin-right: 5px;">关于我们</a>
-                            <a href="introduction.html?page=1" style="margin-left: 5px;">联系我们</a>
-                        </div>
-                        <div class="item">
-                            <a>&copy 版权所有 大连理工大学红蚂蚁实验室</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Sign In Modal -->
-        <div class="modal fade" id="signInModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content no-radius" style="height: 215px;margin-top: 200px;">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">登录槐盟</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal" role="form">
-                            <div class="form-group">
-                                <label for="account" class="col-md-2 control-label">账号</label>
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control no-radius" id="account" placeholder="请输入账号" autocomplete="off">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="password" class="col-md-2 control-label">密码</label>
-                                <div class="col-md-10">
-                                    <input type="password" class="form-control no-radius" id="password" placeholder="请输入密码" autocomplete="off">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="col-md-2" style="margin-top: 10px;">
-                                    <a href="findpw.html">忘记密码</a>
-                                </div>
-                                <div class="col-md-10">
-                                    <button type="submit" class="btn btn-primary pull-right no-radius" data-dismiss="modal">确认登录</button>
+                        <button type="button" class="btn btn-danger no-radius" id="delete-button">删除</button>
+                        <button type="button" class="btn btn-success no-radius" id="modify-button">升级为高级用户</button>
+                        <form class="navbar-form navbar-right" role="search">
+                            <div class="form-group input-group">
+                                <input type="text" class="form-control no-radius">
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default no-radius">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
                                 </div>
                             </div>
                         </form>
                     </div>
+                    <div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>用户名</th>
+                                    <th>级别</th>
+                                    <th>邮箱</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contentTable">
+                            </tbody>
+                            <!--<tbody>
+                                <tr id="item0">
+                                    <td>
+                                        <input type="checkbox" name="checkbox" id="check">
+                                    </td>
+                                    <td>Tanmay</td>
+                                    <td>Bangalore</td>
+                                    
+                                    <td>560001@gmail.com</td>
+                                </tr>
+                            
+                            </tbody> -->
+                        </table>
+                    </div>
+                    <div id="contentPage" class="m-pagination"></div>
                 </div>
             </div>
         </div>
-        <!--Modal end-->
-         <script type="text/javascript" src="js/user.js"></script>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="footer">
+                    <div class="item">
+                        <a href="introduction.html?page=0" style="margin-right: 5px;">关于我们</a>
+                        <a href="introduction.html?page=1" style="margin-left: 5px;">联系我们</a>
+                    </div>
+                    <div class="item">
+                        <a>&copy 版权所有 大连理工大学红蚂蚁实验室</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <script type="text/javascript" src="js/user.js"></script>
 </body>
+
 
 </html>

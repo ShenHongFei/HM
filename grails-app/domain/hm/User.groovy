@@ -30,8 +30,6 @@ class User {
     String  uuid //**
 
     
-    Set<Activity> activities=[] as Set
-    
     String toString(){ "{id: $id, username:$username, password:$password, role:$role}" }
     
     static constraints = {

@@ -37,9 +37,15 @@ class UserController {
     
     @SuppressWarnings("UnnecessaryQualifiedReference")
     def register(){
-        User user=new User(params)
+        def user=User.findByEmail(params.email)
+        if(user&&user.role!=Role.GUEST) return fail('注册失败，用户已存在')
+        if(!user) user=new User(params)
+        else{
+            user.username=params.username
+            user.password=params.password
+        }
         if(!user.validate()) return fail(user,'注册失败')
-            user.with{
+        user.with{
             registerTime=new Date()
             role=User.Role.USER
             uuid=UUID.randomUUID().toString()
@@ -97,6 +103,7 @@ class UserController {
     def updateInfo(){
         def user=session.user
         if(user==GUEST) return fail(user,'当前无已登录的用户')
+        user.attach()
         if(params.oldPassword!=user.password) return fail(user,'原密码错误')
         //修改用户名
         def newUsername = params.newUsername
@@ -116,7 +123,6 @@ class UserController {
             user.password=oldPassword
             return fail(user,'更新失败')
         }
-        user.save()
         setUserCookies(response,user)
         success '更新成功'
     }

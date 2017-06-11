@@ -16,7 +16,7 @@ class ActivityController extends ItemController<Activity>{
         if(!activity) return fail("id=$params.id 的活动不存在")
         if(!User.Gender.values()*.toString().contains(params.gender)) return fail("参数 gender=$params.gender 不正确")
         def user=User.findByEmail(params.email)
-        if(user&&user.activities.contains(activity)) return fail("您已用该邮箱报名")
+        if(user&&activity.members.contains(user)) return fail("您已用该邮箱报名")
         if(!user) user=new User(email:params.email)
         user.with{
             phone=params.phone
@@ -28,7 +28,6 @@ class ActivityController extends ItemController<Activity>{
             address=params.address
         }
         if(!user.validate()) return fail(user,'请检查邮箱格式')
-        user.activities<<activity
         activity.members<<user
         user.save()
         return render(view:'/success',model:[message:'报名成功',obj:user,objTemplate:'/user/info'])
@@ -40,12 +39,12 @@ class ActivityController extends ItemController<Activity>{
         if(!activity) return fail("id=$params.id 的活动不存在")
         def page        = (params.page?:0) as Integer
         def size        = (params.size?:10) as Integer
-        def members=activity.members
-        if(!activity.members) return render(view:'/my-page',model:[myPage:new MyPage([],0,size,page),template:'/user/info'])
+        //todo:为什么渲染出来的content中所有的用户都一样
+        def members=activity.members.collect{new User(id:it.id,phone:it.phone,realname:it.realname,gender:it.gender,address:it.address,company:it.company,age:it.age,email:it.email,role:it.role)}
+        if(!members) return render(view:'/my-page',model:[myPage:new MyPage([],0,size,page),template:'/user/info'])
         def offset=0<=page*size&&page*size<=members.size()-1?page*size:0
         def upperBound=offset+size<=members.size()-1?offset+size:members.size()-1
-        def myPage = new MyPage(activity.members[offset..upperBound],activity.members.size(),size,page)
-        render(view:'/my-page',model:[myPage:myPage,template:'/user/info'])
+        render(view:'/my-page',model:[myPage:new MyPage(members[offset..upperBound],members.size(),size,page),template:'/user/info'])
     }
     
     def query(){
@@ -56,8 +55,8 @@ class ActivityController extends ItemController<Activity>{
         if(!activity) return fail("id=$params.id 的活动不存在")
         def user = User.findByEmail(params.email)
         if(!user) return fail('找不到符合条件的用户')
-        if(!user.activities.contains(activity)) return fail("该用户未报名 id=$activity.id 的活动")
-        return render(view:'/success',model:[message:"用户已报名 id=$activity.id 的活动",obj:activity,objTemplate:'/activity/info'])
+        if(!activity.members.contains(user)) return fail("该用户未报名 id=$activity.id 的活动")
+        success message:"用户已报名 id=$activity.id 的活动",obj:activity
     }
     
     //params id
@@ -67,7 +66,6 @@ class ActivityController extends ItemController<Activity>{
         def id = params.int('id')
         if(id==null||!(activity=Activity.get(id))||!activity.saved) return fail("id=$id 的活动不存在")
         activity.dir.deleteDir()
-        activity.members.each{it.activities.remove(activity)}
         activity.delete()
         success message:'删除成功'
     }

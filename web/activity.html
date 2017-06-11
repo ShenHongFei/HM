@@ -12,7 +12,6 @@
     <link rel="stylesheet" type="text/css" href="css/mricode.pagination.css">
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" type="text/css" href="css/user.css">
-
     <!-- Javascript -->
     <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
@@ -24,10 +23,22 @@
     <script type="text/javascript" src="ueditor/lang/zh-cn/zh-cn.js"></script>
     <script type="text/javascript" src="ueditor/ueditor.parse.js"></script>
     <script type="text/javascript" src="js/date_fns.min.js"></script>
+    <script type="text/javascript" src="js/common_act.js"></script>
+    <!--<script type="text/javascript" src="js/common.js"></script>-->
     <script type="text/javascript" src="js/utils.js"></script>
     <script type="text/javascript" src="js/nav.js"></script>
-    <script type="text/javascript" src="js/view.js"></script>
-    <script type="text/javascript" src="js/hw.js"></script>
+    <script type="text/javascript" src="js/sign-up-in.js"></script>
+
+
+    <!--<script type="text/javascript">-->
+        <!--/*下拉菜单切换*/-->
+        <!--$('.dropdown-toggle').dropdown();-->
+        <!--/*启用选项卡*/-->
+        <!--$("#myTab").click(function(){-->
+            <!--this.preventDefault();/*不要执行与事件有关的默认动作*/-->
+            <!--this.onclick(window.open('www.baicu.com'));-->
+        <!--});-->
+    <!--</script>-->
 </head>
 
 <body>
@@ -109,8 +120,8 @@
                                 <li class="dropdown user">
                                     <a href="individual.html" class="dropdown-toggle" data-toggle="dropdown">个人中心</a>
                                     <!--<ul class="dropdown-menu">-->
-                                        <!--<li><a href="#" onclick="showDiv(0)">个人信息</a></li>-->
-                                        <!--<li><a href="#" onclick="showDiv(1)">信息修改</a></li>-->
+                                        <!--<li><a href="individual.html" onclick="showDiv(0)">个人信息</a></li>-->
+                                        <!--<li><a href="individual.html" onclick="showDiv(1)">信息修改</a></li>-->
                                     <!--</ul>-->
                                 </li>
                                 <li class="dropdown manager">
@@ -134,25 +145,54 @@
             <div class="row clearfix">
                 <div class="col-md-3">
                     <div class="panel panel-primary no-radius">
-                        <div class="panel-heading no-radius" id="panel-header">
+                        <div class="panel-heading no-radius">
                             <h3 class="panel-title">活动</h3>
                         </div>
-                        <ul class="list-group no-radius" id="panel-list">
-                            <li class="list-group-item no-radius">活动预告</li>
-                            <li class="list-group-item no-radius">活动展示</li>
-                            <li class="list-group-item no-radius">相关新闻</li>
+                        <ul class="list-group no-radius">
+                            <li class="list-group-item no-radius"><a href="activity.html">活动预告</a></li>
+                            <li class="list-group-item no-radius"><a href="/index.html?menu=activity&type=PRESENTATION">活动展示</a></li>
+                            <li class="list-group-item no-radius"><a href="/index.html?menu=activity&type=ACTIVITY">相关新闻</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div>
-                        <p id="item-header">活动 - 相关新闻</p>
-                        <p style="font-size: 18px; font-weight: bold;text-align: center;" id="item-title">TEST</p>
-                        <p style="font-size: 14px; text-align: center;" id="item-time">2017-05-27 21:35</p>
+                        <p>活动 - 活动预告</p>
+                        <p style="color: #046eB8; font-size: 18px; font-weight: bold;">活动预告</p>
+                        <hr>
                     </div>
-                    <div id="item-content">
-
+                    <div id="edit-area">
+                        <div class="form-group">
+                            <label for="name" style="color: #046eB8; font-size: 16px;">标题：</label>
+                            <input type="text" class="form-control no-radius" id="name" edit="false" editId="-1" maxlength="100">
+                        </div>
+                        <p style="color: #046eB8; font-size: 16px;font-weight: bold;">内容：</p>
+                        <!-- 实例化编辑器 -->
+                        <div id="editor" class="content"></div>
+                        <div class="form-group">
+                            <div class="pull-right" style="margin: 10px 0px 10px 0px;">
+                                <button type="button" class="btn btn-primary no-radius" id="add">确定</button>
+                            </div>
+                        </div>
                     </div>
+                    <div>
+                        <table class="table .table-striped .table-hover">
+                            <thead id="contentHead">
+                                <tr>
+                                    <th class="col-md-2">标题</th>
+                                    <th class="col-md-2">时间</th>
+                                    <th class="col-md-1">发帖人</th>
+                                    <th class="col-md-1">修改</th>
+                                    <th class="col-md-1">删除</th>
+                                    <th class="col-md-1">报名</th>
+                                    <th class="col-md-1">人员名单</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contentTable">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="contentPage" class="m-pagination"></div>
                 </div>
             </div>
         </div>
@@ -165,7 +205,7 @@
                             <a href="introduction.html?page=1" style="margin-left: 5px;">联系我们</a>
                         </div>
                         <div class="item">
-                            <a>&copy 版权所有 大连理工大学红蚂蚁实验室</a>
+                            <label style="color:#8a8a8a;font-weight: normal">&copy 版权所有 大连理工大学红蚂蚁实验室</label>
                         </div>
                     </div>
                 </div>
@@ -184,13 +224,13 @@
                             <div class="form-group">
                                 <label for="account" class="col-md-2 control-label">账号</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control no-radius" id="account" placeholder="请输入账号" autocomplete="off">
+                                    <input type="text" class="form-control no-radius" id="login_account" placeholder="请输入账号" autocomplete="off">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="password" class="col-md-2 control-label">密码</label>
                                 <div class="col-md-10">
-                                    <input type="password" class="form-control no-radius" id="password" placeholder="请输入密码" autocomplete="off">
+                                    <input type="password" class="form-control no-radius" id="login_pwd" placeholder="请输入密码" autocomplete="off">
                                 </div>
                             </div>
                             <div>
@@ -198,7 +238,7 @@
                                     <a href="findpw.html">忘记密码</a>
                                 </div>
                                 <div class="col-md-10">
-                                    <button type="submit" class="btn btn-primary pull-right no-radius" data-dismiss="modal">确认登录</button>
+                                    <button type="submit" class="btn btn-primary pull-right no-radius" data-dismiss="modal" id="login_button">确认登录</button>
                                 </div>
                             </div>
                         </form>
@@ -207,7 +247,8 @@
             </div>
         </div>
         <!--Modal end-->
-         <script type="text/javascript" src="js/user.js"></script>
+    </div>
+    <script type="text/javascript" src="js/user.js"></script>
 </body>
 
 </html>

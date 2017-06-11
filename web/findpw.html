@@ -5,16 +5,20 @@
     <meta charset="utf-8">
     <title>大连高校环境联盟</title>
 
-    <link rel="stylesheet" href="css/hv.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">    
+    <link rel="stylesheet" type="text/css" href="css/hv.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">  
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-dialog.min.css">  
 
     <script src="js/sign-up-in.js"></script>
     <script src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-dialog.min.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
 </head>
 
 <body class="ground" style="background-image: url(" http://dasai.lanqiao.cn/dasai/images/login/register-bg.jpg ") no-repeat">
     <div class="logo">
-        <a href="introduction.html"><img src="images/logo_title.png"></a>
+        <a href="main.html"><img src="images/logo_title.png"></a>
     </div>
     <div class="signUp">
         <div class="a-title">找回密码</div>
@@ -25,7 +29,14 @@
                 </div>
                 <div class="check-result" id="check_mail">
                 </div>
-                <button class="submit" id="next">下一步</button>
+
+                <div class="right_list">
+                    <button class="submit fwd_button" id="next" type="button">发送</button>
+                    <button class="submit btn btn-link return_button" type="button">返回首页</button>
+                </div>
+                
+
+
             </form>
         </div>
     </div>
@@ -36,9 +47,9 @@ $(document).ready(function() {
         var reEmail = /^\w+((-\w+)丨(\.\w+))*\@[A-Za-z0-9]+((\.丨-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
         if (!reEmail.test($('#email').val())) {
             if ($('#email').val().length == 0) {
-                alert("邮箱不能为空")
+                alertWarning("邮箱不能为空")
             } else {
-                alert("邮箱格式有误11")
+                alertWarning("邮箱格式有误")
             }
             return;
         }
@@ -51,7 +62,14 @@ $(document).ready(function() {
                 email: $('#email').val(),
             },
             success: function(result) {
-                alert(result.message);
+               if(result.message=="邮件发送成功"){
+                alertInfo(result.message);
+                //window.location.href = "fwd_success.html";//有问题，模态框闪退或不显示
+            },
+            }
+            else{
+                alertWarning("邮件发送失败，请检查邮箱是否存在");
+            }
             },
             fail: function() {
                 alert("failed");

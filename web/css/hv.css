@@ -1,0 +1,274 @@
+.btn-link:hover {
+    text-decoration: none;
+}
+
+.content {
+    display: none;
+}
+
+.check-result {
+    display: inline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.a-title {
+    border-bottom: 1px solid #f1f1f1;
+    color: #333;
+    font-size: 28px;
+    line-height: 28px;
+    margin-bottom: 20px;
+    padding: 25px 0;
+    text-align: center;
+}
+
+.submit {
+    background: #0371df;
+    border: 1px solid #eeeeee;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    font-size: 1.6rem;
+    height: 3.5rem;
+    color: white;
+    display: inline;
+    width: 100%;
+    outline: none;
+    margin-top: 2rem;
+}
+
+.submit:hover {
+    background-color: #0371df;
+}
+
+.topButton {
+    background-color: rgba(242, 243, 245, 0.04);
+    color: rgb(97, 170, 243);
+    border: none;
+}
+
+.forget-paw {
+    text-align: right;
+}
+
+.signUp {
+    background: #fff;
+    border-radius: 12px;
+    box-sizing: border-box;
+    margin: 20px auto 100px auto;
+    overflow: hidden;
+    padding: 0 35px 45px 35px;
+    width: 460px;
+}
+
+.form {
+    background-color: white;
+    text-align: center;
+}
+
+.form input {
+    color:#555;
+    background-color: rgba(0, 0, 0, 0.02);
+    line-height: 3.5rem;
+    text-indent: 12px;
+    font-size: 1.5rem;
+    width: 100%;
+    border: 1px solid #c4c7cc;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.show-line {
+    margin-top: 1.2rem;
+    text-align: left;
+}
+
+
+
+.user-list {
+    margin: 2rem 12rem 0 0;
+    width: 50%;
+    float: right;
+}
+
+.user-list tr {
+    height: 3rem;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(58, 58, 56, 0.05);
+}
+
+.myInput {
+    background-image: url('https://static.runoob.com/images/mix/searchicon.png');
+    /* 搜索按钮 */
+    background-position: 10px 12px;
+    /* 定位搜索按钮 */
+    background-repeat: no-repeat;
+    /* 不重复图片*/
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    float: right;
+    height: 1.6rem;
+    width: 10rem;
+}
+
+.left-menu {
+    width: 20%;
+    margin: 2.2rem 2rem 0 10rem;
+    float: left;
+    display: inline;
+}
+
+.left-menu li {
+    height: 3rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-align: center;
+    padding: 1rem;
+}
+
+.left-menu li.active,
+.left-menu li:hover {
+    background: #f6f6f8;
+    border-left: 8px solid #559ae2;
+    color: #559ae2;
+    padding-left: 0px
+}
+
+.clearfix {
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+
+.label_show{
+	text-align: center;
+	padding-top: 7px;
+    margin-bottom: 0;
+    margin-left: 50px;
+}
+
+
+#verify {
+    width: 50%;
+    display: inline;
+    margin: 0;
+    float: left;
+}
+
+.check-result {
+    float: left;
+}
+
+.col-md-6 {
+    float: right;
+}
+
+.messbox {
+    background: #fff;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    position: relative;
+    width: 60%;
+    display: none;
+}
+
+.messbox1 {
+    background: #fff;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    position: relative;
+}
+
+.messbox .setting-list {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+.messbox .setting-list .item {
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 2rem 0;
+    border-top: 1px solid #f1f1f1;
+    height: 4rem;
+}
+
+.title {
+    color: black;
+    font-size: 1.33rem;
+    width: 10rem;
+}
+
+.list-title {
+    color: black;
+    font-size: 1.33rem;
+    width: 3.5rem;
+    padding: 0 1rem;
+}
+
+.input-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: flex-start;
+    -ms-flex-pack: flex-start;
+    justify-content: flex-start;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    align-items: center;
+}
+
+input {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    display: inline-block;
+    border: none;
+    outline: none;
+    color: #909090;
+    font-size: 1.3rem;
+    overflow: visible;
+}
+
+.pws-input {
+    border: 1px;
+    border-radius: 2rem;
+    background-color: #f4f5f5;
+    padding: 0 1rem;
+    height: 2.5rem;
+}
+
+.manage-input {
+    border-radius: 0.6rem;
+    height: 3rem;
+    width: 15%;
+    padding: 0 1rem;
+}
+
+.input-box img {
+    border-style: none;
+}
+
+.btn-primary {
+    margin-top: 2rem;
+}
+
+.fwd_button{
+	width: 20%;
+	
+}
+
+.return_button{
+    width: 20%;
+    padding: 0;
+ }
+
+ .right_list{
+ 	display: flex;
+ 	flex-direction:row-reverse;
+ }

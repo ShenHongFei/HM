@@ -8,6 +8,7 @@ import static hm.User.GUEST
 
 @Transactional
 class ItemController<T extends Item>{
+    
 	static responseFormats = ['json']
     EditorService  editorService
     
@@ -76,8 +77,10 @@ class ItemController<T extends Item>{
         def page        = (params.page?:0) as Integer
         def size        = (params.size?:10) as Integer
         def sortParams  = ((params.sort as String)?.split(',') as List)?:[]
-        def sortBy      = sortParams[0]?:'modifiedAt'
-        def order       = sortParams[1]?:'desc'
+        def sortBy='modifiedAt'
+        if(sortParams[0]&&itemClass.hasProperty(sortParams[0])) sortBy=sortParams[0]
+        def order='desc'
+        if(sortParams[1]&&['asc','desc'].contains(sortParams[1])) order=sortParams[1]
     
         //类型校验及设置
         if(itemClass.declaredFields*.toString().grep(~/.*department.*/)){

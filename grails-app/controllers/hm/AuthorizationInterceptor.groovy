@@ -7,7 +7,9 @@ import static hm.User.Role.VIP
 
 class AuthorizationInterceptor {
     
-    def sessionFactory
+    static userLevel=[~'.*/(private-activity|training|notice)/.*']
+    static vipLevel=[~'.*/(add|update)/.*',~'.*/delete$',~'/about/.*/(ue|set)']
+    static managerLevel=[~'.*/user/manage/.*']
     
     AuthorizationInterceptor(){
         matchAll()
@@ -45,12 +47,10 @@ class AuthorizationInterceptor {
         }
         
         //权限控制
-        def userLevel=[~'.*/(private-activity|training|notice)/.*']
-        def vipLevel=[~'.*/(add|update)/.*',~'.*/delete$',~'/about/.*/(ue|set)']
-        def managerLevel=[~'.*/user/manage/.*']
-        if(userLevel.any{uri.matches(it)}&&session.user.role<USER||
-           vipLevel.any{uri.matches(it)}&&session.user.role<VIP||
-           managerLevel.any{uri.matches(it)}&&session.user.role<MANAGER){
+
+        if(userLevel.any{uri ==~ it}&&session.user.role<USER||
+           vipLevel.any{uri ==~ it}&&session.user.role<VIP||
+           managerLevel.any{uri ==~ it}&&session.user.role<MANAGER){
             response.status=403
             render('权限不足')
             return false

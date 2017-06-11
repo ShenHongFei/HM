@@ -8,6 +8,10 @@ class Activity extends Item{
     }
     
     List<User> members=[]
+    static hasMany = [members:User]
+    static mapping = {
+        members lazy: false
+    }
     
     public static File classDir=new File(Application.dataDir,'activity').with{mkdirs();it}
     

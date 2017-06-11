@@ -24,10 +24,12 @@
     <script type="text/javascript" src="ueditor/lang/zh-cn/zh-cn.js"></script>
     <script type="text/javascript" src="ueditor/ueditor.parse.js"></script>
     <script type="text/javascript" src="js/date_fns.min.js"></script>
+    <script type="text/javascript" src="js/common_act.js"></script>
     <script type="text/javascript" src="js/utils.js"></script>
     <script type="text/javascript" src="js/nav.js"></script>
-    <script type="text/javascript" src="js/view.js"></script>
-    <script type="text/javascript" src="js/hw.js"></script>
+    <script type="text/javascript" src="js/activity.js"></script>
+    <script type="text/javascript" src="js/sign-up-in.js"></script>
+
 </head>
 
 <body>
@@ -35,7 +37,7 @@
         <div style="background-color: #036eb8; height: 3px"></div>
         <div style="background-image: url('images/bg1.gif'); height: 120px;">
             <div class="container">
-               <div class="pull-right" style="margin-top: 10px;" id="pre_login">
+                <div class="pull-right" style="margin-top: 10px;" id="pre_login">
                     <a href="#" style="font-size: 13px;" data-toggle="modal" data-target="#signInModal">登录</a>
                     <a href="signup.html" style="font-size: 13px;">注册</a>
                 </div>
@@ -134,24 +136,35 @@
             <div class="row clearfix">
                 <div class="col-md-3">
                     <div class="panel panel-primary no-radius">
-                        <div class="panel-heading no-radius" id="panel-header">
+                        <div class="panel-heading no-radius">
                             <h3 class="panel-title">活动</h3>
                         </div>
-                        <ul class="list-group no-radius" id="panel-list">
-                            <li class="list-group-item no-radius">活动预告</li>
-                            <li class="list-group-item no-radius">活动展示</li>
-                            <li class="list-group-item no-radius">相关新闻</li>
+                        <ul class="list-group no-radius">
+                            <li class="list-group-item no-radius"><a href="activity.html">活动预告</a></li>
+                            <li class="list-group-item no-radius"><a href="index.html?menu=activity&type=PRESENTATION">活动展示</a></li>
+                            <li class="list-group-item no-radius"><a href="index.html?menu=activity&type=ACTIVITY">相关新闻</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div>
-                        <p id="item-header">活动 - 相关新闻</p>
-                        <p style="font-size: 18px; font-weight: bold;text-align: center;" id="item-title">TEST</p>
-                        <p style="font-size: 14px; text-align: center;" id="item-time">2017-05-27 21:35</p>
+                        <p>活动 - 相关新闻</p>
+                        <p style="color: #046eB8; font-size: 18px; font-weight: bold;">相关新闻</p>
+                        <hr>
                     </div>
-                    <div id="item-content">
-
+                    <div>
+                        <form class="form-horizontal" role="form" style="min-height: 450px;">
+                            <div class="form-group">
+                                <label for="email" class="control-label col-xs-3">*邮箱</label>
+                                <div class="col-xs-5">
+                                    <input type="email" class="form-control email" onblur="checkemail()" id="email" placeholder="请输入邮箱" required="required">
+                                </div>
+                                <label id="checkemail" style="display: none; padding-top: 5px; font-weight: normal;"></label>
+                            </div>
+                            <div >
+                                <button type="button" class="btn btn-primary" style="margin-left:40%;border-radius: 4px;text-align: center;" onclick="SearchPM()">确定</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -184,13 +197,13 @@
                             <div class="form-group">
                                 <label for="account" class="col-md-2 control-label">账号</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control no-radius" id="account" placeholder="请输入账号" autocomplete="off">
+                                    <input type="text" class="form-control no-radius" id="login_account" placeholder="请输入账号" autocomplete="off">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="password" class="col-md-2 control-label">密码</label>
                                 <div class="col-md-10">
-                                    <input type="password" class="form-control no-radius" id="password" placeholder="请输入密码" autocomplete="off">
+                                    <input type="password" class="form-control no-radius" id="login_pwd" placeholder="请输入密码" autocomplete="off">
                                 </div>
                             </div>
                             <div>
@@ -198,7 +211,7 @@
                                     <a href="findpw.html">忘记密码</a>
                                 </div>
                                 <div class="col-md-10">
-                                    <button type="submit" class="btn btn-primary pull-right no-radius" data-dismiss="modal">确认登录</button>
+                                    <button type="submit" class="btn btn-primary pull-right no-radius" data-dismiss="modal" id="login_button">确认登录</button>
                                 </div>
                             </div>
                         </form>
@@ -207,7 +220,8 @@
             </div>
         </div>
         <!--Modal end-->
-         <script type="text/javascript" src="js/user.js"></script>
+    </div>
+     <script type="text/javascript" src="js/user.js"></script>
 </body>
 
 </html>
