@@ -25,7 +25,7 @@ class AboutController{
     
     def get(){
         def contentFile = new File(dirMap[params.type] as File,'content.html')
-        if(!contentFile.exists()) return render(view:'/failure',model:[message:'无介绍'])
+        if(!contentFile.exists()) return render(view:'/failure',model:[message:'暂时无内容'])
         render view:'content',model:[content:contentFile.text]
     }
 }

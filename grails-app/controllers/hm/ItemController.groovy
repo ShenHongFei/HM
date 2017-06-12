@@ -178,6 +178,9 @@ class ItemController<T extends Item>{
     protected fail(String failureMessage){
         render view:'/failure',model:[message:failureMessage]
     }
+    protected fail(String failureMessage,String log){
+        render view:'/failure',model:[message:failureMessage,log:log]
+    }
     protected success(Map model){
         render view:'/success',model:model
     }

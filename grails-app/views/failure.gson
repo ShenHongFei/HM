@@ -3,11 +3,15 @@ import org.springframework.validation.Errors
 model {
     Errors errors
     def message
+    String log
 }
 
 json{
     result false
     message message
+    if(log){
+        log log
+    }
     if(errors?.hasErrors()){
         errorFields errors.fieldErrors.collect{
             it.field

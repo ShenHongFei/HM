@@ -7,6 +7,9 @@ model{
 //用户查看修改个人信息
 json g.render(user,[includes: ['id','email','username','realname','gender','registerTime','phone','age','company','address']],{
     role user.role
+    if(user.gender){
+        gender user.gender==User.Gender.MAN?'男':'女'
+    }
     if(user.registerTime){
         registerTimeString(timeFormat.format(user.registerTime))
     }

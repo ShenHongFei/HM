@@ -13,7 +13,7 @@ class ActivityController extends ItemController<Activity>{
         }
         if(errors) return fail(errors.toString())
         def activity=Activity.get(params.int('id'))
-        if(!activity) return fail("活动不存在")
+        if(!activity) return fail("活动不存在","id=$params.id")
         if(!User.Gender.values()*.toString().contains(params.gender)) return fail("参数 gender=$params.gender 不正确")
         def user=User.findByEmail(params.email)
         if(user&&activity.members.contains(user)) return fail("您已用该邮箱报名")
@@ -48,14 +48,16 @@ class ActivityController extends ItemController<Activity>{
     }
     
     def query(){
+        def errors=[]
         ['email','id'].each{
-            if(!params[it]) return fail("$it 不能为空")
+            if(!params[it]) errors<<"$it 不能为空"
         }
+        if(errors) return fail(errors.toString())
         def activity=Activity.get(params.int('id'))
-        if(!activity) return fail("id=$params.id 的活动不存在")
+        if(!activity) return fail('该活动不存在',"id=$params.id")
         def user = User.findByEmail(params.email)
-        if(!user) return fail('找不到符合条件的用户')
-        if(!activity.members.contains(user)) return fail("该用户未报名 id=$activity.id 的活动")
+        if(!user) return fail('您未报名过任何活动','找不到符合条件的用户')
+        if(!activity.members.contains(user)) return fail('您未报名该活动',"该用户未报名 id=$activity.id 的活动")
         success message:"用户已报名 id=$activity.id 的活动",obj:activity
     }
     

@@ -19,8 +19,8 @@ class UserController {
     def mailSender=new JavaMailSenderImpl().with{
         host            =   'smtp.qq.com'
         port            =   465             //端口号，QQ邮箱需要使用SSL，端口号465或587
-        username        =   '350986489'
-        password        =   'pniljmfgcgzobiij'
+        username        =   '1343844348'
+        password        =   'haocgbvtcjroghif'
         defaultEncoding =   'UTF-8'
         javaMailProperties=[
                 'mail.smtp.timeout'               :25000,
@@ -128,7 +128,7 @@ class UserController {
         MimeMessage message = mailSender.createMimeMessage()
         //使用MimeMessageHelper构建Mime类型邮件,第二个参数true表明信息类型是multipart类型
         MimeMessageHelper helper = new MimeMessageHelper(message,true,'UTF-8')
-        helper.setFrom('350986489@qq.com')
+        helper.setFrom('redant_dlut@foxmail.com')
         helper.setTo(params.email as String)
         message.setSubject("大连高校环境联盟 重置密码")
         helper.setText(templateEngine.createTemplate(Application.resetEmailTemplateInputStream.newReader('UTF-8')).make([username:user.username,id:user.id,uuid:user.uuid]).toString(),true)
