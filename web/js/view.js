@@ -58,8 +58,15 @@ function viewContent(id) {
             alertWarning('获取失败!');
         })
         .done(function(data) {
+            if(data.result==true)
+            {
             $("#item-title").html(data.item.title);
             $("#item-time").html(transUTC(data.item.modifiedAt));
             $("#item-content").html(data.item.content);
+            }
+            else
+            {
+                $("#item-title").html("此内容已不存在");
+            }
         })
 }

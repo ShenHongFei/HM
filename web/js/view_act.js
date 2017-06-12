@@ -18,11 +18,16 @@ function viewContent() {
             alertWarning('获取失败!');
         })
         .done(function(data) {
-            $("#item-title").html(data.item.title);
+            if(data.result==true)
+            { $("#item-title").html(data.item.title);
             $("#item-time").html(transUTC(data.item.modifiedAt));
             $("#item-content").html(data.item.content);
 
             $("#sigEnroll").attr("href",'/enroll.html?menu=activity&id=' + id);
-            $("#sigForget").attr("href",'/forSig.html?menu=activity&id=' + id);
+            $("#sigForget").attr("href",'/forSig.html?menu=activity&id=' + id);}
+            else
+            {
+                $("#item-title").html("此内容已不存在");
+            }
         })
 }

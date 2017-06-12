@@ -57,7 +57,10 @@ function getActivityContentList() {
             alertWarning('获取失败!');
         })
         .done(function(data) {
+            if(data.result==true)
             $("#item-title").html(data.activity.title);
+            else
+                $("#item-title").html("内容已不存在");
         });
     $("#contentPage").pagination({
         pageIndex: 0,
@@ -78,6 +81,7 @@ function getActivityContentList() {
             },
             totalName: 'page.totalElements',
             success: function(data) {
+                if(data.result==true)
                 updateActivityContentTable(data.page.content);
             }
         }

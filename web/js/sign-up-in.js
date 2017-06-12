@@ -120,7 +120,8 @@ function alertInfoWithJump(msg, url) {
             label: '关闭',
             action: function(dialogRef) {
                 dialogRef.close();
-                window.location.href = url;
+                // window.location.href = url;
+                window.location.href = "/home.html";
             }
         }]
     });
