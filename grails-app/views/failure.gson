@@ -2,15 +2,15 @@ import org.springframework.validation.Errors
 
 model {
     Errors errors
-    def message
-    String log
+    String message
+    String details
 }
 
 json{
     result false
     message message
-    if(log){
-        log log
+    if(details){
+        details details
     }
     if(errors?.hasErrors()){
         errorFields errors.fieldErrors.collect{
