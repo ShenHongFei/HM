@@ -28,6 +28,8 @@
     <script type="text/javascript" src="js/utils.js"></script>
     <script type="text/javascript" src="js/nav.js"></script>
     <script type="text/javascript" src="js/sign-up-in.js"></script>
+    <script type="text/javascript" src="js/noback.js"></script>
+
 
 
     <!--<script type="text/javascript">-->
@@ -128,7 +130,7 @@
                                     <a href="manager.html" class="dropdown-toggle" data-toggle="dropdown">用户管理</a>
                                 </li>
                             </ul>
-                            <form class="navbar-form navbar-right" role="search" style="width:20%">
+                            <form class="navbar-form navbar-right" role="search" style="width:20%;display:none">
                                 <div class="form-group input-group">
                                     <input type="text" class="form-control no-radius" />
                                     <div class="input-group-btn">
@@ -164,7 +166,7 @@
                     <div id="edit-area">
                         <div class="form-group">
                             <label for="name" style="color: #046eB8; font-size: 16px;">标题：</label>
-                            <input type="text" class="form-control no-radius" id="name" edit="false" editId="-1" maxlength="100">
+                            <input type="text" class="form-control no-radius" id="name" edit="false" editId="-1" maxlength="60" placeholder="字数限制为60">
                         </div>
                         <p style="color: #046eB8; font-size: 16px;font-weight: bold;">内容：</p>
                         <!-- 实例化编辑器 -->

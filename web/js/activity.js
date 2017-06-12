@@ -87,7 +87,7 @@ function SearchPM() {
                 if(data.result==true)
                     alertInfo_a("您已报名成功");
                 else
-                    alertWarning("您没有报名");
+                    alertWarning(data.message);
             })
     }
 }

@@ -17,6 +17,7 @@ $(document).ready(function() {
             debug: false,
             showInfo: true,
             showJump: false,
+            infoFormat: '共{total}条',
             showPageSizes: false,
             pageElementSort: ['$page', '$size', '$jump', '$info'],
             remote: {
@@ -133,7 +134,8 @@ $(document).ready(function() {
         $('input[name="checkbox"]:checked').each(function() {
             ids.push($(this).parent().parent().attr("id"));
         })
-        $.ajax({
+        if(ids.length!==0){
+            $.ajax({
             type: 'post',
             url: 'user/manage/set-permission',
             data: {
@@ -147,7 +149,9 @@ $(document).ready(function() {
                 alertInfo("修改权限成功！");
 
             }
-        });
+           });
+        }
+        
     });
     $("#exit").bind("click", function(){
         $.ajax({
