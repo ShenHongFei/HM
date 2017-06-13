@@ -1,23 +1,7 @@
 //sign_up
-//验证账号
-function checkAccount(node) {
-    var errorMsg = document.getElementById("statu_account");
-    var account = node.value;
-    if (account.length == 0) {
-        errorMsg.innerHTML = "用户名不能空";
-        errorMsg.style.color = "red";
-    } else if (account.length > 20) {
-        errorMsg.innerHTML = "用户名不能超过20位";
-        errorMsg.style.color = "red";
-    }
-}
-
-
-
-
 //验证邮箱格式
 function isEmail(strEmail) {
-    if (strEmail.search(/^\w+((-\w+)丨(\.\w+))*\@[A-Za-z0-9]+(\.丨-)*[A-Za-z0-9]+\.[A-Za-z0-9]+$/) != -1)
+    if (strEmail.search(/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/)!=-1)
         return true;
     else
         return false;
@@ -26,7 +10,7 @@ function isEmail(strEmail) {
 function checkMail(node) {
     var errorMsg = document.getElementById("check_mail");
     var mail = node.value;
-    errorMsg.innerHTML = isEmail(mail) ? "" : "邮箱格式不正确或邮箱已被注册";
+    errorMsg.innerHTML = isEmail(mail) ? "" : "邮箱格式不正确";
     errorMsg.style.color = isEmail(mail) ? "green" : "red";
 }
 
@@ -41,8 +25,40 @@ function isPsw(strPsw) {
 function checkPsw(node) {
     var errorMsg = document.getElementById("statu_pwd1");
     var pwd = node.value;
-    errorMsg.innerHTML = isPsw(pwd) ? " " : "密码必须为6~20位，支持中英文,数字,-_";
+    errorMsg.innerHTML = isPsw(pwd) ? " " : "密码长度为6~20位，仅支持英文字母,数字-和_";
     errorMsg.style.color = isPsw(pwd) ? "green" : "red";
+}
+
+
+
+//回验密码是否一致。 两处输入密码出加onblur校验是否一致，解决第二次未输入就校验问题
+var flag=false;
+
+function pwd1Check(){
+    if (flag) {
+        validate();
+    }
+}
+
+function pwd2Check(){
+    flage=true;
+    validate();
+}
+
+//验证账号
+function checkAccount(node) {
+    var errorMsg = document.getElementById("statu_account");
+    var account = $.trim(node.value);
+    if (account.length==0) {
+        errorMsg.innerHTML = "用户名不能空";
+        errorMsg.style.color = "red";
+    } else if (account.length > 20) {
+        errorMsg.innerHTML = "用户名不能超过20位";
+        errorMsg.style.color = "red";
+    }
+    else{
+        errorMsg.innerHTML = "";
+    }
 }
 
 //验证密码是否一致
@@ -56,15 +72,13 @@ function validate() {
         document.getElementById("statu_pwd2").innerHTML = "两次密码输入不一致";
         document.getElementById("statu_pwd2").style.color = "red";
     }
-
-
-
 }
 
 //login
 $(document).ready(function() {
    // $.cookie("role");
     $('#login_button').click(function() {
+      
         $.ajax({
             type: 'post',
             url: 'user/login',
@@ -79,7 +93,7 @@ $(document).ready(function() {
                     userloading();
                     $('#pre_login').hide();
                     $('#after_login').show();
-                    window.location.reload();
+                    self.location='home.html';
                 }
                 else{
                     alertWarning(data.message);
@@ -96,7 +110,7 @@ $(document).ready(function() {
         type: 'post',
         url: 'user/logout',
         success: function (result) {
-           alertInfoWithJump(result.message, "../");
+           alertInfoWithJump(result.message, "home.html");
         },
         fail: function () {
             alert("failed");

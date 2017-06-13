@@ -1,98 +1,100 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>大连高校环境联盟</title>
-
     <link rel="stylesheet" href="css/hv.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-dialog.min.css">
-   
     <script src="js/jquery-1.12.4.min.js"></script>
-    <script src="js/sign-up-in.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script src="js/sign-up-in.js"></script>
     <script type="text/javascript" src="js/bootstrap-dialog.min.js"></script>
     <script type="text/javascript" src="js/utils.js"></script>
-   
 </head>
 
-<body clss="ground" style="background-image: url("http://dasai.lanqiao.cn/dasai/images/login/register-bg.jpg") no-repeat">
-<div class="logo">
-    <a href="../"><img src="images/logo_title.png"></a>
-</div>
-<div class="signUp">
-    <div class="a-title">槐盟网注册</div>
-    <div class="form">
-        <form>
-         <div class="show-line">
-                <input type="text" id="account" name="account" placeholder="请输入用户名" onblur="checkAccount(this)" data-rule="" autocomplete="off">
+<body>
+    <div style="background-color: #036eb8; height: 3px"></div>
+    <div style="background-image: url('images/bg1.gif'); height: 120px;">
+        <div class="container">
+            <div class="container" style="padding-top: 15px">
+                <img src="images/logo_title.png" alt="logo">
             </div>
-            <div class="check-result" id="statu_account" >
-            </div>
-            <div class="show-line">
-                <input type="text" id="email" name="email" placeholder="请输入邮箱" onblur="checkMail(this)" data-rule="" autocomplete="off">
-            </div>
-            <div class="check-result" id="check_mail" >
-            </div>
-            <div class="show-line">
-            <input type="password" id="pwd1" name="pwd1" placeholder="密码长度6-12位，为字母数字"  onchange="checkPsw(this)" autocomplete="off">
-            </div>
-            <div class="check-result" id="statu_pwd1">
-            </div>
-            <div class="show-line">
-            <input type="password" id="pwd2" name="pwd2" placeholder="请再次输入密码" onkeyup ="validate()" autocomplete="off">
-            <div class="check-result" id="statu_pwd2">
-            </div> 
-            </div>
-            <button type="button" class="submit" id="sign-up-button">立即注册</button>
-            
-        </form>
+        </div>
     </div>
-</div>
-
+    <div class="signUp">
+        <div class="a-title">用户注册</div>
+        <div class="form">
+            <form>
+                <div class="show-line">
+                    <input type="text" id="account" name="account" placeholder="请输入自然名" onblur="checkAccount(this)" data-rule="" autocomplete="off">
+                </div>
+                <div class="check-result" id="statu_account">
+                </div>
+                <div class="show-line">
+                    <input type="text" id="email" name="email" placeholder="请输入邮箱" onblur="checkMail(this)" data-rule="" autocomplete="off">
+                </div>
+                <div class="check-result" id="check_mail">
+                </div>
+                <div class="show-line">
+                    <input type="password" id="pwd1" name="pwd1" placeholder="密码长度6-20位，支持字母,数字_和-" onkeyup="pwd1Check()" onchange="checkPsw(this)" autocomplete="off">
+                </div>
+                <div class="check-result" id="statu_pwd1">
+                </div>
+                <div class="show-line">
+                    <input type="password" id="pwd2" name="pwd2" placeholder="请再次输入密码" onkeyup="pwd2Check()" autocomplete="off">
+                    <div class="check-result" id="statu_pwd2">
+                    </div>
+                </div>
+                    <div class="right_list ">
+                        <a href="home.html" class="link-index">返回首页</a>
+                        <button class="submit fwd_button" id="sign-up-button" type="button">注册</button>
+                    </div>
+            </form>
+        </div>
+    </div>
 </body>
- <script>
-$(document).ready(function(){
-    $('#sign-up-button').click(function(){ 
-            var reEmail=/^\w+((-\w+)丨(\.\w+))*\@[A-Za-z0-9]+(\.丨-)*[A-Za-z0-9]+\.[A-Za-z0-9]+$/;
-            if(!reEmail.test($('#email').val())){ 
-                if($('#email').val().length==0){
-                    alertWarning("邮箱不能为空")
-                }
-                else{
-                    
-                    alertWarning("邮箱格式有误") 
-                }
-                return;
-            }
+<script>
+$(document).ready(function() {
+    $('#sign-up-button').click(function() {
+        var reEmail = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/;
+        if (!reEmail.test($('#email').val())) {
+            if ($('#email').val().length == 0) {
+                alertWarning("邮箱不能为空")
+            } else {
 
-            var Acocunt=$('#account').val();
-            if(Acocunt.length==0||Acocunt.length>20){ 
-                if(Acocunt.length==0){
-                    alertWarning("用户名不能为空")
-                }else{
-                    alertWarning("用户名长度超过20") 
-                }
-                return;
+                alertWarning("邮箱格式有误")
             }
+            return;
+        }
 
-            var rePwd=/[A-Za-z0-9\.\_]{6,12}/;
-            if(!rePwd.test($('#pwd1').val())){ 
-                if($('#pwd1').val().length==0){
-                    alertWarning("密码不能为空")
-                }
-                else{
-                    alertWarning("密码格式有误") 
-                }
-                return;
+        var Acocunt = $.trim($('#account').val());
+        if (Acocunt.length == 0 || Acocunt.length > 20) {
+            if (Acocunt.length == 0) {
+                alertWarning("用户名不能为空")
+            } else {
+                alertWarning("用户名长度超过20")
             }
-          var pwd1=$('#pwd1').val();
-          var pwd2=$('#pwd2').val();
-          if(pwd1!=pwd2){
+            return;
+        }
+
+        var rePwd = /[A-Za-z0-9\.\_]{6,12}/;
+        if (!rePwd.test($('#pwd1').val())) {
+            if ($('#pwd1').val().length == 0) {
+                alertWarning("密码不能为空")
+            } else {
+                alertWarning("密码格式有误")
+            }
+            return;
+        }
+        var pwd1 = $('#pwd1').val();
+        var pwd2 = $('#pwd2').val();
+        if (pwd1 != pwd2) {
             alertWarning("两次密码输入不一致");
             return;
-          }
-          $.ajax({
+        }
+        $.ajax({
             type: 'post',
             url: 'user/register',
             data: {
@@ -100,25 +102,24 @@ $(document).ready(function(){
                 email: $('#email').val(),
                 password: $('#pwd1').val()
             },
-            success:function(model){
-                if(model.result){
+            success: function(model) {
+                if (model.result) {
                     alertInfoWithJump(model.message, "signup_return.html");
-                }
-                else{
+                } else {
                     alertWarning(model.message);
                 }
 
-              
+
             },
-            fail:function(){
+            fail: function() {
                 alertWarning("failed");
             },
-            error:function(response){
+            error: function(response) {
                 alertWarning("shenhongfei error!!!");
             }
-          });
+        });
         // alert("为什么要加上这一句，才能显示访问记录")
-    });        
+    });
 })
 
 function alertInfoWithJump(msg, url) {
@@ -137,6 +138,6 @@ function alertInfoWithJump(msg, url) {
         }]
     });
 }
-
 </script>
+
 </html>

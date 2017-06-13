@@ -125,6 +125,8 @@ $(document).ready(function() {
                     $(this).parent().parent().remove();
                 })
                 alertInfo("删除用户成功!");
+                window.location.reload();
+
             }
         });
     });
@@ -147,6 +149,8 @@ $(document).ready(function() {
                     $(this).parent().parent().remove();
                 })
                 alertInfo("修改权限成功！");
+                window.location.reload();
+
 
             }
            });
@@ -159,7 +163,7 @@ $(document).ready(function() {
             url: 'user/logout',
             success: function(result) {
                 alertInfo(result.message);
-                window.location.href = "../";//有问题，模态框闪退或不显示
+                window.location.href = "home.html";//有问题，模态框闪退或不显示
             },
             fail: function() {
                 alert("failed");

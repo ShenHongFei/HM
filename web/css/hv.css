@@ -58,7 +58,7 @@ a:hover {
     background: #fff;
     border-radius: 12px;
     box-sizing: border-box;
-    margin: 20px auto 100px auto;
+    margin: 0 auto 100px auto;
     overflow: hidden;
     padding: 0 35px 45px 35px;
     width: 460px;
@@ -137,10 +137,7 @@ a:hover {
     padding-left: 0px
 }
 
-.clearfix {
-    margin-top: 1.2rem;
-    margin-bottom: 1.2rem;
-}
+
 
 .label_show{
 	text-align: center;
@@ -271,6 +268,7 @@ input {
  .right_list{
  	display: flex;
  	justify-content: space-between;
+    margin-top: 20px;
  }
 .link-index{
 margin-top: 30px;
