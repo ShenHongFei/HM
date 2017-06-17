@@ -21,6 +21,7 @@ class ResourceController{
             def dataUri=uri-'/data/'
             println "DATA-URI=\t$dataUri"
             resource=new File(dataDir,dataUri)
+            response.addHeader('Content-Disposition',"attachment; filename=\"${URLEncoder.encode(resource.name,'UTF-8')}\"")
         }else{
             println "WEB-URI=\t$uri"
             resource=new File(webDir,uri)
