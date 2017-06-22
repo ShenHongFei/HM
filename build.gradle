@@ -13,11 +13,11 @@ buildscript {
 //version "0.0.1"
 group "HM"
 
-apply plugin:"idea"
-//apply plugin:"war"
-apply plugin:"org.grails.grails-web"
-apply plugin:"org.grails.grails-gsp"
-apply plugin:"org.grails.plugins.views-json"
+apply plugin:'idea'
+//apply plugin:'war'
+apply plugin:'org.grails.grails-web'
+apply plugin:'org.grails.grails-gsp'
+apply plugin:'org.grails.plugins.views-json'
 
 repositories {
     mavenLocal()
