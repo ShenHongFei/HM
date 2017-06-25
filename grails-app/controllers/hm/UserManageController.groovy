@@ -7,6 +7,7 @@ import hm.User.Role
 class UserManageController {
     
 	static responseFormats = ['json']
+    static invitationCode
     
     
     def get(){
@@ -63,6 +64,35 @@ class UserManageController {
         users.each{it.role=role}
         return batchSuccess('设置权限成功',ids,users)
     }
+    
+    def invitationCodeSet(){
+        if(!params.value) return fail('无邀请码')
+        if(!params.expirationTime) return fail('无过期时间')
+        Date etime
+        try{
+            etime=new Date(params.long('expirationTime'))
+        }catch(any){
+            return fail('过期时间格式不对')
+        }
+        invitationCode=new InvitationCode(value:params.value,expirationTime:etime).with{code->
+            new File(Application.dataDir,'invitation-code.ser').withObjectOutputStream{
+                it<<code
+            }
+        }
+        return success('邀请码设置成功')
+    }
+    
+    def invitationCodeGet(){
+        def icodeFile=new File(Application.dataDir,'invitation-code.ser')
+        if(!icodeFile.exists()) return fail('无邀请码')
+        if(!invitationCode) {
+            icodeFile.withObjectInputStream{
+                invitationCode=it.readObject()
+            }
+        }
+        render view:'/user/invitation-code',model:[invitationCode:invitationCode]
+    }
+    
     
     //工具方法
     private def fail(String message){

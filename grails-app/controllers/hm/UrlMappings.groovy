@@ -11,6 +11,8 @@ class UrlMappings {
         }
         
         "/user/manage/$action"          controller:'userManage'
+        '/user/manage/invitation-code/get'          controller:'userManage',action:'invitationCodeGet'
+        '/user/manage/invitation-code/set'          controller:'userManage',action:'invitationCodeSet'
         
         "/$controller/add/get"                 action:'addGet'
         "/$controller/add/ue"                  action:'addUE'

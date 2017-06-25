@@ -35,8 +35,16 @@ class UserController {
     
     def templateEngine=new SimpleTemplateEngine()
     
-    @SuppressWarnings("UnnecessaryQualifiedReference")
+    @SuppressWarnings(["UnnecessaryQualifiedReference","GroovyVariableNotAssigned"])
     def register(){
+        def icodeFile=new File(Application.dataDir,'invitation-code.ser')
+        if(!icodeFile.exists()) return fail('管理员未设置邀请码，不允许注册')
+        if(!params.invitationCode) return fail('无邀请码')
+        InvitationCode invitationCode
+        icodeFile.withObjectInputStream{
+            invitationCode=it.readObject() as InvitationCode
+        }
+        if(params.invitationCode!=invitationCode.value||invitationCode.expirationTime<new Date()) return fail('邀请码错误或者已过期，请联系管理员')
         def user=User.findByEmail(params.email)
         if(user&&user.role!=Role.GUEST) return fail('注册失败，用户已存在')
         if(!user) user=new User(params)

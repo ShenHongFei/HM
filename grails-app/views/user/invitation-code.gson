@@ -1,0 +1,10 @@
+import hm.InvitationCode
+
+model{
+    InvitationCode invitationCode
+}
+
+json{
+    result true
+    code g.render(invitationCode)
+}
