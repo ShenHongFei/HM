@@ -78,7 +78,8 @@ function validate() {
 $(document).ready(function() {
    // $.cookie("role");
     $('#login_button').click(function() {
-      
+
+
         $.ajax({
             type: 'post',
             url: 'user/login',
@@ -101,7 +102,20 @@ $(document).ready(function() {
 
             }
         });
-
+        //后加
+        // $.ajax({
+        //     type: 'post',
+        //     url: 'user/info',
+        //     success: function(result) {
+        //         $("#welcome").html("欢迎你，"+result.user.username);
+        //     },
+        //     fail: function() {
+        //         alertWarning("failed");
+        //     },
+        //     error: function(response) {
+        //         alert("network error!!!");
+        //     }
+        // });
     });
    //exit
  

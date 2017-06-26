@@ -5,7 +5,13 @@ html {
     background-color: #f4f5f5;
     color: #333;
     word-break: break-all;
+    /*防止scroll导致左移*/
+    overflow-y:scroll;
 }
+
+/*防止模态框导致左移*/
+body{
+    padding-right: 0!important;}
 
 div,body,ul,li{
     margin: 0;
@@ -68,7 +74,7 @@ li {
 .main-nav {
     height: 100%;
     -webkit-box-flex: 1;
-    -ms- flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
     flex: 1 0 auto;
     display: block;
 }
@@ -420,7 +426,7 @@ button:hover {
     .phone-hidden .nav-item {
         height: 4rem;
     }
-    .main-nav-list.nav-item: last-child {
+    .main-nav-list.nav-item:last-child {
         padding: 0 2rem;
     }
     .main-nav-list.nav-item.search {

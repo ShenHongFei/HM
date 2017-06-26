@@ -53,6 +53,7 @@
                     <a href="signup.html" style="font-size: 13px;">注册</a>
                 </div>
                 <div class="pull-right" style="margin-top: 10px;" id="after_login">
+                    <a id="welcome" style="margin-right:10px;"></a>
                     <a href="#" style="font-size: 13px;" id="exit">注销</a>
                 </div>
                 <div class="container" style="padding-top: 15px">
@@ -73,8 +74,8 @@
                                     <a href="introduction.html?page=0" class="dropdown-toggle" data-toggle="dropdown">了解我们</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="introduction.html?page=0">槐盟介绍</a></li>
-                                        <li><a href="introduction.html?page=1">联系我们</a></li>
                                         <li><a href="introduction.html?page=2">活动图片</a></li>
+                                        <li><a href="introduction.html?page=1">联系我们</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown guest">
@@ -82,7 +83,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="activity.html">活动预告</a></li>
                                         <li><a href="index.html?menu=activity&type=PRESENTATION">活动展示</a></li>
-                                        <li><a href="index.html?menu=activity&type=ACTIVITY">相关新闻</a></li>
+                                        <li><a href="index.html?menu=activity&type=ACTIVITY">槐盟新闻</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown guest">
@@ -146,7 +147,7 @@
             </div>
             <div class="row clearfix" >
                 <div class="col-md-12">
-                    <div id="home-carousel" class="carousel slide" style="height:386px !important">
+                    <div id="home-carousel" class="carousel slide" style="height:430px !important">
                         <!-- 轮播（Carousel）指标 -->
                         <ol class="carousel-indicators">
                             <li data-target="#home-carousel" data-slide-to="0" class="active"></li>
@@ -160,7 +161,7 @@
                                 <div class="carousel-caption">我们是大自然的守护者</div>
                             </div>
                             <div class="item">
-                                <img src="images/slide-2.jpg" alt="Second slide">
+                                <img src="images/slide-2.jpg" alt="Second slide" onclick="document.location=' activity.html'">
                                 <div class="carousel-caption">我们的活动期待着你的参与</div>
                             </div>
                             <div class="item">
@@ -175,7 +176,7 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container" style="position:relative;margin-bottom: 0">
             <div class="row">
                 <div class="col-md-12">
                     <div class="footer">

@@ -98,7 +98,9 @@ function SearchPM() {
 function checkname() {
     var name = document.getElementById("tname");
     var check = document.getElementById("checkname");
-    reg=/^([\u4e00-\u9fa5]){2,7}$/;       //只能是中文，长度为2-7位
+    regC=/^([\u4e00-\u9fa5]){2,7}$/;
+    regE=/^[A-Za-z\s]+$/;
+    //只能是中文，长度为2-7位
     if (name.value == "")
     {
         check.innerHTML = "名字不能为空" ;
@@ -106,7 +108,7 @@ function checkname() {
         check.style.color = "red" ;
         return false;
     }
-    else if(!reg.test(name.value))
+    else if(!regC.test(name.value)&&!regE.test(name.value))
     {
         check.innerHTML = "请输入正确名字" ;
         check.style.display = "block" ;
@@ -122,6 +124,7 @@ function checkname() {
 function checknum() {
     var num = document.getElementById("age");
     var check = document.getElementById("checknum");
+    reg=/^[0-9]*$/;
     if (num.value == "")
     {
         check.innerHTML = "请输入年龄" ;
@@ -129,7 +132,7 @@ function checknum() {
         check.style.color = "red" ;
         return false;
     }
-    if (num.value >=100 || num.value <=0)
+    if ((num.value >100 || num.value <=0)||!reg.test(num.value))
     {
         check.innerHTML = "请输入正确年龄" ;
         check.style.display = "block" ;
@@ -145,7 +148,8 @@ function checknum() {
 function checkcom() {
     var com = document.getElementById("company");
     var check = document.getElementById("checkcom");
-    reg=/^([\u4e00-\u9fa5]){2,7}$/;
+    // reg=/^([\u4e00-\u9fa5])+$/;
+    reg=/[a-zA-Z\u4E00-\u9FA5]+$/;
     if (com.value == "")
     {
         check.innerHTML = "所属单位不能为空" ;
@@ -176,7 +180,7 @@ function checkph() {
         check.style.color = "red" ;
         return false;
     }
-    else if (!(/^1[34578]\d{9}$/.test(phone.value)))
+    else if (!(/[0-9\-\+\(\)\（\）\s]+/.test(phone.value)))
     {
         check.innerHTML = "请输入正确电话";
         check.style.display = "block" ;
@@ -194,9 +198,9 @@ function checkemail() {
     var id = request['id'];
     var email = document.getElementById("email");
     var check = document.getElementById("checkemail");
-    var e1 = document.getElementById("email").value.indexOf("@",0);
-    var e2 = document.getElementById("email").value.indexOf(".",0);
-    reg=/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+    // var e1 = document.getElementById("email").value.indexOf("@",0);
+    // var e2 = document.getElementById("email").value.indexOf(".",0);
+    reg=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
     var oemail=email.value;
     var flag=0;
     if (email.value == "")
@@ -206,7 +210,8 @@ function checkemail() {
         check.style.color = "red" ;
         return false;
     }
-    else if((e1==-1 || e2==-1) || e2<e1 )
+    // else if((e1==-1 || e2==-1) || e2<e1 )
+    else if(!reg.test(email.value))
     {
         check.innerHTML = "请输入正确邮箱";
         check.style.display = "block" ;
@@ -215,42 +220,166 @@ function checkemail() {
     }
     else
     {
-        // $.ajax({
-        //     url: ENV + '/activity/query',
-        //     type: "get",
-        //     data:{
-        //         id:id,
-        //         email:oemail
-        //     }
-        // })
-        //     .fail(function (jqXHR, textStatus) {
-        //         alertWarning('提交失败!');
-        //     })
-        //     .done(function (data) {
-        //         if(data.result==true){
-        //             alertWarning("该邮箱已被注册");
-        //             return false;
-        //             if(data.message.indexOf("参数不符合要求")!=-1)
-        //             {
-        //                 alertWarning("请输入一个合法的邮箱");
-        //                 // check.innerHTML = "请输入正确邮箱";
-        //                 // check.style.display = "block" ;
-        //                 // check.style.color = "red" ;
-        //                 return false;
-        //             }
-        //
-        //            else if(data.message.indexOf("该用户已报名")!=-1)
-        //                 {
-        //                     alertWarning("该邮箱已报名，请更换");
-        //                 return false;
-        //                 }
-        //
-        //         }
-        //     })
         check.style.display = "none" ;
         return true;
     }
 }
+// function checkname() {
+//     var name = document.getElementById("tname");
+//     var check = document.getElementById("checkname");
+//     reg=/^([\u4e00-\u9fa5]){2,7}$/;       //只能是中文，长度为2-7位
+//     if (name.value == "")
+//     {
+//         check.innerHTML = "名字不能为空" ;
+//         check.style.display = "block" ;
+//         check.style.color = "red" ;
+//         return false;
+//     }
+//     else if(!reg.test(name.value))
+//     {
+//         check.innerHTML = "请输入正确名字" ;
+//         check.style.display = "block" ;
+//         check.style.color = "red" ;
+//         return false;
+//     }
+//     else
+//     {
+//         check.style.display = "none" ;
+//         return true;
+//     }
+// }
+// function checknum() {
+//     var num = document.getElementById("age");
+//     var check = document.getElementById("checknum");
+//     if (num.value == "")
+//     {
+//         check.innerHTML = "请输入年龄" ;
+//         check.style.display = "block" ;
+//         check.style.color = "red" ;
+//         return false;
+//     }
+//     if (num.value >=100 || num.value <=0)
+//     {
+//         check.innerHTML = "请输入正确年龄" ;
+//         check.style.display = "block" ;
+//         check.style.color = "red" ;
+//         return false;
+//     }
+//     else
+//     {
+//         check.style.display = "none" ;
+//         return true;
+//     }
+// }
+// function checkcom() {
+//     var com = document.getElementById("company");
+//     var check = document.getElementById("checkcom");
+//     reg=/^([\u4e00-\u9fa5]){2,7}$/;
+//     if (com.value == "")
+//     {
+//         check.innerHTML = "所属单位不能为空" ;
+//         check.style.display = "block" ;
+//         check.style.color = "red" ;
+//         return false;
+//     }
+//     else if (!reg.test(com.value))
+//     {
+//         check.innerHTML = "请输入正确所属单位" ;
+//         check.style.display = "block" ;
+//         check.style.color = "red" ;
+//         return false;
+//     }
+//     else
+//     {
+//         check.style.display = "none" ;
+//         return true;
+//     }
+// }
+// function checkph() {
+//     var phone = document.getElementById("phone");
+//     var check = document.getElementById("checkph");
+//     if (phone.value == "")
+//     {
+//         check.innerHTML = "电话不能为空" ;
+//         check.style.display = "block" ;
+//         check.style.color = "red" ;
+//         return false;
+//     }
+//     else if (!(/^1[34578]\d{9}$/.test(phone.value)))
+//     {
+//         check.innerHTML = "请输入正确电话";
+//         check.style.display = "block" ;
+//         check.style.color = "red" ;
+//         return false;
+//     }
+//     else
+//     {
+//         check.style.display = "none" ;
+//         return true;
+//     }
+// }
+// function checkemail() {
+//     var request = getRequest();
+//     var id = request['id'];
+//     var email = document.getElementById("email");
+//     var check = document.getElementById("checkemail");
+//     var e1 = document.getElementById("email").value.indexOf("@",0);
+//     var e2 = document.getElementById("email").value.indexOf(".",0);
+//     reg=/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+//     var oemail=email.value;
+//     var flag=0;
+//     if (email.value == "")
+//     {
+//         check.innerHTML = "邮箱不能为空" ;
+//         check.style.display = "block" ;
+//         check.style.color = "red" ;
+//         return false;
+//     }
+//     else if((e1==-1 || e2==-1) || e2<e1 )
+//     {
+//         check.innerHTML = "请输入正确邮箱";
+//         check.style.display = "block" ;
+//         check.style.color = "red" ;
+//         return false;
+//     }
+//     else
+//     {
+//         // $.ajax({
+//         //     url: ENV + '/activity/query',
+//         //     type: "get",
+//         //     data:{
+//         //         id:id,
+//         //         email:oemail
+//         //     }
+//         // })
+//         //     .fail(function (jqXHR, textStatus) {
+//         //         alertWarning('提交失败!');
+//         //     })
+//         //     .done(function (data) {
+//         //         if(data.result==true){
+//         //             alertWarning("该邮箱已被注册");
+//         //             return false;
+//         //             if(data.message.indexOf("参数不符合要求")!=-1)
+//         //             {
+//         //                 alertWarning("请输入一个合法的邮箱");
+//         //                 // check.innerHTML = "请输入正确邮箱";
+//         //                 // check.style.display = "block" ;
+//         //                 // check.style.color = "red" ;
+//         //                 return false;
+//         //             }
+//         //
+//         //            else if(data.message.indexOf("该用户已报名")!=-1)
+//         //                 {
+//         //                     alertWarning("该邮箱已报名，请更换");
+//         //                 return false;
+//         //                 }
+//         //
+//         //         }
+//         //     })
+//         check.style.display = "none" ;
+//         return true;
+//     }
+// }
 
 // 检验邮箱
 // ============================================================
