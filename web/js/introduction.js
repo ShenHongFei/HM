@@ -88,7 +88,7 @@ $(function() {
         alertWarning('ajax GET request failed\n'+textStatus);
     }).done(function(model){
         if(!model||!model.result){
-            alertWarning(model?model.message:'unknown error');
+            // alertWarning(model?model.message:'unknown error');
             return;
         }
         $('#Introduction').html(model.content);
@@ -124,7 +124,8 @@ function cancelEdit(){
 
 function submitIntroduction(){
     var content=UE.getEditor('editor').getContent();
-    if(content=='')alertWarning("您未输入内容")
+    if(content=='')
+         alertWarning("您未输入内容");
     else{$.ajax({
         method:'POST',
         url:postURL,
@@ -133,11 +134,11 @@ function submitIntroduction(){
         alertWarning('ajax post request failed\n'+textStatus);
     }).done(function(model){
         if(!model|| !model.result){
-            alert(model?model.message:'unknown error');
+            // alert(model?model.message:'unknown error');
             return;
         }
         $('#Introduction').html(content);
-        alertInfo('上传成功');
+        alertInfo('编辑成功');
         cancelEdit();
     });}
 }

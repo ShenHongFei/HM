@@ -27,7 +27,6 @@
     <script type="text/javascript" src="js/nav.js"></script>
     <script type="text/javascript" src="js/view_act.js"></script>
     <script type="text/javascript" src="js/sign-up-in.js"></script>
-    <script type="text/javascript" src="js/noback.js"></script>
 
 </head>
 
@@ -61,8 +60,8 @@
                                     <a href="introduction.html?page=0" class="dropdown-toggle" data-toggle="dropdown">了解我们</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="introduction.html?page=0">槐盟介绍</a></li>
-                                        <li><a href="introduction.html?page=1">联系我们</a></li>
                                         <li><a href="introduction.html?page=2">活动图片</a></li>
+                                        <li><a href="introduction.html?page=1">联系我们</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown guest">
@@ -70,7 +69,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="activity.html">活动预告</a></li>
                                         <li><a href="index.html?menu=activity&type=PRESENTATION">活动展示</a></li>
-                                        <li><a href="index.html?menu=activity&type=ACTIVITY">相关新闻</a></li>
+                                        <li><a href="index.html?menu=activity&type=ACTIVITY">槐盟新闻</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown guest">
@@ -139,13 +138,13 @@
                             <h3 class="panel-title">活动</h3>
                         </div>
                         <ul class="list-group no-radius">
-                            <li class="list-group-item no-radius"><a href="activity.html">活动预告</a></li>
-                            <li class="list-group-item no-radius"><a href="index.html?menu=activity&type=PRESENTATION">活动展示</a></li>
-                            <li class="list-group-item no-radius"><a href="index.html?menu=activity&type=ACTIVITY">相关新闻</a></li>
+                            <li class="list-group-item no-radius"><div onclick="document.location=' activity.html';" style="color:#046eB8;cursor: pointer">活动预告</div></li>
+                            <li class="list-group-item no-radius"><div onclick="document.location=' /index.html?menu=activity&type=PRESENTATION';" style="color:#046eB8;cursor: pointer">活动展示</div></li>
+                            <li class="list-group-item no-radius"><div onclick="document.location='/index.html?menu=activity&type=ACTIVITY';" style="color:#046eB8;cursor: pointer">槐盟新闻</div></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9" style="min-height: 450px">
                     <div>
                         <p id="item-header">活动 - 相关新闻</p>
                         <p style="font-size: 18px; font-weight: bold;text-align: center;" id="item-title">相关新闻</p>

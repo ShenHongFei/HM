@@ -5,7 +5,7 @@ $.ajaxSetup({
 });
 
 var editor;
-var role = 1; //角色标记
+var role = 0; //角色标记
 var menu;
 var menuStr;
 var menuUrl;
@@ -86,10 +86,10 @@ function setPanel() {
     menuUrl = menu.url;
     for (var i = 0; i < menuList.length; i++) {
         if (menu.hasUrl == 'true') {
-            $('#panel-list').append('<li class="list-group-item no-radius"><a href="' + menuList[i].url +'">' + menuList[i].title + '</a></li>');
+            $('#panel-list').append('<li class="list-group-item no-radius"><div style="color:#046eB8;cursor: pointer" onclick="document.location=\'' + menuList[i].url +'\'">' + menuList[i].title + '</div></li>');
         } else {
             var itemUrl = '/index.html?menu=' + menuStr + '&type=' + menuList[i].type;
-            $('#panel-list').append('<li class="list-group-item no-radius"><a href="' + itemUrl +'">' + menuList[i].title + '</a></li>');
+            $('#panel-list').append('<li class="list-group-item no-radius"><div style="color:#046eB8;cursor: pointer" onclick="document.location=\'' + itemUrl +'\'">' + menuList[i].title + '</div></li>');
         }
         if (menuList[i].type == type) {
             item = menuList[i];
@@ -111,14 +111,14 @@ function addContent(data) {
             data: data
         })
         .fail(function(jqXHR, textStatus) {
-            alertWarning('添加失败！');
+            alertWarning('添加失败');
         })
         .done(function() {
             updateContentList()
             $("#name").val('');
             editor.execCommand('cleardoc');
             reInitEditor();
-            alertInfo('添加成功！');
+            alertInfo('添加成功');
         })
 }
 
@@ -138,7 +138,7 @@ function modifyContent(data) {
             data: data
         })
         .fail(function(jqXHR, textStatus) {
-            alertWarning('修改失败！');
+            alertWarning('修改失败');
         })
         .done(function() {
             updateContentList()
@@ -147,17 +147,17 @@ function modifyContent(data) {
             reInitEditor();
             $("#name").attr('edit', false);
             $("#name").attr('editId', -1);
-            alertInfo('修改成功！');
+            alertInfo('修改成功');
         })
 }
 
 function checkContent(data) {
     if (data.title == '') {
-        alertInfo('标题不能为空！');
+        alertInfo('标题不能为空');
         return false;
     }
     if (data.content == '') {
-        alertInfo('内容不能为空！');
+        alertInfo('内容不能为空');
         return false;
     }
     return true;
@@ -214,14 +214,14 @@ function updateContentTable(content) {
     if (role == 0) {
         var line = $('<tr></tr>');
         line.append('<th class="col-md-6">标题</th>');
-        line.append('<th class="col-md-2">时间</th>');
         line.append('<th class="col-md-1">发布人</th>');
+        line.append('<th class="col-md-2">时间</th>');
         $('#contentHead').append(line);
     } else {
         var line = $('<tr></tr>');
         line.append('<th class="col-md-4">标题</th>');
-        line.append('<th class="col-md-2">时间</th>');
         line.append('<th class="col-md-1">发布人</th>');
+        line.append('<th class="col-md-2">时间</th>');
         line.append('<th class="col-md-1">修改</th>');
         line.append('<th class="col-md-1">删除</th>');
         $('#contentHead').append(line);
@@ -231,8 +231,8 @@ function updateContentTable(content) {
     for (var i = 0; i < content.length; i++) {
         var line = $('<tr itemId=' + content[i].id + '></tr>');
         line.append('<td><a href="/view.html?menu=' + menuStr + '&type=' + itemType + '&id=' + content[i].id + '" target="_blank" title=' + content[i].title + ' >' + sliceTitle(content[i].title, 20) + '</a></td>');
-        line.append('<td>' + transUTC(content[i].modifiedAt) + '</td>');
         line.append('<td>' + content[i].author.username + '</td>');
+        line.append('<td>' + transUTC(content[i].modifiedAt) + '</td>');
         if (role == 1) {
             line.append('<td><a href="#" onclick="editItem(this)">修改</a></td>');
             line.append('<td><a href="#" onclick="deleteItem(this)">删除</a></td>');
@@ -253,7 +253,7 @@ function deleteItem(item) {
             },
         })
         .fail(function(jqXHR, textStatus) {
-            alertWarning('删除失败!');
+            alertWarning('删除失败');
         })
         .done(function(data) {
             updateContentList();
@@ -263,7 +263,7 @@ function deleteItem(item) {
                 $("#name").attr('edit', false);
                 $("#name").attr('editId', -1);
             }
-            alertInfo('删除成功!');
+            alertInfo('删除成功');
         })
 }
 
@@ -285,7 +285,7 @@ function editItem(item) {
             },
         })
         .fail(function(jqXHR, textStatus) {
-            alertWarning('获取失败!');
+            alertWarning('获取失败');
         })
         .done(function(data) {
             $("#name").val(data.item.title);

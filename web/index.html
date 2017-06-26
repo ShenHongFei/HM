@@ -28,7 +28,6 @@
     <script type="text/javascript" src="js/nav.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
     <script type="text/javascript" src="js/sign-up-in.js"></script>
-    <script type="text/javascript" src="js/noback.js"></script>
 
 </head>
 
@@ -62,8 +61,8 @@
                                     <a href="introduction.html?page=0" class="dropdown-toggle" data-toggle="dropdown">了解我们</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="introduction.html?page=0">槐盟介绍</a></li>
-                                        <li><a href="introduction.html?page=1">联系我们</a></li>
                                         <li><a href="introduction.html?page=2">活动图片</a></li>
+                                        <li><a href="introduction.html?page=1">联系我们</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown guest">
@@ -71,7 +70,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="activity.html">活动预告</a></li>
                                         <li><a href="index.html?menu=activity&type=PRESENTATION">活动展示</a></li>
-                                        <li><a href="index.html?menu=activity&type=ACTIVITY">相关新闻</a></li>
+                                        <li><a href="index.html?menu=activity&type=ACTIVITY">槐盟新闻</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown guest">
@@ -137,22 +136,24 @@
                 <div class="col-md-3">
                     <div class="panel panel-primary no-radius">
                         <div class="panel-heading no-radius">
-                            <h3 class="panel-title" id="panel-header">活动</h3>
+                            <h3 class="panel-title" id="panel-header"></h3>
                         </div>
                         <ul class="list-group no-radius" id="panel-list">
-                            <li class="list-group-item no-radius"><a href="activity.html">活动预告</a></li>
-                            <li class="list-group-item no-radius"><a href="index.html?menu=activity&type=PRESENTATION">活动展示</a></li>
-                            <li class="list-group-item no-radius"><a href="index.html?menu=activity&type=ACTIVITY">相关新闻</a></li>
+                            <li class="list-group-item no-radius"><a href="activity.html"></a></li>
+                            <li class="list-group-item no-radius"><a href="index.html?menu=activity&type=PRESENTATION"></a></li>
+                            <li class="list-group-item no-radius"><a href="index.html?menu=activity&type=ACTIVITY"></a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9" style="min-height: 450px">
                     <div>
-                        <p id="item-header" >活动 - 相关新闻</p>
-                        <p id="item-title" style="color: #046eB8; font-size: 18px; font-weight: bold;">相关新闻</p>
+                        <!--<p id="item-header" >活动 - 相关新闻</p>-->
+                        <!--<p id="item-title" style="color: #046eB8; font-size: 18px; font-weight: bold;">相关新闻</p>-->
+                        <p id="item-header" ></p>
+                        <p id="item-title" style="color: #046eB8; font-size: 18px; font-weight: bold;"></p>
                         <hr>
                     </div>
-                    <div id="edit-area">
+                    <div id="edit-area" style="display:none;">
                         <div class="form-group">
                             <label for="name" style="color: #046eB8; font-size: 16px;">标题：</label>
                             <input type="text" class="form-control no-radius" id="name" edit="false" editId="-1" maxlength="60" placeholder="字数限制为60">
@@ -170,10 +171,10 @@
                         <table class="table .table-striped .table-hover">
                             <thead id="contentHead">
                                 <tr>
-                                    <th class="col-md-5">标题</th>
-                                    <th class="col-md-2">时间</th>
-                                    <th class="col-md-1">修改</th>
-                                    <th class="col-md-1">删除</th>
+                                    <!--<th class="col-md-5">标题</th>-->
+                                    <!--<th class="col-md-2">时间</th>-->
+                                    <!--<th class="col-md-1">修改</th>-->
+                                    <!--<th class="col-md-1">删除</th>-->
                                 </tr>
                             </thead>
                             <tbody id="contentTable">
