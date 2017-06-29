@@ -1,7 +1,7 @@
 //sign_up
 //验证邮箱格式
 function isEmail(strEmail) {
-    if (strEmail.search(/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/)!=-1)
+    if (strEmail.search(/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/) != -1)
         return true;
     else
         return false;
@@ -25,23 +25,23 @@ function isPsw(strPsw) {
 function checkPsw(node) {
     var errorMsg = document.getElementById("statu_pwd1");
     var pwd = node.value;
-    errorMsg.innerHTML = isPsw(pwd) ? " " : "密码长度为6~20位，仅支持英文字母,数字-和_";
+    errorMsg.innerHTML = isPsw(pwd) ? " " : "密码长度为6~20位，仅支持英文字母、数字、—和_";
     errorMsg.style.color = isPsw(pwd) ? "green" : "red";
 }
 
 
 
 //回验密码是否一致。 两处输入密码出加onblur校验是否一致，解决第二次未输入就校验问题
-var flag=false;
+var flag = false;
 
-function pwd1Check(){
+function pwd1Check() {
     if (flag) {
         validate();
     }
 }
 
-function pwd2Check(){
-    flage=true;
+function pwd2Check() {
+    flag = true;
     validate();
 }
 
@@ -49,14 +49,13 @@ function pwd2Check(){
 function checkAccount(node) {
     var errorMsg = document.getElementById("statu_account");
     var account = $.trim(node.value);
-    if (account.length==0) {
-        errorMsg.innerHTML = "用户名不能空";
+    if (account.length == 0) {
+        errorMsg.innerHTML = "自然名不能空";
         errorMsg.style.color = "red";
     } else if (account.length > 20) {
-        errorMsg.innerHTML = "用户名不能超过20位";
+        errorMsg.innerHTML = "自然名不能超过20位";
         errorMsg.style.color = "red";
-    }
-    else{
+    } else {
         errorMsg.innerHTML = "";
     }
 }
@@ -76,9 +75,8 @@ function validate() {
 
 //login
 $(document).ready(function() {
-   // $.cookie("role");
+    
     $('#login_button').click(function() {
-
 
         $.ajax({
             type: 'post',
@@ -89,51 +87,62 @@ $(document).ready(function() {
                 "autologin": false
             },
             success: function(data) {
-                if(data.result){
+                if (data.result) {
                     alertInfo(data.message);
                     userloading();
                     $('#pre_login').hide();
                     $('#after_login').show();
-                    self.location='home.html';
-                }
-                else{
+                    self.location.href="home.html";
+
+                } else {
                     alertWarning(data.message);
                 }
 
             }
         });
-        //后加
-        // $.ajax({
-        //     type: 'post',
-        //     url: 'user/info',
-        //     success: function(result) {
-        //         $("#welcome").html("欢迎你，"+result.user.username);
-        //     },
-        //     fail: function() {
-        //         alertWarning("failed");
-        //     },
-        //     error: function(response) {
-        //         alert("network error!!!");
-        //     }
-        // });
+
+
     });
-   //exit
- 
+
+    //exit
+
     $("#exit").bind("click", function() {
-    $.ajax({
-        type: 'post',
-        url: 'user/logout',
-        success: function (result) {
-           alertInfoWithJump(result.message, "home.html");
-        },
-        fail: function () {
-            alert("failed");
-        },
-        error: function (response) {
-            alert("shenhongfei error!!!");
-        }
-    });
-})
+        $.ajax({
+            type: 'post',
+            url: 'user/logout',
+            success: function(result) {
+                alertInfoWithJump(result.message, "home.html");
+            },
+            fail: function() {
+                alert("failed");
+            },
+            error: function(response) {
+                alert("shenhongfei error!!!");
+            }
+        });
+        history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', function() {
+            history.pushState(null, null, document.URL);
+        });
+    })
+    var user = $.cookie("role");
+    if (user == "MANAGER" || user == "USER") {
+        $.ajax({
+            type: 'post',
+            url: 'user/info',
+            success: function(result) {
+                $("#seeHello").html("欢迎你，" + result.user.username);
+                $("#seeHello").show();
+            },
+            fail: function() {
+                alertWarning("failed");
+            },
+            error: function(response) {
+                alert("shenhongfei error!!!");
+            }
+        });
+    }
+
 
 })
 
@@ -149,7 +158,7 @@ function alertInfoWithJump(msg, url) {
             action: function(dialogRef) {
                 dialogRef.close();
                 // window.location.href = url;
-                window.location.href = "/home.html";
+                window.location.href = url;
             }
         }]
     });

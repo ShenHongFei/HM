@@ -4,7 +4,7 @@ window.onload = getProtocol();
 // ============================================================
 function getProtocol(){
     $.ajax({
-        url: ENV + '/activity/law/get',
+        url: '/activity/law/get',
         dataType:"text",
         method: 'get',
     })

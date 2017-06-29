@@ -25,7 +25,6 @@
     <script type="text/javascript" src="ueditor/ueditor.parse.js"></script>
     <script type="text/javascript" src="js/utils.js"></script>
     <script type="text/javascript" src="js/manager.js"></script>
-
 </head>
 
 <body>
@@ -35,6 +34,9 @@
             <div class="container">
                 <div class="pull-right" style="margin-top: 10px;">
                     <a href="#" style="font-size: 13px;" id="exit">注销</a>
+                </div>
+                <div class="pull-right" style="margin-top: 10px; margin-right: 10px">
+                    <a href="#" style="font-size: 13px;" id="seeHello"></a>
                 </div>
                 <div class="container" style="padding-top: 15px">
                     <img src="images/logo_title.png" alt="logo">
@@ -54,8 +56,8 @@
                                     <a href="introduction.html?page=0" class="dropdown-toggle" data-toggle="dropdown">了解我们</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="introduction.html?page=0">槐盟介绍</a></li>
-                                        <li><a href="introduction.html?page=2">活动图片</a></li>
                                         <li><a href="introduction.html?page=1">联系我们</a></li>
+                                        <li><a href="introduction.html?page=2">活动图片</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown guest">
@@ -63,7 +65,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="activity.html">活动预告</a></li>
                                         <li><a href="index.html?menu=activity&type=PRESENTATION">活动展示</a></li>
-                                        <li><a href="index.html?menu=activity&type=ACTIVITY">槐盟新闻</a></li>
+                                        <li><a href="index.html?menu=activity&type=ACTIVITY">相关新闻</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown guest">
@@ -132,12 +134,14 @@
                             <h3 class="panel-title">用户管理</h3>
                         </div>
                         <ul class="list-group no-radius">
-                            <li class="list-group-item no-radius" id="user"><a href="#">普通用户</a></li>
-                            <li class="list-group-item no-radius" id="vip"><a href="#">高级用户</a></li>
+                            <li class="list-group-item no-radius" id="user" onclick="show_user()"><a href="#">普通用户</a></li>
+                            <li class="list-group-item no-radius" id="vip" onclick="show_user()"><a href="#">高级用户</a></li>
+                            <li class="list-group-item no-radius" id="changeInvite" onclick="show_inv()"><a href="#">邀请码</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-9">
+                    <div id="conV1" style="display:block;">
                     <div>
                         <button type="button" class="btn btn-danger no-radius" id="delete-button">删除</button>
                         <button type="button" class="btn btn-success no-radius" id="modify-button">升级为高级用户</button>
@@ -179,7 +183,43 @@
                         </table>
                     </div>
                     <div id="contentPage" class="m-pagination"></div>
+                    </div>
+                    <div id="conV2" style="display: none">
+                        <div class="content">
+                            <div>
+                                <p>用户管理 - 邀请码</p>
+                                <hr>
+                            </div>
+                            <form class="form-horizontal" role="form" style="min-height:450px;font-family: 微软雅黑" id="message">
+                                <div class="form-group">
+                                    <label for="tinvite" class="control-label col-xs-3">邀请码(当前)</label>
+                                    <label id="tinvite" class="label_show" style="margin-bottom: 0;padding-top: 7px;padding-left: 15px"></label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="odeadline" class="control-label col-xs-3">截止日期</label>
+                                    <label id="odeadline" class="label_show" style="margin-bottom: 0;padding-top:7px;padding-left: 15px"></label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ninvite" class="control-label col-xs-3">新邀请码</label>
+                                    <div class="col-xs-5">
+                                        <input type="text" class="form-control " id="ninvite" required="required" placeholder="请输入新邀请码">
+                                        <div class="check-result"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-xs-3">截止日期</label>
+                                    <div class="col-xs-5">
+                                        <input type="date" class="form-control" id="ndeadline" required="required">
+                                    </div>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-primary" style="margin-left:40%;border-radius: 4px;width:8%;" id="ok" onclick="checkdeadline()">确定</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -198,8 +238,59 @@
             </div>
         </div>
     </div>
-     <script type="text/javascript" src="js/user.js"></script>
+    <script type="text/javascript" src="js/user.js"></script>
+    <script>
+            function checkdeadline() {
+                var invite=$("#ninvite").val();
+                var deadline=$('#ndeadline').val();
+                var second=new Date($('#ndeadline').val()).getTime();
+                //获取系统时间
+                var initializationTime=(new Date()).getTime();
+                if(invite=="")
+                {
+                    alertWarning("邀请码不可为空");
+                    return false;
+                }
+                if(deadline=="")
+                {
+                    alertWarning("日期不可为空");
+                    return false;
+                }
+                if(initializationTime>second)
+                {
+                    alertWarning("请输入合法日期");
+                    return false;
+                }
+                $.ajax({
+                    url:'/user/manage/invitation-code/set',
+                    type: "post",
+                    data:{
+                        value:invite,
+                        expirationTime:second
+                    }
+                })
+                    .fail(function (jqXHR, textStatus) {
+                        alertWarning('提交失败!');
+                    })
+                    .done(function (data) {
+                       alertInfo('修改成功');
+                       $('#tinvite').html(invite);
+                       $('#odeadline').html(deadline);
+                       $('#ndeadline').val("");
+                       $('#ninvite').val("");
+                    })
+            }
+
+            function show_inv() {
+                $("#conV1").css("display","none");
+                $("#conV2").css("display","block");
+            }
+
+            function show_user() {
+                $("#conV2").css("display","none");
+                $("#conV1").css("display","block");
+            }
+    </script>
+    <script type="text/javascript" src="js/invite.js"></script>
 </body>
-
-
 </html>

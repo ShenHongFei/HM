@@ -25,8 +25,8 @@
     <script type="text/javascript" src="ueditor/lang/zh-cn/zh-cn.js"></script>
     <script type="text/javascript" src="ueditor/ueditor.parse.js"></script>
     <script type="text/javascript" src="js/sign-up-in.js"></script>
-    <script type="text/javascript" src="js/manager.js"></script>
     <script type="text/javascript" src="js/utils.js"></script>
+</head>
 </head>
 
 <body>
@@ -36,6 +36,9 @@
             <div class="container">
                 <div class="pull-right" style="margin-top: 10px;">
                     <a href="#" style="font-size: 13px;" id="exit">注销</a>
+                </div>
+                <div class="pull-right" style="margin-top: 10px; margin-right: 10px">
+                    <a href="#" style="font-size: 13px;" id="seeHello"></a>
                 </div>
                 <div class="container" style="padding-top: 15px">
                     <img src="images/logo_title.png" alt="logo">
@@ -55,8 +58,8 @@
                                     <a href="introduction.html?page=0" class="dropdown-toggle" data-toggle="dropdown">了解我们</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="introduction.html?page=0">槐盟介绍</a></li>
-                                        <li><a href="introduction.html?page=2">活动图片</a></li>
                                         <li><a href="introduction.html?page=1">联系我们</a></li>
+                                        <li><a href="introduction.html?page=2">活动图片</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown guest">
@@ -64,7 +67,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="activity.html">活动预告</a></li>
                                         <li><a href="index.html?menu=activity&type=PRESENTATION">活动展示</a></li>
-                                        <li><a href="index.html?menu=activity&type=ACTIVITY">槐盟新闻</a></li>
+                                        <li><a href="index.html?menu=activity&type=ACTIVITY">相关新闻</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown guest">
@@ -133,8 +136,8 @@
                             <h3 class="panel-title">个人中心</h3>
                         </div>
                         <ul class="list-group no-radius">
-                            <li class="list-group-item no-radius" id="user-info" onclick="showDiv(0)" style="cursor: pointer"><a href="#">个人信息</a></li>
-                            <li class="list-group-item no-radius" id="re-pwd" onclick="showDiv(1)" style="cursor: pointer"><a href="#">信息修改</a></li>
+                            <li class="list-group-item no-radius" id="user-info" onclick="showDiv(0)"><a href="#">个人信息</a></li>
+                            <li class="list-group-item no-radius" id="re-pwd" onclick="showDiv(1)"><a href="#">信息修改</a></li>
                         </ul>
                     </div>
                 </div>
@@ -147,7 +150,7 @@
                         </div>
                         <form class="form-horizontal" role="form" style="min-height:450px;" id="touForm">
                             <div class="form-group">
-                                <label for="account" class="control-label col-xs-3">自然名</label>
+                                <label for="tname" class="control-label col-xs-3">自然名</label>
                                 <label id="account" class="label_show"></label> 
                             </div>
                             <div class="form-group">
@@ -237,16 +240,16 @@ $(function() {
             alertWarning("failed");
         },
         error: function(response) {
-            alert("network error!!!");
+            alert("shenhongfei error!!!");
         }
     });
-});
+})
 
 $("#save").bind("click", function(){
-      var Acocunt=$('#account').val();
-            Acocunt.trim();
-            if(Acocunt.length==0||Acocunt.length>20){
-                if(Acocunt.length==0){
+      var newName=$('#newName').val();
+            newName.trim();//过滤空格
+            if(newName.length==0||newName.length>20){ 
+                if(newName.length==0){
                     alertWarning("用户名不能为空")
                 }else{
                     alertWarning("用户名长度超过20") 
@@ -280,11 +283,11 @@ $("#save").bind("click", function(){
                 "newUsername":$('#newName').val(),
         },
         success: function(result) {
-            if(result.message=="更新成功"){
-                alertInfo(result.message);
+            if(result){
+                alertInfo("修改成功");
             }
             else{
-                alertWarning(result.message);
+                alertWarning("修改失败");
             }
             
         },

@@ -172,8 +172,7 @@ $(document).ready(function() {
                 alert("shenhongfei error!!!");
             }
         });
-
-
     })
 
 })
+
