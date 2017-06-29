@@ -46,7 +46,7 @@ class UserController {
         }
         if(params.invitationCode!=invitationCode.value||invitationCode.expirationTime<new Date()) return fail('邀请码错误或者已过期，请联系管理员')
         def user=User.findByEmail(params.email)
-        if(user&&user.role!=Role.GUEST) return fail('注册失败，用户已存在')
+        if(user&&user.role!=Role.GUEST) return fail('注册失败，注册邮箱已使用')
         if(!user) user=new User(params)
         else{
             user.username=params.username
