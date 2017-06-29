@@ -100,6 +100,10 @@ task wrapper(type: Wrapper) {
 task 打包{
     dependsOn assemble
     doLast{
-        Files.copy(new File(projectDir,'build/libs/HM.jar').toPath(),new File(projectDir,'HM.jar').toPath(),StandardCopyOption.REPLACE_EXISTING)
+        copy{
+            from 'build/libs/HM.jar'
+            into projectDir
+        }
+//        Files.copy(new File(projectDir,'build/libs/HM.jar').toPath(),new File(projectDir,'HM.jar').toPath(),StandardCopyOption.REPLACE_EXISTING)
     }
 }
