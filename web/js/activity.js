@@ -125,16 +125,16 @@ function checknum() {
     var num = document.getElementById("age");
     var check = document.getElementById("checknum");
     reg=/^[0-9]*$/;
-    if (num.value == "")
+    if ((num.value >100 || num.value <=0)||!reg.test(num.value))
     {
-        check.innerHTML = "请输入年龄" ;
+        check.innerHTML = "请输入正确年龄" ;
         check.style.display = "block" ;
         check.style.color = "red" ;
         return false;
     }
-    if ((num.value >100 || num.value <=0)||!reg.test(num.value))
+    if (num.value == "")
     {
-        check.innerHTML = "请输入正确年龄" ;
+        check.innerHTML = "请输入年龄" ;
         check.style.display = "block" ;
         check.style.color = "red" ;
         return false;
