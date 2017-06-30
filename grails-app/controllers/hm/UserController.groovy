@@ -185,7 +185,7 @@ class UserController {
     }
     static void setUserCookies(HttpServletResponse response,User user){
         setCookie(response,'userId',user.id as String,-1)
-        setCookie(response,'username',user.username,-1)
+        setCookie(response,'username',URLEncoder.encode(user.username,'UTF-8'),-1)
         setCookie(response,'role',user.role as String,-1)
     }
 }
