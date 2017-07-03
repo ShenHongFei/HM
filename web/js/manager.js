@@ -169,7 +169,7 @@ $(document).ready(function() {
                 alert("failed");
             },
             error: function(response) {
-                alert("shenhongfei error!!!");
+                alert("Error!!!");
             }
         });
     })

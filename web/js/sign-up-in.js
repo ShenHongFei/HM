@@ -117,7 +117,7 @@ $(document).ready(function() {
                 alert("failed");
             },
             error: function(response) {
-                alert("shenhongfei error!!!");
+                alert("Error!!!");
             }
         });
         history.pushState(null, null, document.URL);
@@ -138,7 +138,7 @@ $(document).ready(function() {
                 alertWarning("failed");
             },
             error: function(response) {
-                alert("shenhongfei error!!!");
+                alert("Error!!!");
             }
         });
     }
