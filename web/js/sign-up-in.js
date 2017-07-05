@@ -25,7 +25,7 @@ function isPsw(strPsw) {
 function checkPsw(node) {
     var errorMsg = document.getElementById("statu_pwd1");
     var pwd = node.value;
-    errorMsg.innerHTML = isPsw(pwd) ? " " : "密码长度为6~20位，仅支持英文字母、数字、—和_";
+    errorMsg.innerHTML = isPsw(pwd) ? " " : "密码长度为6-20位,支持字母、数字、横线以及下划线";
     errorMsg.style.color = isPsw(pwd) ? "green" : "red";
 }
 
@@ -120,13 +120,15 @@ $(document).ready(function() {
                 alert("Error!!!");
             }
         });
-        history.pushState(null, null, document.URL);
+
+        /*history.pushState(null, null, document.URL);
         window.addEventListener('popstate', function() {
-            history.pushState(null, null, document.URL);
-        });
+        history.pushState(null, null, document.URL);
+        });*/
     })
+
     var user = $.cookie("role");
-    if (user == "MANAGER" || user == "USER") {
+    if (user == "MANAGER" || user == "USER"||user == "VIP") {
         $.ajax({
             type: 'post',
             url: 'user/info',
@@ -157,7 +159,6 @@ function alertInfoWithJump(msg, url) {
             label: '关闭',
             action: function(dialogRef) {
                 dialogRef.close();
-                // window.location.href = url;
                 window.location.href = url;
             }
         }]
