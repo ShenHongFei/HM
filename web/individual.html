@@ -20,10 +20,7 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
      <script type="text/javascript" src="js/bootstrap-dialog.min.js"></script>
     <script type="text/javascript" src="js/mricode.pagination.js"></script>
-    <script type="text/javascript" src="ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" src="ueditor/ueditor.all.min.js"></script>
-    <script type="text/javascript" src="ueditor/lang/zh-cn/zh-cn.js"></script>
-    <script type="text/javascript" src="ueditor/ueditor.parse.js"></script>
+   
     <script type="text/javascript" src="js/sign-up-in.js"></script>
     <script type="text/javascript" src="js/utils.js"></script>
 </head>
@@ -67,7 +64,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="activity.html">活动预告</a></li>
                                         <li><a href="index.html?menu=activity&type=PRESENTATION">活动展示</a></li>
-                                        <li><a href="index.html?menu=activity&type=ACTIVITY">相关新闻</a></li>
+                                        <li><a href="index.html?menu=activity&type=ACTIVITY">槐盟新闻</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown guest">
@@ -136,8 +133,8 @@
                             <h3 class="panel-title">个人中心</h3>
                         </div>
                         <ul class="list-group no-radius">
-                            <li class="list-group-item no-radius" id="user-info" onclick="showDiv(0)"><a href="#">个人信息</a></li>
-                            <li class="list-group-item no-radius" id="re-pwd" onclick="showDiv(1)"><a href="#">信息修改</a></li>
+                            <li class="list-group-item no-radius" id="user-info" onclick="showDiv(0)" style="cursor: pointer"><a href="#">个人信息</a></li>
+                            <li class="list-group-item no-radius" id="re-pwd" onclick="showDiv(1)" style="cursor: pointer"><a href="#">信息修改</a></li>
                         </ul>
                     </div>
                 </div>
@@ -282,8 +279,8 @@ $("#save").bind("click", function(){
                 "newPassword": pwd1,
                 "newUsername":$('#newName').val(),
         },
-        success: function(result) {
-            if(result){
+        success: function(modle) {
+            if(modle.result){
                 alertInfo("修改成功");
             }
             else{
@@ -300,24 +297,7 @@ $("#save").bind("click", function(){
     });
 
 })
-$("#exit").bind("click", function(){
-        $.ajax({
-            type: 'post',
-            url: 'user/logout',
-            success: function(result) {
-                alertInfo(result.message);
-                window.location.href = "../";//有问题，模态框闪退或不显示
-            },
-            fail: function() {
-                alert("failed");
-            },
-            error: function(response) {
-                alert("shenhongfei error!!!");
-            }
-    });
 
-
-})
 
 function showDiv(num) {
     var length = $("#content-view").children().size();
