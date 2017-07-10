@@ -5,5 +5,5 @@ build/
 data/
 src/
 doc/
-web.zip
 HM.jar
+web/.test/
