@@ -28,6 +28,7 @@
     <script type="text/javascript" src="js/nav.js"></script>
     <script type="text/javascript" src="js/view.js"></script>
     <script type="text/javascript" src="js/hw.js"></script>
+    <script type="text/javascript" src="js/sign-up-in.js"></script>
 
 </head>
 
@@ -37,14 +38,14 @@
         <div style="background-image: url('images/bg1.gif'); height: 120px;">
             <div class="container">
                <div class="pull-right" style="margin-top: 10px;" id="pre_login">
-                    <a href="#" style="font-size: 13px;margin-right:15px;" data-toggle="modal" data-target="#signInModal">登录</a>
-                    <a href="signup.html" style="font-size: 13px;">注册</a>
+                    <a href="#" style="font-size: 13px;margin-right:15px;" data-toggle="modal" data-target="#signInModal" id="title_log"></a>
+                    <a href="signup.html" style="font-size: 13px;" id="title_signin"></a>
                 </div>
                 <div class="pull-right" style="margin-top: 10px;" id="after_login">
-                    <a href="#" style="font-size: 13px;" id="exit">注销</a>
+                    <a href="#" style="font-size: 13px;" id="exit"></a>
                 </div>
                 <div class="pull-right" style="margin-top: 10px; margin-right: 10px">
-                    <a href="#" style="font-size: 13px;" id="seeHello"></a>
+                    <a href="individual.html" style="font-size: 13px;" id="seeHello"></a>
                 </div>
                 <div class="container" style="padding-top: 15px">
                     <img src="images/logo_title.png" alt="logo">
@@ -64,7 +65,7 @@
                                     <a href="introduction.html?page=0" class="dropdown-toggle" data-toggle="dropdown">了解我们</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="introduction.html?page=0">槐盟介绍</a></li>
-                                        <li><a href="introduction.html?page=2">活动图片</a></li>
+                                        <li><a href="introduction.html?page=2">项目介绍</a></li>
                                         <li><a href="introduction.html?page=1">联系我们</a></li>
                                     </ul>
                                 </li>
@@ -188,7 +189,7 @@
                             <div class="form-group">
                                 <label for="account" class="col-md-2 control-label">账号</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control no-radius" id="account" placeholder="请输入账号" autocomplete="off">
+                                    <input type="text" class="form-control no-radius" id="account" placeholder="请输入邮箱" autocomplete="off">
                                 </div>
                             </div>
                             <div class="form-group">

@@ -25,11 +25,16 @@ function setPanel() {
     menuUrl = menu.url;
     for (var i = 0; i < menuList.length; i++) {
         if (menu.hasUrl == 'true') {
-            $('#panel-list').append('<li class="list-group-item no-radius"><a href="' + menuList[i].url +'">' + menuList[i].title + '</a></li>');
+            $('#panel-list').append('<li class="list-group-item no-radius"><div style="color:#046eB8;cursor: pointer" onclick="document.location=\'' + menuList[i].url +'\'">' + menuList[i].title + '</div></li>');
         } else {
             var itemUrl = '/index.html?menu=' + menuStr + '&type=' + menuList[i].type;
-            $('#panel-list').append('<li class="list-group-item no-radius"><a href="' + itemUrl +'">' + menuList[i].title + '</a></li>');
+            $('#panel-list').append('<li class="list-group-item no-radius"><div style="color:#046eB8;cursor: pointer" onclick="document.location=\'' + itemUrl +'\'">' + menuList[i].title + '</div></li>');
         }
+        //     $('#panel-list').append('<li class="list-group-item no-radius"><a href="' + menuList[i].url +'">' + menuList[i].title + '</a></li>');
+        // } else {
+        //     var itemUrl = '/index.html?menu=' + menuStr + '&type=' + menuList[i].type;
+        //     $('#panel-list').append('<li class="list-group-item no-radius"><a href="' + itemUrl +'">' + menuList[i].title + '</a></li>');
+        // }
         if (menuList[i].type == type) {
             item = menuList[i];
         }

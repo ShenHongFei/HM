@@ -47,7 +47,7 @@
                     <a href="#" style="font-size: 13px;" id="exit">注销</a>
                 </div>
                 <div class="pull-right" style="margin-top: 10px; margin-right: 10px">
-                    <a href="#" style="font-size: 13px;" id="seeHello"></a>
+                    <a href="individual.html" style="font-size: 13px;" id="seeHello"></a>
                 </div>
                 <div class="container" style="padding-top: 15px">
                     <img src="images/logo_title.png" alt="logo">
@@ -67,7 +67,7 @@
                                     <a href="introduction.html?page=0" class="dropdown-toggle" data-toggle="dropdown">了解我们</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="introduction.html?page=0">槐盟介绍</a></li>
-                                        <li><a href="introduction.html?page=2">活动图片</a></li>
+                                        <li><a href="introduction.html?page=2">项目介绍</a></li>
                                         <li><a href="introduction.html?page=1">联系我们</a></li>
                                     </ul>
                                 </li>
@@ -158,14 +158,23 @@
                         <hr>
                     </div>
                     <div>
-                        <form role="form" style="overflow-y: scroll;overflow-x: hidden; word-break:break-all;border:solid 1px #eee;width:100%;height:439px;">
+                        <form role="form" style="overflow-y: auto;overflow-x: hidden; word-break:break-all;width:100%;height:439px;">
                             <div id="protocol">
 
                             </div>
                         </form>
+                        <div style="display:flex;flex-direction:column;align-items:flex-start;">
+                        <!--<div>对于免责声明要求</div>-->
+                        <div style="margin-top:5px">
+                            <input type="checkbox" id="agreebox" name="agreebox" onclick="box()"/>
+                            <label style="margin-bottom: 10px">我同意免责声明要求</label></div>
+                        <!--<div id="chooseAorN">-->
+                        <!--<input type="radio" value="1" name="agreeO" checked="checked">同意-->
+                        <!--<input type="radio" value="2" name="agreeO">不同意-->
+                        <!--</div>-->
+                        </div>
                         <div class="pull-right" style="margin: 10px 0px 10px 0px;">
-                            <button type="button" class="btn btn-primary no-radius" id="disagreeBtn" onclick="agreeON()" style="margin-right: 10px;">同意</button>
-                            <button type="button" class="btn btn-primary no-radius" id="agreeBtn" onclick="disagreeON()">不同意</button>
+                            <button type="button" class="btn btn-primary no-radius" id="agreeBtn" onclick="agreeON()" style="margin-right: 10px;margin-top:0;" disabled="disabled">确定</button>
                         </div>
                     </div>
                 </div>
@@ -263,7 +272,7 @@
                             <div class="form-group">
                                 <label for="account" class="col-md-2 control-label">账号</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control no-radius" id="login_account" placeholder="请输入账号" autocomplete="off">
+                                    <input type="text" class="form-control no-radius" id="login_account" placeholder="请输入邮箱" autocomplete="off">
                                 </div>
                             </div>
                             <div class="form-group">

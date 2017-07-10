@@ -63,8 +63,8 @@ function viewContent() {
         postURL="/about/contact/set";
     }
     else if (request == 2){
-        document.getElementById("department").innerHTML = "活动图片";
-        document.getElementById("depart").innerHTML = "了解我们 - 活动图片";
+        document.getElementById("department").innerHTML = "项目介绍";
+        document.getElementById("depart").innerHTML = "了解我们 - 项目介绍";
         initURL = "/about/gallery/ue";
         getURL="/about/gallery/get";
         postURL="/about/gallery/set";

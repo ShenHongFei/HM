@@ -36,14 +36,14 @@
         <div style="background-image: url('images/bg1.gif'); height: 120px;">
             <div class="container">
                 <div class="pull-right" style="margin-top: 10px;" id="pre_login">
-                    <a href="#" style="font-size: 13px;margin-right:15px;" data-toggle="modal" data-target="#signInModal">登录</a>
-                    <a href="signup.html" style="font-size: 13px;">注册</a>
+                    <a href="#" style="font-size: 13px;margin-right:15px;" data-toggle="modal" data-target="#signInModal"id="title_log"></a>
+                    <a href="signup.html" style="font-size: 13px;" id="title_signin"></a>
                 </div>
                 <div class="pull-right" style="margin-top: 10px;" id="after_login">
-                    <a href="#" style="font-size: 13px;" id="exit">注销</a>
+                    <a href="#" style="font-size: 13px;" id="exit"></a>
                 </div>
                 <div class="pull-right" style="margin-top: 10px; margin-right: 10px">
-                    <a href="#" style="font-size: 13px;" id="seeHello"></a>
+                    <a href="individual.html" style="font-size: 13px;" id="seeHello"></a>
                 </div>
                 <div class="container" style="padding-top: 15px">
                     <img src="images/logo_title.png" alt="logo">
@@ -63,7 +63,7 @@
                                     <a href="introduction.html?page=0" class="dropdown-toggle" data-toggle="dropdown">了解我们</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="introduction.html?page=0">槐盟介绍</a></li>
-                                        <li><a href="introduction.html?page=2">活动图片</a></li>
+                                        <li><a href="introduction.html?page=2">项目介绍</a></li>
                                         <li><a href="introduction.html?page=1">联系我们</a></li>
                                     </ul>
                                 </li>
@@ -156,9 +156,9 @@
                     <div id="item-content">
 
                     </div>
-                    <div class="panel-heading" style="display: flex;flex-direction: row;justify-content:flex-end">
-                        <a style="font-size: 15px;color: #046eB8;margin:3px;" id="sigEnroll">我要报名</a>
-                        <a style="font-size: 12px;color:darkgray;margin-top: 6px;margin-left: 5px;" id="sigForget">(忘记?)</a>
+                    <div class="panel-heading" style="display: flex;flex-direction: column;align-items: flex-end;">
+                        <div><a style="font-size: 15px;color: #046eB8;margin:3px;" id="sigEnroll">我要报名</a></div>
+                        <div><a style="font-size: 12px;color:darkgray;margin-top: 6px;margin-left: 5px;" id="sigForget">(忘记是否已报名?)</a></div>
                     </div>
                 </div>
             </div>
@@ -191,7 +191,7 @@
                             <div class="form-group">
                                 <label for="account" class="col-md-2 control-label">账号</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control no-radius" id="login_account" placeholder="请输入账号" autocomplete="off">
+                                    <input type="text" class="form-control no-radius" id="login_account" placeholder="请输入邮箱" autocomplete="off">
                                 </div>
                             </div>
                             <div class="form-group">
