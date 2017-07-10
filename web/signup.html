@@ -13,7 +13,7 @@
     <script src="js/sign-up-in.js"></script>
     <script type="text/javascript" src="js/bootstrap-dialog.min.js"></script>
     <script type="text/javascript" src="js/utils.js"></script>
-     <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
 </head>
 
 <body>
@@ -32,19 +32,16 @@
                 <div class="show-line">
                     <input type="text" id="account" name="account" placeholder="请输入自然名" onblur="checkAccount(this)" data-rule="" autocomplete="off">
                     <div class="check-result" id="statu_account">
-                </div>
+                    </div>
                 </div>
                 <div class="show-line">
                     <input type="text" id="email" name="email" placeholder="请输入邮箱" onblur="checkMail(this)" data-rule="" autocomplete="off">
-                     <div class="check-result" id="check_mail"> </div>
+                    <div class="check-result" id="check_mail"> </div>
                 </div>
-               
-               
                 <div class="show-line">
                     <input type="password" id="pwd1" name="pwd1" placeholder="密码长度为6-20位，支持字母、数字、横线以及下划线" onkeyup="pwd1Check()" onchange="checkPsw(this)" autocomplete="off">
                     <div class="check-result" id="statu_pwd1"> </div>
                 </div>
-                
                 <div class="show-line">
                     <input type="password" id="pwd2" name="pwd2" placeholder="请再次输入密码" onkeyup="pwd2Check()" autocomplete="off">
                     <div class="check-result" id="statu_pwd2"></div>
@@ -54,10 +51,10 @@
                     <div class="check-result" id="statu_invite">
                     </div>
                 </div>
-                    <div class="right_list ">
-                        <a href="home.html" class="link-index">返回首页</a>
-                        <button class="submit fwd_button" id="sign-up-button" type="button">注册</button>
-                    </div>
+                <div class="right_list ">
+                    <a href="home.html" class="link-index">返回首页</a>
+                    <button class="submit fwd_button" id="sign-up-button" type="button">注册</button>
+                </div>
             </form>
         </div>
     </div>
@@ -101,8 +98,7 @@ $(document).ready(function() {
             alertWarning("两次密码输入不一致");
             return;
         }
-        if($('#invite')=="")
-        {
+        if ($('#invite') == "") {
             alertWarning("邀请码不能为空");
             return;
         }
@@ -113,12 +109,19 @@ $(document).ready(function() {
                 username: $('#account').val(),
                 email: $('#email').val(),
                 password: $('#pwd1').val(),
-                invitationCode:$('#invite').val()
+                invitationCode: $('#invite').val()
             },
             success: function(model) {
                 if (model.result) {
                     alertInfoWithJump(model.message, "signup_return.html");
-                } else {
+                } else if (model.errorFields!=null) {
+                    for( var i = 0; i < model.errorFields.length; i++){
+                        if (model.errorFields[i]=="email") {
+                            alertWarning("邮箱格式有误");                 
+                             }
+                          }
+                      }
+                 else {
                     alertWarning(model.message);
                 }
 

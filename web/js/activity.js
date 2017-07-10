@@ -173,6 +173,14 @@ function checkcom() {
 function checkph() {
     var phone = document.getElementById("phone");
     var check = document.getElementById("checkph");
+    var reg=(/[0-9\-\+\(\)\（\）\s]+/);
+    var flag=0;
+    var len_ph=phone.value.length;
+    var r=phone.value.match(reg);
+    if(r==null){
+        var flag=1;}
+    else{
+        var num=r[0].length;}
     if (phone.value == "")
     {
         check.innerHTML = "电话不能为空" ;
@@ -180,7 +188,7 @@ function checkph() {
         check.style.color = "red" ;
         return false;
     }
-    else if (!(/[0-9\-\+\(\)\（\）\s]+/.test(phone.value)))
+    else if (flag==1||num!=len_ph)
     {
         check.innerHTML = "请输入正确电话";
         check.style.display = "block" ;
@@ -388,15 +396,33 @@ function checkemail() {
 // 协议页面
 // ============================================================
 function agreeON() {
-        var oCon1=document.getElementById("conVie1");
-        var oCon2=document.getElementById("conVie2");
-        oCon1.style.display="none";
-        oCon2.style.display="block";
+    var oagree=$('input[name="agreebox"]').val();
+    // if(oagree==true){
+    //     $('#agreeBtn').attr('disable',false);
+    var oCon1=document.getElementById("conVie1");
+    var oCon2=document.getElementById("conVie2");
+    oCon1.style.display="none";
+    oCon2.style.display="block";
+// }
+    // else if(oagree=='2'){
+    //     window.close();
+    // }
 }
 
 function disagreeON(){
     window.close();
 }
+
+// 复选框事件
+// ============================================================
+function box(){
+    var oagree=$('input[name="agreebox"]').is(':checked');
+    if(oagree==true)
+        $('#agreeBtn').removeAttr("disabled");
+    else
+        $('#agreeBtn').attr("disabled",'true');
+}
+
 
 // 返回协议页面
 // ============================================================

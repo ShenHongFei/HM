@@ -75,9 +75,8 @@ function validate() {
 
 //login
 $(document).ready(function() {
-    
-    $('#login_button').click(function() {
 
+    $('#login_button').click(function() {
         $.ajax({
             type: 'post',
             url: 'user/login',
@@ -117,7 +116,7 @@ $(document).ready(function() {
                 alert("failed");
             },
             error: function(response) {
-                alert("Error!!!");
+                alert("网络连接异常");
             }
         });
 
@@ -140,7 +139,7 @@ $(document).ready(function() {
                 alertWarning("failed");
             },
             error: function(response) {
-                alert("Error!!!");
+                alert("网络连接异常");
             }
         });
     }

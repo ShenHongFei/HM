@@ -18,11 +18,16 @@ function userloading(){
         default:
             $('#nav  li').removeClass('guest');
     }
-    if(user=='GUEST'){
+
+   if(user=='GUEST'){
+
         $('#title_log').html('登录');
         $('#title_signin').html('注册');
+
     }
     else{
+        $('#pre_login').hide();
+        $('#after_login').show();
         $('#exit').html('注销');
     }
     // if(user=='VIP'||user=='MANAGER')

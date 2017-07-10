@@ -35,7 +35,7 @@
                     <a href="#" style="font-size: 13px;" id="exit">注销</a>
                 </div>
                 <div class="pull-right" style="margin-top: 10px; margin-right: 10px">
-                    <a href="#" style="font-size: 13px;" id="seeHello"></a>
+                    <a href="individual.html" style="font-size: 13px;" id="seeHello"></a>
                 </div>
                 <div class="container" style="padding-top: 15px">
                     <img src="images/logo_title.png" alt="logo">
@@ -55,8 +55,8 @@
                                     <a href="introduction.html?page=0" class="dropdown-toggle" data-toggle="dropdown">了解我们</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="introduction.html?page=0">槐盟介绍</a></li>
+                                        <li><a href="introduction.html?page=2">项目介绍</a></li>
                                         <li><a href="introduction.html?page=1">联系我们</a></li>
-                                        <li><a href="introduction.html?page=2">活动图片</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown guest">
@@ -284,36 +284,20 @@ $("#save").bind("click", function(){
                 alertInfo("修改成功");
             }
             else{
-                alertWarning("修改失败");
+                alertWarning(modle.message);
             }
             
         },
         fail: function() {
-            alert("failed");
+            alertWarning("failed");
         },
         error: function(response) {
-            alert("网络错误");
+            alertWarning("网络错误");
         }
     });
 
 })
-$("#exit").bind("click", function(){
-        $.ajax({
-            type: 'post',
-            url: 'user/logout',
-            success: function(result) {
-                alertInfo(result.message);
-                window.location.href = "../";//有问题，模态框闪退或不显示
-            },
-            fail: function() {
-                alert("failed");
-            },
-            error: function(response) {
-                alert("网络错误");
-            }
-        });
 
-})
 
 function showDiv(num) {
     var length = $("#content-view").children().size();

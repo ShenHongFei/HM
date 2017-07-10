@@ -169,7 +169,7 @@ $(document).ready(function() {
                 alert("failed");
             },
             error: function(response) {
-                alert("Error!!!");
+                alert("网络连接异常");
             }
         });
     })
