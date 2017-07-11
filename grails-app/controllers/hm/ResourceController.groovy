@@ -16,7 +16,7 @@ class ResourceController{
         def uri=URLDecoder.decode(request.requestURI-request.contextPath,'UTF-8')
         def resource
         uri-='/ueditor/dialogs/preview'
-        if(uri=='/') uri='index.html'
+        if(uri=='/') uri='/home.html'
         if(uri.contains('/data')){
             def dataUri=uri-'/data/'
             println "DATA-URI=\t$dataUri"
