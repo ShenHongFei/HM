@@ -21,7 +21,6 @@
     <script type="text/javascript" src="js/utils.js"></script>
     <script type="text/javascript" src="js/nav.js"></script>
     <script type="text/javascript" src="js/sign-up-in.js"></script>
-    <script type="text/javascript" src="js/noback.js"></script>
 
 
     <style>
@@ -45,6 +44,12 @@
 </head>
 
 <body>
+<script>
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', function () {
+        history.pushState(null, null, document.URL);
+    });
+</script>
     <div>
         <div style="background-color: #036eb8; height: 3px"></div>
         <div style="background-image: url('images/bg1.gif'); height: 120px;">
