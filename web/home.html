@@ -6,12 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>大连高校环境联盟</title>
+    <script>
+        history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.URL);
+        });
+    </script>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-dialog.min.css">
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" type="text/css" href="css/user.css">
-
+    
     <!-- Javascript -->
     <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
@@ -21,7 +27,6 @@
     <script type="text/javascript" src="js/utils.js"></script>
     <script type="text/javascript" src="js/nav.js"></script>
     <script type="text/javascript" src="js/sign-up-in.js"></script>
-
 
     <style>
         .carousel {
@@ -44,12 +49,6 @@
 </head>
 
 <body>
-<script>
-    history.pushState(null, null, document.URL);
-    window.addEventListener('popstate', function () {
-        history.pushState(null, null, document.URL);
-    });
-</script>
     <div>
         <div style="background-color: #036eb8; height: 3px"></div>
         <div style="background-image: url('images/bg1.gif'); height: 120px;">
@@ -170,11 +169,11 @@
                             </div>
                             <div class="item">
                                 <img src="images/slide-2.jpg" alt="Second slide" onclick="document.location=' activity.html'">
-                                <div class="carousel-caption">我们的活动期待着你的参与</div>
+                                <div class="carousel-caption">我们期待与你共同品味自然</div>
                             </div>
                             <div class="item">
                                 <img src="images/slide-3.jpg" alt="Third slide">
-                                <div class="carousel-caption">标题 3</div>
+                                <div class="carousel-caption">夕阳西下，飞鸟归巢，我们在落日的余晖中欣赏自然之美</div>
                             </div>
                         </div>
                         <!-- 轮播（Carousel）导航 -->

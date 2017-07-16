@@ -12,7 +12,7 @@ var NAV = {
             type: 'PRESENTATION',
             url: '/index.html?menu=activity&type=PRESENTATION'
         }, {
-            title: '相关新闻',
+            title: '槐盟新闻',
             type: 'ACTIVITY',
             url: '/index.html?menu=activity&type=ACTIVITY'
         }]
