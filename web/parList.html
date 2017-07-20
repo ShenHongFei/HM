@@ -29,7 +29,12 @@
     <script type="text/javascript" src="js/nav.js"></script>
     <script type="text/javascript" src="js/parListcon.js"></script>
     <script type="text/javascript" src="js/sign-up-in.js"></script>
-
+    <script>
+        function loadnav(){
+            if($(window).width()<768)
+                $(".dropdown ul").remove();
+        }
+    </script>
 </head>
 
 <body>
@@ -44,7 +49,7 @@
                     <a href="individual.html" style="font-size: 13px;" id="seeHello"></a>
                 </div>
                 <div class="container" style="padding-top: 15px">
-                    <img src="images/logo_title.png" alt="logo">
+                    <img src="images/logo_title.png" alt="logo" class="smallPic">
                 </div>
             </div>
         </div>
@@ -53,11 +58,11 @@
                 <div class="col-md-12">
                     <nav class="navbar navbar-default no-radius" role="navigation">
                         <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav" id="nav">
-                                <li  id="test_home" class="guest">
+                            <ul class="nav navbar-nav smallCenterOfUl" id="nav">
+                                <li  id="test_home" class="guest smallCenterOfLi">
                                     <a href="home.html">首页</a>
                                 </li>
-                                <li class="dropdown guest">
+                                <li class="dropdown guest smallCenterOfLi">
                                     <a href="introduction.html?page=0" class="dropdown-toggle" data-toggle="dropdown">了解我们</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="introduction.html?page=0">槐盟介绍</a></li>
@@ -65,7 +70,7 @@
                                         <li><a href="introduction.html?page=1">联系我们</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown guest">
+                                <li class="dropdown guest smallCenterOfLi">
                                     <a href="activity.html" class="dropdown-toggle" data-toggle="dropdown">活动</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="activity.html">活动预告</a></li>
@@ -73,14 +78,14 @@
                                         <li><a href="index.html?menu=activity&type=ACTIVITY">槐盟新闻</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown guest">
+                                <li class="dropdown guest smallCenterOfLi">
                                     <a href="index.html?menu=knowledge&type=PROJECT" class="dropdown-toggle" data-toggle="dropdown">科普知识</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="index.html?menu=knowledge&type=PROJECT">项目知识</a></li>
                                         <li><a href="index.html?menu=knowledge&type=WELFARE">公益知识</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown user">
+                                <li class="dropdown user smallCenterOfLi">
                                     <a href="index.html?menu=private_activity&type=OFFICE" class="dropdown-toggle" data-toggle="dropdown" id="hh">内部活动</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="index.html?menu=private_activity&type=OFFICE">办公室</a></li>
@@ -90,7 +95,7 @@
                                         <li><a href="index.html?menu=private_activity&type=PROJECT">项目部</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown user">
+                                <li class="dropdown user smallCenterOfLi">
                                     <a href="index.html?menu=training&type=OFFICE" class="dropdown-toggle" data-toggle="dropdown">培训</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="index.html?menu=training&type=OFFICE">办公室</a> </li>
@@ -100,21 +105,21 @@
                                         <li><a href="index.html?menu=training&type=PROJECT">项目部</a> </li>
                                     </ul>
                                 </li>
-                                <li class="dropdown user">
+                                <li class="dropdown user smallCenterOfLi">
                                     <a href="index.html?menu=notice&type=PROJECT" class="dropdown-toggle" data-toggle="dropdown">公示</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="index.html?menu=notice&type=PROJECT">项目一览</a></li>
                                         <li><a href="index.html?menu=notice&type=HM">槐盟公示</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown user">
+                                <li class="dropdown user smallCenterOfLi">
                                     <a href="individual.html" class="dropdown-toggle" data-toggle="dropdown">个人中心</a>
                                     <!--<ul class="dropdown-menu">-->
-                                        <!--<li><a href="#" onclick="showDiv(0)">个人信息</a></li>-->
-                                        <!--<li><a href="#" onclick="showDiv(1)">信息修改</a></li>-->
+                                    <!--<li><a href="#" onclick="showDiv(0)">个人信息</a></li>-->
+                                    <!--<li><a href="#" onclick="showDiv(1)">信息修改</a></li>-->
                                     <!--</ul>-->
                                 </li>
-                                <li class="dropdown manager">
+                                <li class="dropdown manager smallCenterOfLi">
                                     <a href="manager.html" class="dropdown-toggle" data-toggle="dropdown">用户管理</a>
                                 </li>
                             </ul>
@@ -204,7 +209,7 @@
         <!-- Sign In Modal -->
         <div class="modal fade" id="signInModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
-                <div class="modal-content no-radius" style="height: 215px;margin-top: 200px;">
+                <div class="modal-content no-radius" style="margin-top: 200px;">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title">登录槐盟</h4>
@@ -239,6 +244,9 @@
         <!--Modal end-->
     </div>
      <script type="text/javascript" src="js/user.js"></script>
+    <script>
+        loadnav();
+    </script>
 </body>
 
 </html>

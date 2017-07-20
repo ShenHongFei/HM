@@ -149,3 +149,50 @@ padding-right: 0!important;}
 .navbar-form.navbar-right{
     display: none;
 }
+
+/*响应式*/
+@media (max-width: 767px){
+    .navbar-collapse.collapse{
+        display:flex !important;
+        flex-direction:row !important;
+        flex-wrap: wrap;
+        height:auto !important;
+        padding-bottom:0px;
+        overflow: visible!important;
+    }
+
+    .navbar-collapse{
+        width:auto;
+        border-top:0;
+        box-shadow: none;
+    }
+    .smallCenterOfUl{
+        width:100% !important;
+        margin:0 auto !important;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .smallCenterOfLi{
+        width:50% !important;
+        /*margin:0 auto !important;*/
+    }
+}
+/*图片响应式*/
+@media (max-width: 480px){
+    .smallPic{
+        width:100%;
+    }
+}
+/*登录响应式*/
+@media(max-width:992px){
+    .smallLonIn{
+        height:296px;
+    }
+}
+@media(min-width:992px) {
+    .bigLonIn {
+        height: 215px;
+    }
+}

@@ -27,7 +27,7 @@
     <script type="text/javascript" src="js/utils.js"></script>
     <script type="text/javascript" src="js/nav.js"></script>
     <script type="text/javascript" src="js/sign-up-in.js"></script>
-
+    <!--轮播-->
     <style>
         .carousel {
             height: 450px;
@@ -46,9 +46,99 @@
             font-family: "微软雅黑";
         }
     </style>
+    <!--导航栏响应式-->
+    <style>
+        @media (max-width: 767px){
+            .navbar-collapse.collapse{
+                display:flex !important;
+                flex-direction:row !important;
+                flex-wrap: wrap;
+                height:auto !important;
+                padding-bottom:0px;
+                overflow: visible!important;
+            }
+
+            .navbar-collapse{
+                width:auto;
+                border-top:0;
+                box-shadow: none;
+            }
+            .smallCenterOfUl{
+                width:100% !important;
+                margin:0 auto !important;
+                display: flex;
+                justify-content: flex-start;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .smallCenterOfLi{
+                width:50% !important;
+                /*margin:0 auto !important;*/
+            }
+        }
+        /*图片响应式*/
+        @media (max-width: 480px){
+            .smallPic{
+              width:100%;
+              }
+        }
+        /*登录响应式*/
+        @media(max-width:992px){
+        .smallLonIn{
+            height:296px;
+        }
+        }
+        @media(min-width:992px) {
+            .bigLonIn {
+                height: 215px;
+            }
+        }
+    </style>
 </head>
 
 <body>
+<script>
+//轮播响应式
+    function load() {
+        if ($(window).width() >= 1200) {
+            $('#home-carousel').css("height", "430px");
+            $('.carousel-caption').removeAttr("top");
+            $('.carousel-caption').css("bottom", "20px")
+        }
+        else if ($(window).width() < 1200 && $(window).width() >= 992) {
+            var titlePosition = 354.2 * 0.7 * 100 / 450;
+            $('#home-carousel').css("height", "354.2px");
+            $('.carousel-caption').removeAttr("bottom");
+            $('.carousel-caption').attr("top", titlePosition + "%");
+            $('.carousel-caption').css("top", titlePosition + "%");
+
+        }
+        else if ($(window).width() < 992 && $(window).width() >= 768) {
+            var titlePosition = 270.94 * 0.6 * 100 / 450;
+            $('#home-carousel').css("height", "270.94px");
+            $('.carousel-caption').removeAttr("bottom");
+            $('.carousel-caption').attr("top", titlePosition + "%");
+            $('.carousel-caption').css("top", titlePosition + "%");
+
+        }
+        else if ($(window).width() < 768) {
+            var windowWidth = $(window).width();
+            var picWidth = windowWidth * 736 / 766;
+            var picHeight = picWidth * 429 / 1140;
+            var titlePosition = (windowWidth-227)/13.14;
+            var circlePosition=(windowWidth-320)/44.8;
+            var fontsize=(windowWidth+205)/52.5;
+            $('#home-carousel').css("height", picHeight + "px");
+            $('.carousel-caption').removeAttr("bottom");
+            $('.carousel-caption').attr("top", titlePosition + "%");
+            $('.carousel-caption').css("top", titlePosition + "%");
+            $('.carousel-indicators').css("bottom", circlePosition-1 + "px");
+            $('#carouselNo3').css("font-size",fontsize+"px");
+            $(".dropdown ul").remove();
+        }
+    }
+</script>
+
     <div>
         <div style="background-color: #036eb8; height: 3px"></div>
         <div style="background-image: url('images/bg1.gif'); height: 120px;">
@@ -64,7 +154,7 @@
                     <a href="individual.html" style="font-size: 13px;" id="seeHello"></a>
                 </div>
                 <div class="container" style="padding-top: 15px">
-                    <img src="images/logo_title.png" alt="logo">
+                    <img src="images/logo_title.png" alt="logo" class="smallPic">
                 </div>
             </div>
         </div>
@@ -73,11 +163,11 @@
                 <div class="col-md-12">
                     <nav class="navbar navbar-default no-radius" role="navigation">
                         <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav" id="nav">
-                                <li  id="test_home" class="guest">
+                            <ul class="nav navbar-nav smallCenterOfUl" id="nav">
+                                <li  id="test_home" class="guest smallCenterOfLi">
                                     <a href="home.html">首页</a>
                                 </li>
-                                <li class="dropdown guest">
+                                <li class="dropdown guest smallCenterOfLi">
                                     <a href="introduction.html?page=0" class="dropdown-toggle" data-toggle="dropdown">了解我们</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="introduction.html?page=0">槐盟介绍</a></li>
@@ -85,7 +175,7 @@
                                         <li><a href="introduction.html?page=1">联系我们</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown guest">
+                                <li class="dropdown guest smallCenterOfLi">
                                     <a href="activity.html" class="dropdown-toggle" data-toggle="dropdown">活动</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="activity.html">活动预告</a></li>
@@ -93,14 +183,14 @@
                                         <li><a href="index.html?menu=activity&type=ACTIVITY">槐盟新闻</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown guest">
+                                <li class="dropdown guest smallCenterOfLi">
                                     <a href="index.html?menu=knowledge&type=PROJECT" class="dropdown-toggle" data-toggle="dropdown">科普知识</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="index.html?menu=knowledge&type=PROJECT">项目知识</a></li>
                                         <li><a href="index.html?menu=knowledge&type=WELFARE">公益知识</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown user">
+                                <li class="dropdown user smallCenterOfLi">
                                     <a href="index.html?menu=private_activity&type=OFFICE" class="dropdown-toggle" data-toggle="dropdown" id="hh">内部活动</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="index.html?menu=private_activity&type=OFFICE">办公室</a></li>
@@ -110,7 +200,7 @@
                                         <li><a href="index.html?menu=private_activity&type=PROJECT">项目部</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown user">
+                                <li class="dropdown user smallCenterOfLi">
                                     <a href="index.html?menu=training&type=OFFICE" class="dropdown-toggle" data-toggle="dropdown">培训</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="index.html?menu=training&type=OFFICE">办公室</a> </li>
@@ -120,21 +210,21 @@
                                         <li><a href="index.html?menu=training&type=PROJECT">项目部</a> </li>
                                     </ul>
                                 </li>
-                                <li class="dropdown user">
+                                <li class="dropdown user smallCenterOfLi">
                                     <a href="index.html?menu=notice&type=PROJECT" class="dropdown-toggle" data-toggle="dropdown">公示</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="index.html?menu=notice&type=PROJECT">项目一览</a></li>
                                         <li><a href="index.html?menu=notice&type=HM">槐盟公示</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown user">
+                                <li class="dropdown user smallCenterOfLi">
                                     <a href="individual.html" class="dropdown-toggle" data-toggle="dropdown">个人中心</a>
                                     <!--<ul class="dropdown-menu">-->
                                         <!--<li><a href="#" onclick="showDiv(0)">个人信息</a></li>-->
                                         <!--<li><a href="#" onclick="showDiv(1)">信息修改</a></li>-->
                                     <!--</ul>-->
                                 </li>
-                                <li class="dropdown manager">
+                                <li class="dropdown manager smallCenterOfLi">
                                     <a href="manager.html" class="dropdown-toggle" data-toggle="dropdown">用户管理</a>
                                 </li>
                             </ul>
@@ -154,7 +244,7 @@
             </div>
             <div class="row clearfix" >
                 <div class="col-md-12">
-                    <div id="home-carousel" class="carousel slide" style="height:430px !important">
+                    <div id="home-carousel" class="carousel slide" style="overflow: hidden">
                         <!-- 轮播（Carousel）指标 -->
                         <ol class="carousel-indicators">
                             <li data-target="#home-carousel" data-slide-to="0" class="active"></li>
@@ -173,7 +263,7 @@
                             </div>
                             <div class="item">
                                 <img src="images/slide-3.jpg" alt="Third slide">
-                                <div class="carousel-caption">夕阳西下，飞鸟归巢，我们在落日的余晖中欣赏自然之美</div>
+                                <div class="carousel-caption" id="carouselNo3">夕阳西下，飞鸟归巢，我们在落日的余晖中欣赏自然之美</div>
                             </div>
                         </div>
                         <!-- 轮播（Carousel）导航 -->
@@ -201,7 +291,7 @@
         <!-- Sign In Modal -->
         <div class="modal fade" id="signInModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
-                <div class="modal-content no-radius" style="height: 215px;margin-top: 200px;">
+                <div class="modal-content no-radius smallLonIn bigLonIn" style="margin-top: 200px;">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title">登录槐盟</h4>
@@ -209,13 +299,13 @@
                     <div class="modal-body">
                         <form class="form-horizontal" role="form">
                             <div class="form-group">
-                                <label for="account" class="col-md-2 control-label">邮箱</label>
+                                <label for="login_account" class="col-md-2 control-label">邮箱</label>
                                 <div class="col-md-10">
                                     <input type="text" class="form-control no-radius" id="login_account" placeholder="请输入邮箱" autocomplete="off">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="password" class="col-md-2 control-label">密码</label>
+                                <label for="login_pwd" class="col-md-2 control-label">密码</label>
                                 <div class="col-md-10">
                                     <input type="password" class="form-control no-radius" id="login_pwd" placeholder="请输入密码" autocomplete="off">
                                 </div>
@@ -236,6 +326,7 @@
         <!--Modal end-->
          <script type="text/javascript" src="js/user.js"></script>
         <script>
+            load();
             var user= $.cookie("role");
             switch(user){
                 case('USER'):
