@@ -98,8 +98,15 @@ task 打包{
     doLast{
         copy{
             from 'build/libs/HM.jar'
+            exclude '.test'
             into projectDir
         }
 //        Files.copy(new File(projectDir,'build/libs/HM.jar').toPath(),new File(projectDir,'HM.jar').toPath(),StandardCopyOption.REPLACE_EXISTING)
     }
+}
+
+task 打包web(type:Zip){
+    from 'web'
+    archivesBaseName='web'
+    destinationDir=projectDir
 }
