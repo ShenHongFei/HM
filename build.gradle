@@ -84,29 +84,29 @@ springBoot {
 bootRun {
     jvmArgs('-Dspring.output.ansi.enabled=always')
     jvmArgs('-Dfile.encoding=UTF-8')
-    //noinspection GroovyAssignabilityCheck
-    systemProperties=System.properties
     addResources = true
 }
 
 task wrapper(type: Wrapper) {
     gradleVersion = '3.5'
+    distributionUrl='distributionUrl=https\\://services.gradle.org/distributions/gradle-3.5-all.zip'
 }
 
+
+
 task 打包{
-    dependsOn assemble
+    dependsOn bootRepackage
     doLast{
         copy{
             from 'build/libs/HM.jar'
-            exclude '.test'
             into projectDir
         }
-//        Files.copy(new File(projectDir,'build/libs/HM.jar').toPath(),new File(projectDir,'HM.jar').toPath(),StandardCopyOption.REPLACE_EXISTING)
+        task 打包web(type:Zip){
+            from 'web'
+            exclude '.test'
+            archivesBaseName='web'
+            destinationDir=projectDir
+        }
+        打包web.execute()
     }
-}
-
-task 打包web(type:Zip){
-    from 'web'
-    archivesBaseName='web'
-    destinationDir=projectDir
 }
