@@ -51,7 +51,7 @@ class Uploader {
             try {
                 MultipartFile file = ((MultipartHttpServletRequest)request).getFile(conf.get("fieldName").toString())
                 String filename = file.originalFilename
-                filename=filename.replaceAll(/[\\/:*?"<>| ]/,'-')
+                filename=filename.replaceAll(/[\\/#%&:*?"'<>| ]/,'-')
                 String suffix = '.'+filename.split('\\.')[-1]
                 if(file.size>(Long) conf.get("maxSize")) return new BaseState(false, AppInfo.MAX_SIZE)
                 if (!validType(suffix, (String[]) conf.get("allowFiles"))) {

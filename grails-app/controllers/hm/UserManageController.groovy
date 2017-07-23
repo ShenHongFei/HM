@@ -26,8 +26,9 @@ class UserManageController {
         if(sortParams[0]&&User.hasProperty(sortParams[0])) sortBy=sortParams[0]
         def order='desc'
         if(sortParams[1]&&['asc','desc'].contains(sortParams[1])) order=sortParams[1]
-        def users = User.findAll("from User as user where user.role='${params.role==Role.VIP.toString()?Role.VIP:Role.USER}' order by user.$sortBy $order".toString(),[max:size,offset:page*size])
-        return render(view:'/my-page',model:[myPage:new MyPage(users,users.size(),size,page),template:'/user/details'])
+        Role role=params.role==Role.VIP.toString()?Role.VIP:Role.USER
+        def users = User.findAll("from User as user where user.role='${role}' order by user.$sortBy $order".toString(),[max:size,offset:page*size])
+        return render(view:'/my-page',model:[myPage:new MyPage(users,User.countByRole(role),size,page),template:'/user/details'])
     }
     
     def delete(){
