@@ -1,5 +1,5 @@
 # HM 槐盟(大连高校环境联盟)	网站
-# http://huaimeng.org:7777
+# http://huaimeng.org
 
 ![LOGO](http://tva2.sinaimg.cn/crop.0.0.180.180.180/a121378fjw1e8qgp5bmzyj2050050aa8.jpg)
 
