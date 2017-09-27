@@ -1,10 +1,10 @@
 # HM 槐盟(大连高校环境联盟)	网站
-# http://huaimeng.org:7777
+# http://huaimeng.org
 
 ![LOGO](http://tva2.sinaimg.cn/crop.0.0.180.180.180/a121378fjw1e8qgp5bmzyj2050050aa8.jpg)
 
 ## 如何在本地开发及调试代码
-1. `git clone https://git.oschina.net/shenhongfei/HM.git` 
+1. `git clone https://github.com/ShenHongFei/HM.git`
     将项目下载到本地或导入IDE
     
     或者下载zip包（右上角）
@@ -33,5 +33,5 @@ https://www.getpostman.com/collections/948411cb62444b74997f
 
 ## 如何提交修改
 
-参照 [https://git-scm.com/book/zh/v2](https://git-scm.com/book/zh/v2) 选择合适的方法提交到码云，即可同步到 http://shenhongfei.site 
+参照 [https://git-scm.com/book/zh/v2](https://git-scm.com/book/zh/v2) 选择合适的方法提交到GitHub
 
