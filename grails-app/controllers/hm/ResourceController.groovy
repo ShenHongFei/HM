@@ -20,7 +20,11 @@ class ResourceController{
         if(uri.contains('/data')){
             def dataUri=uri-'/data/'
             println "DATA-URI=\t$dataUri"
-            resource=new File(dataDir,dataUri)
+            if(dataUri=='log.txt'){
+                resource=Logger.log_file
+            }else{
+                resource=new File(dataDir,dataUri)
+            }
             response.addHeader('Content-Disposition',"attachment; filename=\"${URLEncoder.encode(resource.name,'UTF-8')}\"")
         }else{
             println "WEB-URI=\t$uri"

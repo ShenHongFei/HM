@@ -62,6 +62,7 @@ class UserController {
         }
         session.user=user
         setUserCookies(response,user)
+        log("${user.username} 注册成功")
         success '注册成功'
     }
     
@@ -71,6 +72,7 @@ class UserController {
         session.user=null
         if(request.cookies.find{it.name=='autologin'}) clearCookie(response,'autologin')
         setUserCookies(response,GUEST)
+        log("${user.username} 注销成功")
         success '注销成功'
     }
     
@@ -93,6 +95,7 @@ class UserController {
             it
         })
         setUserCookies(response,user)
+        log("$user.username 登录成功")
         success '登录成功'
     }
     
@@ -126,6 +129,7 @@ class UserController {
             return fail(user,'更新失败')
         }
         setUserCookies(response,user)
+        log("${user.username} 更新信息成功")
         success '更新成功'
     }
     
@@ -146,20 +150,31 @@ class UserController {
             e.printStackTrace()
             return fail(e.localizedMessage)
         }
+        log("${user.username} 重置密码邮件发送成功")
         success '邮件发送成功'
     }
     
     //params id,uuid
     def resetPassword(){
+        try{
+            int id = Integer.parseInt(params.id)
+        }catch(NumberFormatException e){
+            return render("参数 id=$params.id 不正确")
+        }
         def user = User.find{id==params.id&&uuid==params.uuid}
         if(!user) return fail("重置失败，id和uuid不匹配")
         user.password='123456'
         session.user=user
         setUserCookies(response,user)
+        log("${user.username} 重置密码成功")
         render('''
             重置成功，新密码为 123456 ，请及时更改。
             <a href="http://shenhongfei.site">http://shenhongfei.site</a>
             ''')
+    }
+    
+    static void log(String msg){
+        Logger.log('用户',msg)
     }
     
     //工具方法

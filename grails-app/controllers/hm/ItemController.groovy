@@ -25,7 +25,6 @@ class ItemController<T extends Item>{
     
     // params title,content 
     // 新闻提交后需要重新初始化UE
-    @SuppressWarnings("GroovyAssignabilityCheck")
     def addSubmit(){
         if(!itemInEdit) return fail("提交失败，找不到正在编辑的${itemClassName}，可能是UE自上次提交后没有重新初始化")
         //相对ItemController增加类型校验及设置
@@ -55,8 +54,10 @@ class ItemController<T extends Item>{
         itemInEdit.author.attach()
         if(!itemInEdit.validate(deepValidate:false)) return fail(itemInEdit,'添加失败')
         itemInEdit.saved=true
+        def tmp_item=itemInEdit
         itemInEdit=null
-        success message:'添加成功',obj:itemInEdit
+        log(itemClassName,"添加了$tmp_item.title")
+        success message:'添加成功',obj:tmp_item
     }
     
     def addDiscard(){
@@ -106,6 +107,7 @@ class ItemController<T extends Item>{
         Item item
         def id = params.int('id')
         if(id==null||!(item=Item.get(id))||!item.saved) return fail("id=$id 的${itemClassName}不存在或处于草稿状态，无法删除")
+        log(itemClassName,"删除了$item.title")
         item.dir.deleteDir()
         item.delete()
         success(message:'删除成功')
@@ -139,6 +141,7 @@ class ItemController<T extends Item>{
         }
         item.author.attach()
         if(!item.validate()) return fail(item,'修改失败')
+        log(itemClassName,"修改了$item.title")
         success(message:'修改成功',obj:item)
     }
     
@@ -154,6 +157,10 @@ class ItemController<T extends Item>{
         if(!item) return fail("id=$id 的${itemClassName}不存在")
         if(!item.saved) return fail("id=$id 的${itemClassName}未成功提交，处于草稿状态")
         success obj:item
+    }
+    
+    private void log(String subtype,String msg){
+        Logger.log("帖子/$subtype",session.user.username+msg)
     }
     
     protected getItemClass(){

@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap-dialog.min.css">  
 
     <script src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
     <script src="js/sign-up-in.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-dialog.min.js"></script>
@@ -39,21 +40,19 @@
                     <a href="home.html" class="link-index">返回首页</a>
                     <button class="submit fwd_button" id="next" type="button">发送</button>
                 </div>
-                
-
-
             </form>
         </div>
     </div>
 </body>
 <script>
-$(document).ready(function() {
-    $('#next').click(function() {
-        var reEmail = /^\w+((-\w+)丨(\.\w+))*\@[A-Za-z0-9]+((\.丨-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
-        if (!reEmail.test($('#email').val())) {
-            if ($('#email').val().length == 0) {
+    console.log('here')
+$(function(){
+    $('#next').on('click',function(){
+        var reEmail=/^\w+((-\w+)丨(\.\w+))*\@[A-Za-z0-9]+((\.丨-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+        if(!reEmail.test($('#email').val())){
+            if($('#email').val().length==0){
                 alertWarning("邮箱不能为空")
-            } else {
+            }else{
                 alertWarning("邮箱格式有误")
             }
             return;
@@ -61,29 +60,29 @@ $(document).ready(function() {
 
         // alert("邮箱格式有误qweq")
         $.ajax({
-            type: 'post',
-            url: 'user/send-reset-email',
-            data: {
-                email: $('#email').val(),
+            type:'post',
+            url:'user/send-reset-email',
+            data:{
+                email:$('#email').val(),
             },
-            success: function(model) {
-               if(model.result){
-                alertInfo(model.message);
-                //window.location.href = "fwd_success.html";//有问题，模态框闪退或不显示
-            }
-            else{
-                alertWarning("邮件发送失败，请检查邮箱是否存在");
-            }
+            success:function(model){
+                if(model.result){
+                    alertInfo(model.message);
+                    //window.location.href = "fwd_success.html";//有问题，模态框闪退或不显示
+                }
+                else{
+                    alertWarning("邮件发送失败，请检查邮箱是否存在");
+                }
             },
-            fail: function() {
+            fail:function(){
                 alert("failed");
             },
-            error: function(response) {
-                alert("Error!!!");
+            error:function(response){
+                alert("网络连接错误");
             }
         });
         //alert("为什么要加上这一句，才能显示访问记录")
-    });
+    })
 })
 </script>
 

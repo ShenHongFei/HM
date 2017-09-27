@@ -37,6 +37,7 @@ class UserManageController {
         if(paramsId){
             def user=User.get(paramsId)
             if(!user) return fail("参数 id=${params.id} 不正确或用户不存在")
+            log("管理员删除了用户 $user.username")
             user.delete()
             return success('删除成功')
         }
@@ -44,6 +45,7 @@ class UserManageController {
         if(!ids) return fail("参数 ids=${params.ids} 不正确")
         List<User> users=User.getAll(ids).findAll{it!=null}
         User.deleteAll(users)
+        log("管理员删除了${users.size()}个用户")
         return batchSuccess('删除成功',ids,users)
     }
     
@@ -63,6 +65,7 @@ class UserManageController {
         if(!ids) return fail("参数 ids=${params.ids} 不正确")
         List<User> users=User.getAll(ids).findAll{it!=null}
         users.each{it.role=role}
+        log("管理员修改了${users.size()}个用户的权限")
         return batchSuccess('设置权限成功',ids,users)
     }
     
@@ -79,7 +82,9 @@ class UserManageController {
             new File(Application.dataDir,'invitation-code.ser').withObjectOutputStream{
                 it<<code
             }
+            code
         }
+        log("管理员设置邀请码为$invitationCode.value 过期时间为$invitationCode.expirationTime")
         return success('邀请码设置成功')
     }
     
@@ -92,6 +97,10 @@ class UserManageController {
             }
         }
         render view:'/user/invitation-code',model:[invitationCode:invitationCode]
+    }
+    
+    static void log(String msg){
+        Logger.log('用户管理',msg)
     }
     
     
